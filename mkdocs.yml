@@ -1,0 +1,51 @@
+site_name: Enterprise Windows Infrastructure Lab
+
+theme:
+  name: material
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+
+  - Environment:
+      - Overview: environment/overview.md
+      - KVM Setup: environment/kvm_setup.md
+      - Architecture & Network: environment/architecture_network.md
+
+
+  - Active Directory:
+      - Windows Server Installation: active-directory/windows_server.md
+      - Domain Setup: active-directory/domain_setup.md
+      - DNS: active-directory/dns.md
+      - DHCP: active-directory/dhcp.md
+      - Windows Clients: active-directory/windows_clients.md
+      - OUs, Users & Security Groups: active-directory/ou_structure.md
+
+  - Group Policy:
+      - Overview: group-policy/overview.md
+
+  - Delegated Administration:
+      - Overview: delegated-administration/overview.md
+      - Permission Testing:
+#          - Overview: delegated-administration/permission-testing/overview.md
+          - Help Desk: delegated-administration/permission-testing/helpdesk.md
+          - SysAdmin: delegated-administration/permission-testing/sysadmin.md
+          - Administrative SysAdmin: delegated-administration/permission-testing/administrative_sysadmin.md
+
+  - Remote Administration:
+      - Overview: remote-administration/overview.md
