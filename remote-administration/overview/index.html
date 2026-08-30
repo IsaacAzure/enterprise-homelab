@@ -1,0 +1,2090 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../delegated-administration/permission-testing/administrative_sysadmin/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Overview - Enterprise Windows Infrastructure Lab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#powershell-remoting-rsat-ad-administration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Enterprise Windows Infrastructure Lab" class="md-header__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Windows Infrastructure Lab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Enterprise Windows Infrastructure Lab" class="md-nav__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Enterprise Windows Infrastructure Lab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/kvm_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KVM Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/architecture_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Network
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Directory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Active Directory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/windows_server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/domain_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/windows_clients/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Clients
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/ou_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OUs, Users & Security Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Group Policy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Group Policy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../group-policy/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delegated Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Delegated Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permission Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Permission Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/helpdesk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Help Desk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/administrative_sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administrative SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Remote Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-enable-powershell-remoting-and-winrm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Enable PowerShell Remoting and WinRM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Enable PowerShell Remoting and WinRM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restricting-winrm-through-windows-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restricting WinRM Through Windows Firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-powershell-remoting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing PowerShell Remoting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-attempt-rsat-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Attempt RSAT Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-verify-the-administrative-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Verify the Administrative Context
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-verify-winrm-and-network-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Verify WinRM and Network Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Verify WinRM and Network Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#winrm-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WinRM Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#winrm-listener" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WinRM Listener
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#powershell-session-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PowerShell Session Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNS Resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#winrm-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WinRM Connectivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-identify-the-ip-address-vs-hostname-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Identify the IP Address vs Hostname Issue
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-isolate-the-rsat-installation-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Isolate the RSAT Installation Problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-verify-the-active-directory-powershell-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Verify the Active Directory PowerShell Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Verify the Active Directory PowerShell Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#domain-controller-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain Controller Discovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-directory-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Active Directory Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-investigate-the-remaining-remote-ad-query-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Investigate the Remaining Remote AD Query Failure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 8: Investigate the Remaining Remote AD Query Failure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-active-directory-web-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Active Directory Web Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspect-the-authentication-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspect the Authentication Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-9-confirm-the-powershell-remoting-second-hop-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 9: Confirm the PowerShell Remoting Second-Hop Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 9: Confirm the PowerShell Remoting Second-Hop Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-administration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Administration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administration-through-powershell-remoting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administration Through PowerShell Remoting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-10-final-architecture-and-troubleshooting-lesson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 10: Final Architecture and Troubleshooting Lesson
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-lab-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Lab Approach
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-enable-powershell-remoting-and-winrm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Enable PowerShell Remoting and WinRM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Enable PowerShell Remoting and WinRM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restricting-winrm-through-windows-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restricting WinRM Through Windows Firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-powershell-remoting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing PowerShell Remoting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-attempt-rsat-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Attempt RSAT Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-verify-the-administrative-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Verify the Administrative Context
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-verify-winrm-and-network-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Verify WinRM and Network Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Verify WinRM and Network Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#winrm-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WinRM Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#winrm-listener" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WinRM Listener
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#powershell-session-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PowerShell Session Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNS Resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#winrm-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WinRM Connectivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-identify-the-ip-address-vs-hostname-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Identify the IP Address vs Hostname Issue
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-isolate-the-rsat-installation-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Isolate the RSAT Installation Problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-verify-the-active-directory-powershell-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Verify the Active Directory PowerShell Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Verify the Active Directory PowerShell Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#domain-controller-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain Controller Discovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-directory-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Active Directory Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-investigate-the-remaining-remote-ad-query-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Investigate the Remaining Remote AD Query Failure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 8: Investigate the Remaining Remote AD Query Failure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-active-directory-web-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Active Directory Web Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspect-the-authentication-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspect the Authentication Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-9-confirm-the-powershell-remoting-second-hop-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 9: Confirm the PowerShell Remoting Second-Hop Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 9: Confirm the PowerShell Remoting Second-Hop Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-administration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Administration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administration-through-powershell-remoting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administration Through PowerShell Remoting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-10-final-architecture-and-troubleshooting-lesson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 10: Final Architecture and Troubleshooting Lesson
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-lab-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Lab Approach
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="powershell-remoting-rsat-ad-administration">PowerShell Remoting, RSAT &amp; AD Administration</h1>
+<p>After configuring the Active Directory delegation structure, I wanted to test remote administration of the Windows clients and begin using PowerShell Remoting.</p>
+<p>This developed into a useful troubleshooting exercise involving:</p>
+<ul>
+<li>PowerShell Remoting and WinRM</li>
+<li>Windows Firewall</li>
+<li>DNS and hostname resolution</li>
+<li>Kerberos authentication</li>
+<li>Remote Server Administration Tools (RSAT)</li>
+<li>Active Directory PowerShell</li>
+<li>Active Directory Web Services (ADWS)</li>
+<li>The PowerShell Remoting second-hop problem</li>
+</ul>
+<p>Rather than changing multiple components in response to an initial error, I worked through each layer individually to identify where the failure was occurring.</p>
+<hr />
+<h2 id="step-1-enable-powershell-remoting-and-winrm">Step 1: Enable PowerShell Remoting and WinRM</h2>
+<p>I enabled PowerShell Remoting and WinRM on the Windows workstations through Group Policy.</p>
+<p>In Group Policy Management:</p>
+<div class="highlight"><pre><span></span><code>Computer Configuration
+└── Policies
+    └── Administrative Templates
+        └── Windows Components
+            └── Windows Remote Management (WinRM)
+                └── WinRM Service
+                    └── Allow remote server management through WinRM
+</code></pre></div>
+<p>I enabled the policy and configured the <strong>IPv4 filter</strong> as:</p>
+<div class="highlight"><pre><span></span><code>*
+</code></pre></div>
+<h3 id="restricting-winrm-through-windows-firewall">Restricting WinRM Through Windows Firewall</h3>
+<p>I also created a firewall rule controlling which systems could initiate WinRM connections to the workstations.</p>
+<p>The rule was configured through:</p>
+<div class="highlight"><pre><span></span><code>Computer Configuration
+└── Policies
+    └── Windows Settings
+        └── Security Settings
+            └── Windows Defender Firewall with Advanced Security
+                └── Inbound Rules
+</code></pre></div>
+<p>I created a new predefined rule for:</p>
+<div class="highlight"><pre><span></span><code>Windows Remote Management
+</code></pre></div>
+<p>The connection was allowed, but I then edited the <strong>Windows Remote Management (HTTP-In)</strong> rule and restricted its scope.</p>
+<p>Under <strong>Remote IP address</strong>, I selected:</p>
+<div class="highlight"><pre><span></span><code>These IP addresses
+</code></pre></div>
+<p>and added the IP address of my Domain Controller.</p>
+<p>This meant that the workstations would accept WinRM connections from the Domain Controller rather than allowing WinRM access from any machine.</p>
+<p>I verified the firewall rule with:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-NetFirewallRule</span> <span class="n">-DisplayName</span> <span class="s2">&quot;Windows Remote Management*&quot;</span> <span class="p">|</span>
+    <span class="nb">Select </span><span class="n">DisplayName</span><span class="p">,</span> <span class="n">Enabled</span>
+</code></pre></div>
+<h3 id="testing-powershell-remoting">Testing PowerShell Remoting</h3>
+<p>From the Domain Controller, I tested both workstations:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">WS_01</span><span class="p">,</span> <span class="n">WS_02</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
+    <span class="nb">Get-Service</span> <span class="n">WinRM</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The command executed successfully on both clients, confirming that PowerShell Remoting was functioning.</p>
+<div class="admonition success">
+<p class="admonition-title">PowerShell Remoting confirmed</p>
+<p>Remote commands could now be executed against both <code>WS_01</code> and <code>WS_02</code> from the Domain Controller.</p>
+</div>
+<hr />
+<h2 id="step-2-attempt-rsat-installation">Step 2: Attempt RSAT Installation</h2>
+<p>I wanted to install <strong>Remote Server Administration Tools (RSAT)</strong> on both Windows clients so that Active Directory could also be administered from the workstations.</p>
+<p>My initial approach attempted to install all available RSAT components remotely:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">WS_01</span><span class="p">,</span> <span class="n">WS_02</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
+    <span class="nb">Get-WindowsCapability</span> <span class="n">-Name</span> <span class="n">RSAT</span><span class="p">*</span> <span class="n">-Online</span> <span class="p">|</span>
+        <span class="nb">Add-WindowsCapability</span> <span class="n">-Online</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The operation failed with:</p>
+<div class="error-message">
+Access is denied.
+</div>
+
+<p>At first, this appeared to indicate either a permissions problem or an issue with PowerShell Remoting.</p>
+<p>Rather than immediately changing permissions or the WinRM configuration, I began testing each layer independently.</p>
+<hr />
+<h2 id="step-3-verify-the-administrative-context">Step 3: Verify the Administrative Context</h2>
+<p>Before assuming that <code>Access is denied</code> meant the account lacked sufficient permissions, I verified the administrative context being used.</p>
+<p>The account was:</p>
+<div class="highlight"><pre><span></span><code>EARTH\Administrator
+</code></pre></div>
+<p>I confirmed that it was a member of:</p>
+<div class="highlight"><pre><span></span><code>EARTH\Domain Admins
+</code></pre></div>
+<p>I also checked the local <strong>Administrators</strong> group on both workstations and confirmed that <code>EARTH\Domain Admins</code> was a member.</p>
+<p>This indicated that the failure was unlikely to be caused by basic account or group membership.</p>
+<p>The investigation could therefore move further down the stack rather than changing Active Directory permissions unnecessarily.</p>
+<div class="admonition tip">
+<p class="admonition-title">Troubleshooting principle</p>
+<p>An <code>Access is denied</code> message does not automatically identify which security layer rejected an operation. Verify the account context before changing permissions.</p>
+</div>
+<hr />
+<h2 id="step-4-verify-winrm-and-network-configuration">Step 4: Verify WinRM and Network Configuration</h2>
+<p>I next verified that the network and WinRM layers were functioning correctly.</p>
+<h3 id="winrm-service">WinRM Service</h3>
+<p>I checked the WinRM service:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-Service</span> <span class="n">WinRM</span>
+</code></pre></div>
+<p>WinRM was running.</p>
+<h3 id="winrm-listener">WinRM Listener</h3>
+<p>I inspected the listener configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="n">winrm</span> <span class="n">enumerate</span> <span class="n">winrm</span><span class="p">/</span><span class="n">config</span><span class="p">/</span><span class="n">listener</span>
+</code></pre></div>
+<p>The listener was configured for HTTP on port <code>5985</code>, was enabled, and was listening on the workstation.</p>
+<h3 id="powershell-session-configuration">PowerShell Session Configuration</h3>
+<p>I checked the available PowerShell remoting endpoints:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-PSSessionConfiguration</span>
+</code></pre></div>
+<p>The standard <code>microsoft.powershell</code> endpoint was available.</p>
+<h3 id="network-profile">Network Profile</h3>
+<p>I verified the workstation's network profile:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-NetConnectionProfile</span>
+</code></pre></div>
+<p>The network was correctly identified as:</p>
+<div class="highlight"><pre><span></span><code>DomainAuthenticated
+</code></pre></div>
+<h3 id="dns-resolution">DNS Resolution</h3>
+<p>I then tested name resolution:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Resolve-DnsName</span> <span class="n">WS_01</span>
+</code></pre></div>
+<p>The workstation name correctly resolved through the domain DNS infrastructure.</p>
+<h3 id="winrm-connectivity">WinRM Connectivity</h3>
+<p>Finally, I tested WinRM directly:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Test-WSMan</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">150</span><span class="p">.</span><span class="n">100</span>
+</code></pre></div>
+<p>This successfully returned WS-Management information.</p>
+<p>At this stage, the basic network path and WinRM service were functioning correctly.</p>
+<hr />
+<h2 id="step-5-identify-the-ip-address-vs-hostname-issue">Step 5: Identify the IP Address vs Hostname Issue</h2>
+<p>During testing, I initially attempted PowerShell Remoting using the workstation's <strong>IP address</strong>.</p>
+<p>This produced an authentication problem.</p>
+<p>Within the domain environment, I instead tested the connection using the computer's hostname:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">WS_01</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
+    <span class="n">hostname</span>
+    <span class="nb">Get-Service</span> <span class="n">WinRM</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This succeeded.</p>
+<p>I also tested the fully qualified domain name:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">WS_01</span><span class="p">.</span><span class="n">earth</span><span class="p">.</span><span class="n">local</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
+    <span class="n">hostname</span>
+    <span class="nb">Get-Service</span> <span class="n">WinRM</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This also succeeded.</p>
+<p>The successful hostname and FQDN tests confirmed that PowerShell Remoting itself was working correctly when using the domain identity of the workstation.</p>
+<div class="admonition note">
+<p class="admonition-title">Kerberos and hostnames</p>
+<p>This became important later in the investigation. The domain's Kerberos authentication uses service identities associated with hostnames. Using the domain computer name therefore provided the appropriate authentication path for the remoting tests.</p>
+</div>
+<hr />
+<h2 id="step-6-isolate-the-rsat-installation-problem">Step 6: Isolate the RSAT Installation Problem</h2>
+<p>With PowerShell Remoting confirmed as functional, I returned to the RSAT installation problem.</p>
+<p>Rather than continuing to modify WinRM, I first checked whether the Active Directory RSAT capability was installed:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">WS_01</span><span class="p">,</span> <span class="n">WS_02</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
+    <span class="nb">Get-WindowsCapability</span> <span class="n">-Online</span> <span class="p">|</span>
+        <span class="nb">Where-Object</span> <span class="n">Name</span> <span class="o">-like</span> <span class="s2">&quot;Rsat.ActiveDirectory*&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Both clients reported the capability as:</p>
+<div class="highlight"><pre><span></span><code>State : NotPresent
+</code></pre></div>
+<p>Instead of attempting to install every RSAT component again through the remote session, I installed only the Active Directory capability required for the lab.</p>
+<p>I ran the following from an <strong>elevated local PowerShell session on each workstation</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Add-WindowsCapability</span> <span class="n">-Online</span> <span class="p">`</span>
+    <span class="n">-Name</span> <span class="s2">&quot;Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0&quot;</span>
+</code></pre></div>
+<p><code>WS_01</code> took considerably longer to complete than <code>WS_02</code>.</p>
+<p>After installation, I verified the capability remotely:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">WS_01</span><span class="p">,</span> <span class="n">WS_02</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
+    <span class="nb">Get-WindowsCapability</span> <span class="n">-Online</span> <span class="p">|</span>
+        <span class="nb">Where-Object</span> <span class="n">Name</span> <span class="o">-like</span> <span class="s2">&quot;Rsat.ActiveDirectory*&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Both clients now reported:</p>
+<div class="highlight"><pre><span></span><code>State : Installed
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Lesson learned</p>
+<p>The original <code>Access is denied</code> error did not necessarily mean that Domain Admin permissions or WinRM were incorrectly configured.</p>
+<p>Testing the installation locally separated the <strong>Windows servicing/RSAT installation operation</strong> from the <strong>PowerShell Remoting infrastructure</strong>.</p>
+<p>If an operation fails through remote execution, testing the same operation locally in an elevated session can help determine whether the problem is the remote execution context or the operation itself.</p>
+</div>
+<hr />
+<h2 id="step-7-verify-the-active-directory-powershell-module">Step 7: Verify the Active Directory PowerShell Module</h2>
+<p>With RSAT installed, I verified that the Active Directory PowerShell module was available on both clients:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">WS_01</span><span class="p">,</span> <span class="n">WS_02</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
+    <span class="nb">Get-Module</span> <span class="n">-ListAvailable</span> <span class="n">ActiveDirectory</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The module was present.</p>
+<p>I then moved to <code>WS_01</code> and tested Active Directory functionality <strong>directly from the workstation</strong>.</p>
+<h3 id="domain-controller-discovery">Domain Controller Discovery</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADDomainController</span> <span class="n">-Discover</span>
+</code></pre></div>
+<p>The workstation successfully discovered the Domain Controller.</p>
+<h3 id="active-directory-query">Active Directory Query</h3>
+<p>I then queried the Administrator account:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">-Identity</span> <span class="s2">&quot;Administrator&quot;</span>
+</code></pre></div>
+<p>This succeeded.</p>
+<p>I also explicitly specified the Domain Controller:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">-Identity</span> <span class="s2">&quot;Administrator&quot;</span> <span class="p">`</span>
+    <span class="n">-Server</span> <span class="s2">&quot;WIN-FD0SR0GQS6P.earth.local&quot;</span>
+</code></pre></div>
+<p>This also succeeded.</p>
+<p>These tests established that the workstation could successfully use the Active Directory PowerShell module to communicate with the domain.</p>
+<p>At this point I had independently confirmed that:</p>
+<ul>
+<li>RSAT was installed.</li>
+<li>The Active Directory PowerShell module was available.</li>
+<li>DNS was functioning.</li>
+<li>Domain Controller discovery worked.</li>
+<li>Domain authentication worked.</li>
+<li>Active Directory Web Services was reachable.</li>
+<li>Active Directory queries worked when executed directly from the workstation.</li>
+</ul>
+<p>The remaining problem was therefore more specific than a general Active Directory or network failure.</p>
+<hr />
+<h2 id="step-8-investigate-the-remaining-remote-ad-query-failure">Step 8: Investigate the Remaining Remote AD Query Failure</h2>
+<p>The important difference appeared when I ran an Active Directory query <strong>through PowerShell Remoting</strong>.</p>
+<p>From the Domain Controller:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">WS_01</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
+    <span class="nb">Get-ADUser</span> <span class="n">-Identity</span> <span class="s2">&quot;Administrator&quot;</span> <span class="p">`</span>
+        <span class="n">-Server</span> <span class="s2">&quot;WIN-FD0SR0GQS6P.earth.local&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This failed with:</p>
+<div class="error-message">
+ADServerDownException<br>
+Unable to contact the server
+</div>
+
+<p>However, the same <code>Get-ADUser</code> operation worked when executed directly on <code>WS_01</code>.</p>
+<p>This distinction became central to the investigation.</p>
+<h3 id="verify-active-directory-web-services">Verify Active Directory Web Services</h3>
+<p>I confirmed that Active Directory Web Services was listening on TCP port <code>9389</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-NetTCPConnection</span> <span class="n">-LocalPort</span> <span class="n">9389</span> <span class="n">-State</span> <span class="n">Listen</span>
+</code></pre></div>
+<p>I then tested connectivity from the workstations:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Test-NetConnection</span> <span class="n">WIN-FD0SR0GQS6P</span> <span class="n">-Port</span> <span class="n">9389</span>
+</code></pre></div>
+<p>Connectivity succeeded.</p>
+<p>This showed that the underlying network path from the workstation to the Domain Controller was available.</p>
+<h3 id="inspect-the-authentication-context">Inspect the Authentication Context</h3>
+<p>I confirmed that the PowerShell Remoting session was running as:</p>
+<div class="highlight"><pre><span></span><code>EARTH\Administrator
+</code></pre></div>
+<p>I then examined the Kerberos tickets:</p>
+<div class="highlight"><pre><span></span><code><span class="n">klist</span>
+</code></pre></div>
+<p>The remote session had a Kerberos ticket for the first connection to <code>WS_01</code>.</p>
+<p>At this point the distinction became clearer:</p>
+<div class="highlight"><pre><span></span><code>Domain Controller → WS_01
+</code></pre></div>
+<p>was working.</p>
+<p>The command executing on <code>WS_01</code>, however, then needed to access another network service on the Domain Controller.</p>
+<p>That introduced a <strong>second authentication hop</strong>.</p>
+<hr />
+<h2 id="step-9-confirm-the-powershell-remoting-second-hop-problem">Step 9: Confirm the PowerShell Remoting Second-Hop Problem</h2>
+<p>Testing established an important difference between executing the Active Directory query directly and executing it through a remote PowerShell session.</p>
+<h3 id="direct-administration">Direct Administration</h3>
+<p>When the command was executed directly from <code>WS_01</code>:</p>
+<pre class="mermaid"><code>flowchart LR
+    A[WS_01] --&gt;|Kerberos / AD Query| B[Domain Controller]
+    B --&gt;|ADWS Response| A</code></pre>
+<p>This worked.</p>
+<h3 id="administration-through-powershell-remoting">Administration Through PowerShell Remoting</h3>
+<p>When the same operation originated on the Domain Controller, entered a PowerShell Remoting session on <code>WS_01</code>, and then attempted to query Active Directory:</p>
+<pre class="mermaid"><code>flowchart LR
+    A[Domain Controller] --&gt;|First Hop&lt;br&gt;WinRM / Kerberos| B[WS_01]
+    B --&gt;|Second Hop&lt;br&gt;ADWS / Authentication| C[Domain Controller]
+
+    A -.-&gt; D[First hop succeeds]
+    B -.-&gt; E[Second hop fails]</code></pre>
+<p>The first hop was:</p>
+<div class="highlight"><pre><span></span><code>DC → WinRM → WS_01
+</code></pre></div>
+<p>This succeeded.</p>
+<p>The second operation required:</p>
+<div class="highlight"><pre><span></span><code>DC → WinRM → WS_01 → ADWS → DC
+</code></pre></div>
+<p>This failed.</p>
+<p>The credentials used to authenticate the original PowerShell Remoting connection were not automatically available for authentication to the second network service.</p>
+<p>This identified the issue as the <strong>PowerShell Remoting second-hop problem</strong>.</p>
+<div class="admonition info">
+<p class="admonition-title">What the failure actually proved</p>
+<p>The failure was not evidence that Active Directory itself was broken.</p>
+<p>Direct AD queries from <code>WS_01</code> worked, network connectivity to the Domain Controller worked, and the first PowerShell Remoting hop worked.</p>
+<p>The failure occurred specifically when the remotely executing command attempted to authenticate to another network service.</p>
+</div>
+<hr />
+<h2 id="step-10-final-architecture-and-troubleshooting-lesson">Step 10: Final Architecture and Troubleshooting Lesson</h2>
+<p>This exercise became a useful example of why infrastructure problems should be investigated in layers rather than treating the first error message as the root cause.</p>
+<p>The investigation moved through the following areas:</p>
+<pre class="mermaid"><code>flowchart TD
+    A[Network Connectivity] --&gt; B[DNS]
+    B --&gt; C[Windows Firewall]
+    C --&gt; D[WinRM]
+    D --&gt; E[Authentication]
+    E --&gt; F[PowerShell Remoting]
+    F --&gt; G[RSAT / Windows Servicing]
+    G --&gt; H[Active Directory PowerShell Module]
+    H --&gt; I[Active Directory Web Services]
+    I --&gt; J[AD Authentication / Second Hop]</code></pre>
+<p>A successful test at one layer did not automatically prove that the next layer would work.</p>
+<p>The troubleshooting also highlighted the distinction between several concepts that can initially appear to be the same permissions problem:</p>
+<ul>
+<li>Active Directory permissions</li>
+<li>Local Windows administrator permissions</li>
+<li>WinRM access</li>
+<li>PowerShell Remoting authentication</li>
+<li>Kerberos authentication and delegation</li>
+<li>RSAT installation</li>
+<li>Active Directory delegated permissions</li>
+</ul>
+<p>These are separate administrative and security layers.</p>
+<hr />
+<h2 id="final-lab-approach">Final Lab Approach</h2>
+<p>For this lab, I decided to use <strong>RSAT and the Active Directory administration tools directly from the administrative workstations</strong> when managing Active Directory.</p>
+<p>PowerShell Remoting can still be used for administrative operations that execute directly against the remote Windows clients.</p>
+<pre class="mermaid"><code>flowchart TD
+    A[Administrative Workstation]
+
+    A --&gt;|RSAT / AD PowerShell| B[Active Directory / Domain Controller]
+    A --&gt;|PowerShell Remoting| C[Remote Windows Client]
+
+    C --&gt; D[Local Client Administration]</code></pre>
+<p>I chose to keep the second-hop issue documented as a troubleshooting and learning exercise rather than changing the lab's security configuration simply to make the remote AD query work.</p>
+<p>This preserved the working security model while documenting an important distinction between <strong>remote command execution</strong> and <strong>credential delegation across multiple systems</strong>.</p>
+<hr />
+<h2 id="key-takeaways">Key Takeaways</h2>
+<p>This troubleshooting exercise reinforced several important lessons:</p>
+<ul>
+<li>Error messages should be treated as a starting point for investigation rather than proof of a particular root cause.</li>
+<li>Administrative permissions, WinRM access and Kerberos authentication are separate layers.</li>
+<li>Testing locally can help isolate a failure from the remote execution mechanism.</li>
+<li>Hostnames and domain identity matter when using Kerberos-based authentication.</li>
+<li>Successful network connectivity does not guarantee successful authenticated access to an application-layer service.</li>
+<li>A successful first PowerShell Remoting hop does not automatically provide credentials for a second network hop.</li>
+<li>Infrastructure troubleshooting is more effective when each layer is tested independently.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

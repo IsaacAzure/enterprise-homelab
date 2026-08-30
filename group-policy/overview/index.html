@@ -1,0 +1,1460 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../active-directory/ou_structure/">
+      
+      
+        <link rel="next" href="../../delegated-administration/overview/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Overview - Enterprise Windows Infrastructure Lab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#group-policy-management" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Enterprise Windows Infrastructure Lab" class="md-header__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Windows Infrastructure Lab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Enterprise Windows Infrastructure Lab" class="md-nav__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Enterprise Windows Infrastructure Lab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/kvm_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KVM Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/architecture_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Network
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Directory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Active Directory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/windows_server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/domain_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/windows_clients/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Clients
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/ou_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OUs, Users & Security Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Group Policy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Group Policy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#group-policy-management-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Group Policy Management Console
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delegated Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Delegated Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permission Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Permission Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/helpdesk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Help Desk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/administrative_sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administrative SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Remote Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote-administration/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#group-policy-management-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Group Policy Management Console
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="group-policy-management">Group Policy Management</h1>
+<p>With the initial Active Directory structure, users, and security groups in place, I began using Group Policy to apply different configurations to users in the <code>earth.local</code> domain.</p>
+<p>The initial policies focused on:</p>
+<ul>
+<li>Desktop restrictions.</li>
+<li>Different desktop wallpapers for IT and general users.</li>
+<li>Security filtering.</li>
+<li>Domain password requirements.</li>
+<li>Account lockout.</li>
+<li>A more specific password policy for the IT team.</li>
+</ul>
+<p>The policies were tested using the domain-joined Windows clients rather than simply assuming that configuration on the Domain Controller meant they were working correctly.</p>
+<hr />
+<h2 id="group-policy-management-console">Group Policy Management Console</h2>
+<p>I used the Group Policy Management Console to create and manage the policies.</p>
+<p>To open it:</p>
+<div class="highlight"><pre><span></span><code><span class="n">gpmc</span><span class="p">.</span><span class="n">msc</span>
+</code></pre></div>
+<p><img alt="Group Policy Management Console for the earth.local domain" src="/assets/images/gpo_management_console.png" /></p>
+<hr />
+<h1 id="desktop-restriction-gpo">Desktop Restriction GPO</h1>
+<p>One of the first policies I created was a desktop restriction that removed the Recycle Bin icon for selected non-IT users.</p>
+<p>The policy setting was located under:</p>
+<div class="highlight"><pre><span></span><code>User Configuration
+└── Policies
+    └── Administrative Templates
+        └── Desktop
+            └── Remove Recycle Bin icon from desktop
+</code></pre></div>
+<p>I opened the policy setting and selected <strong>Enabled</strong>.</p>
+<p><img alt="Recycle Bin desktop restriction policy" src="/assets/images/gpo_recycle_bin_policy.png" /></p>
+<hr />
+<h2 id="testing-the-restriction">Testing the Restriction</h2>
+<p>I booted <code>WS_01</code> and signed in as <strong>Michael Scott</strong> to test the policy.</p>
+<p>Initially, the Recycle Bin was still visible.</p>
+<p>I refreshed Group Policy using:</p>
+<div class="highlight"><pre><span></span><code><span class="n">gpupdate</span> <span class="p">/</span><span class="n">force</span>
+</code></pre></div>
+<p>After the policy refresh and a new sign-in, the restriction was applied successfully.</p>
+<p><img alt="Recycle Bin restriction verified on a test user" src="/assets/images/gpo_recycle_bin_verification.png" /></p>
+<p>This provided my first practical test of applying a user configuration through Group Policy and then verifying the result from a domain-joined workstation.</p>
+<hr />
+<h1 id="wallpaper-group-policies">Wallpaper Group Policies</h1>
+<p>I next wanted to provide different desktop wallpapers depending on the type of user signing into the Windows clients.</p>
+<p>The intention was to have:</p>
+<ul>
+<li>An <strong>IT wallpaper</strong> for IT users.</li>
+<li>A <strong>non-IT wallpaper</strong> for general users.</li>
+</ul>
+<p>This required the wallpaper files to be accessible from the domain clients.</p>
+<hr />
+<h2 id="transferring-the-wallpaper-files">Transferring the Wallpaper Files</h2>
+<p>The wallpaper files were stored on my Fedora host, so I enabled OpenSSH Server on the Windows Server to make transferring the files easier.</p>
+<p>I started the SSH service:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Start-Service</span> <span class="n">sshd</span>
+</code></pre></div>
+<p>I then configured it to start automatically:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Set-Service</span> <span class="n">-Name</span> <span class="n">sshd</span> <span class="n">-StartupType</span> <span class="n">Automatic</span>
+</code></pre></div>
+<p>And checked the service:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-Service</span> <span class="n">sshd</span>
+</code></pre></div>
+<h3 id="ssh-firewall-issue">SSH Firewall Issue</h3>
+<p>The initial SSH connection hung.</p>
+<p>During troubleshooting, I found that the automatically created SSH firewall rule was associated with the <strong>Private</strong> profile, while the Domain Controller was operating with the <strong>Domain</strong> network profile.</p>
+<p>I corrected the firewall configuration so that SSH traffic could reach the server from the appropriate network context.</p>
+<div class="admonition failure">
+<p class="admonition-title">Initial SSH connection</p>
+<p>The SSH service itself was running, but the connection still failed because the firewall rule did not match the active network profile.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Resolution</p>
+<p>After correcting the firewall scope, I was able to transfer the wallpaper files from the Fedora host to the Windows Server.</p>
+</div>
+<hr />
+<h1 id="creating-the-wallpaper-gpo">Creating the Wallpaper GPO</h1>
+<p>The wallpaper setting was configured through:</p>
+<div class="highlight"><pre><span></span><code>User Configuration
+└── Policies
+    └── Administrative Templates
+        └── Desktop
+            └── Desktop
+                └── Desktop Wallpaper
+</code></pre></div>
+<p>I enabled the setting and initially entered the path to the wallpaper file.</p>
+<hr />
+<h2 id="initial-wallpaper-failure">Initial Wallpaper Failure</h2>
+<p>When I tested the policy using <strong>Ross Geller</strong>, the wallpaper appeared black.</p>
+<p>The problem was the path I had configured.</p>
+<p>I had referenced a file stored locally on the Domain Controller.</p>
+<p>That path was valid from the server itself, but not from the Windows client.</p>
+<div class="admonition failure">
+<p class="admonition-title">Local file path</p>
+<p>The wallpaper GPO initially referenced a local path on the Domain Controller.</p>
+<p>The Windows client could not retrieve the image from that path, so the expected wallpaper was not displayed.</p>
+</div>
+<p>This meant the wallpaper needed to be stored somewhere the client systems could access over the network.</p>
+<hr />
+<h1 id="creating-a-wallpaper-network-share">Creating a Wallpaper Network Share</h1>
+<p>I created a folder on the Domain Controller for files that needed to be accessible by the clients:</p>
+<div class="highlight"><pre><span></span><code>C:\Users\Administrator\Shares
+</code></pre></div>
+<p>I placed the wallpaper images inside the folder and then shared the folder over the network.</p>
+<p>Read access was provided for the users that needed to retrieve the files.</p>
+<p><img alt="Wallpaper network share configuration" src="/assets/images/gpo_wallpaper_share.png" /></p>
+<p>This also reinforced that <strong>share permissions and NTFS permissions are separate controls</strong> and both need to permit the required access.</p>
+<hr />
+<h2 id="switching-to-a-unc-path">Switching to a UNC Path</h2>
+<p>I updated the wallpaper GPO to reference the file using its network UNC path instead of a local server path.</p>
+<p>Before testing the policy again, I verified from the client that the wallpaper file could actually be reached.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Test-Path</span> <span class="s2">&quot;\\WIN-FD0SR0GQS6P\Shares\ws_wallpaper.jpg&quot;</span>
+</code></pre></div>
+<p>The test returned:</p>
+<div class="highlight"><pre><span></span><code>True
+</code></pre></div>
+<p><img alt="Testing access to the wallpaper UNC path" src="/assets/images/gpo_wallpaper_test_path.png" /></p>
+<p>This gave me a simple way to separate a <strong>file-access problem</strong> from a <strong>Group Policy problem</strong>.</p>
+<p>If <code>Test-Path</code> could not access the file, there would be little value troubleshooting the GPO itself first.</p>
+<hr />
+<h2 id="verifying-the-general-user-wallpaper">Verifying the General-User Wallpaper</h2>
+<p>Once the UNC path was configured, I refreshed Group Policy again:</p>
+<div class="highlight"><pre><span></span><code><span class="n">gpupdate</span> <span class="p">/</span><span class="n">force</span>
+</code></pre></div>
+<p>I signed out and then signed back into Ross Geller's account.</p>
+<p>The non-IT wallpaper now appeared correctly.</p>
+<p><img alt="General user wallpaper applied through Group Policy" src="/assets/images/gpo_wallpaper_general_user.png" /></p>
+<hr />
+<h2 id="verifying-the-it-wallpaper">Verifying the IT Wallpaper</h2>
+<p>I repeated the wallpaper process for the IT users.</p>
+<p>I then signed in as <strong>Kate Libby</strong> and confirmed that the IT-specific wallpaper was displayed.</p>
+<p><img alt="IT user wallpaper applied through Group Policy" src="/assets/images/gpo_wallpaper_it_user.png" /></p>
+<p>At this point, the lab could apply different visual configurations depending on the user.</p>
+<hr />
+<h1 id="security-filtering">Security Filtering</h1>
+<p>I later refined how the policies were targeted.</p>
+<p>Rather than relying only on where a user's account was located within the OU structure, I used <strong>Security Filtering</strong> to control which users could apply each GPO based on security-group membership.</p>
+<p>Conceptually, the design was:</p>
+<pre class="mermaid"><code>flowchart TD
+    A[GPO] --&gt; B{Security Filtering}
+
+    B --&gt; C[IT Users]
+    B --&gt; D[General Users]
+
+    C --&gt; E[IT-specific configuration]
+    D --&gt; F[General-user configuration]</code></pre>
+<p>This allowed the policy scope and the user organisational structure to be treated separately.</p>
+<hr />
+<h2 id="verifying-applied-policies-with-gpresult">Verifying Applied Policies with gpresult</h2>
+<p>I used <code>gpresult</code> to verify exactly which policies were being applied to each account:</p>
+<div class="highlight"><pre><span></span><code><span class="n">gpresult</span> <span class="p">/</span><span class="nb">r</span>
+</code></pre></div>
+<p>I ran the command while signed in as different users rather than relying only on visible changes such as the desktop wallpaper.</p>
+<p><img alt="gpresult verification for an IT user" src="/assets/images/gpo_gpresult_it_user.png" /></p>
+<p><img alt="gpresult verification for a general user" src="/assets/images/gpo_gpresult_general_user.png" /></p>
+<p>This helped confirm that the intended GPOs were applying without unwanted overlap between the user groups.</p>
+<hr />
+<h1 id="password-policy-and-account-lockout">Password Policy and Account Lockout</h1>
+<p>After working with desktop configuration, I moved on to password and account-lockout policies.</p>
+<p>I wanted to create:</p>
+<ol>
+<li>A domain-wide password policy.</li>
+<li>An account-lockout policy.</li>
+<li>A separate, stronger password policy for the IT team.</li>
+</ol>
+<hr />
+<h2 id="domain-password-policy">Domain Password Policy</h2>
+<p>The domain-level password configuration was edited through the <strong>Default Domain Policy</strong>.</p>
+<p>The path was:</p>
+<div class="highlight"><pre><span></span><code>Default Domain Policy
+└── Computer Configuration
+    └── Policies
+        └── Windows Settings
+            └── Security Settings
+                └── Account Policies
+                    └── Password Policy
+</code></pre></div>
+<p><img alt="Domain password policy configuration" src="/assets/images/gpo_domain_password_policy.png" /></p>
+<p>For testing purposes, I deliberately made the domain-wide password requirements relatively weak.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The weaker password requirements were intentional for the lab so that I could easily demonstrate the difference between the default domain policy and a more restrictive Password Settings Object.</p>
+</div>
+<hr />
+<h2 id="account-lockout-policy">Account Lockout Policy</h2>
+<p>Under the same <strong>Account Policies</strong> section, I configured an account-lockout policy.</p>
+<p>The lockout threshold was configured for:</p>
+<div class="highlight"><pre><span></span><code>3 invalid logon attempts
+</code></pre></div>
+<p><img alt="Domain account lockout policy" src="/assets/images/gpo_account_lockout_policy.png" /></p>
+<p>This allowed me to deliberately lock a test account and verify both the lockout behaviour and the administrative recovery process.</p>
+<hr />
+<h1 id="fine-grained-password-policy-for-it">Fine-Grained Password Policy for IT</h1>
+<p>I wanted the IT users to have a stronger password policy than the general domain users.</p>
+<p>For this I created a <strong>Password Settings Object (PSO)</strong> rather than another GPO.</p>
+<p>I opened Active Directory Administrative Center using:</p>
+<div class="highlight"><pre><span></span><code><span class="n">dsac</span><span class="p">.</span><span class="n">exe</span>
+</code></pre></div>
+<p>I then navigated to:</p>
+<div class="highlight"><pre><span></span><code>earth.local
+└── System
+    └── Password Settings Container
+</code></pre></div>
+<p>From there:</p>
+<div class="highlight"><pre><span></span><code>Right-click
+→ New
+→ Password Settings
+</code></pre></div>
+<p>I configured the Password Settings Object and set its precedence to <code>1</code>.</p>
+<p>I then used <strong>Directly Applies To</strong> and selected the <code>IT-Team</code> security group.</p>
+<p><img alt="IT Password Settings Object" src="/assets/images/gpo_it_pso.png" /></p>
+<p>The intended password-policy relationship was therefore:</p>
+<pre class="mermaid"><code>flowchart TD
+    A[earth.local]
+
+    A --&gt; B[Default Domain Password Policy]
+    B --&gt; C[General Domain Users]
+
+    A --&gt; D[Password Settings Object]
+    D --&gt; E[IT-Team]</code></pre>
+<hr />
+<h1 id="testing-the-it-password-policy">Testing the IT Password Policy</h1>
+<p>To verify the new PSO, I used <strong>Kate Libby</strong>.</p>
+<p>In Active Directory Users and Computers, I configured Kate's account so that she would have to change her password at the next logon.</p>
+<p>I then signed out and attempted to sign back in.</p>
+<p>When prompted for a new password, I entered: <code>password</code></p>
+<p>This was intentionally chosen because it would have satisfied the weaker domain policy I had configured for testing, but it did not satisfy the stronger IT password policy.</p>
+<p>The password was rejected.</p>
+<p><img alt="Password rejected by the IT Password Settings Object" src="/assets/images/gpo_pso_password_rejected.png" /></p>
+<div class="admonition success">
+<p class="admonition-title">PSO verified</p>
+<p>The password being rejected for Kate demonstrated that the more specific IT Password Settings Object was taking effect rather than the weaker default domain password requirements.</p>
+</div>
+<hr />
+<h1 id="testing-the-general-password-policy">Testing the General Password Policy</h1>
+<p>I then signed in using <strong>Patrick Bateman's</strong> account to test the weaker domain-level password policy.</p>
+<p>I changed Patrick's password to a four-character lowercase password.</p>
+<p>The password was accepted.</p>
+<p>This provided a direct contrast with Kate's account and helped demonstrate that the IT-specific password policy was not being applied to Patrick.</p>
+<hr />
+<h1 id="testing-account-lockout">Testing Account Lockout</h1>
+<p>I then deliberately entered Patrick's password incorrectly.</p>
+<p>After <strong>3 invalid attempts</strong> the account became locked as designed.</p>
+<p><img alt="Patrick Bateman account lockout" src="/assets/images/gpo_account_lockout.png" /></p>
+<p>Initially, I unlocked the account using Active Directory Users and Computers and confirmed that Patrick could sign in again.</p>
+<p>I then repeated the test so that I could practise checking and managing account lockouts through PowerShell.</p>
+<hr />
+<h1 id="managing-account-lockout-with-powershell">Managing Account Lockout with PowerShell</h1>
+<p>After deliberately locking Patrick's account again, I checked his status with:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">pbat</span> <span class="n">-Properties</span> <span class="n">LockedOut</span>
+</code></pre></div>
+<p><code>LockedOut</code> returned:</p>
+<div class="highlight"><pre><span></span><code>True
+</code></pre></div>
+<p><img alt="Patrick Bateman account shown as locked out in PowerShell" src="/assets/images/gpo_account_unlock_powershell1.png" /></p>
+<p>This confirmed from Active Directory itself that the account was locked.</p>
+<hr />
+<h2 id="unlocking-the-account">Unlocking the Account</h2>
+<p>I then unlocked Patrick's account using:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Unlock-ADAccount</span> <span class="n">pbat</span>
+</code></pre></div>
+<p>After unlocking it, I checked the state again:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">pbat</span> <span class="n">-Properties</span> <span class="n">LockedOut</span>
+</code></pre></div>
+<p>This time:</p>
+<div class="highlight"><pre><span></span><code>LockedOut : False
+</code></pre></div>
+<p><img alt="Unlocking Patrick Bateman and verifying the account state with PowerShell" src="/assets/images/gpo_account_unlock_powershell.png" /></p>
+<p>Finally, I signed back into Patrick's account as an additional verification that the account was usable again.</p>
+<hr />
+<h1 id="cross-client-gpo-verification">Cross-Client GPO Verification</h1>
+<p><code>WS_02</code> was added to the domain after the initial Group Policies had already been created.</p>
+<p>After joining it to <code>earth.local</code>, I signed in through <strong>Other user</strong> using a general-user account and confirmed that the expected non-IT wallpaper appeared.</p>
+<p>I then used both Windows clients for additional policy testing.</p>
+<p>On <code>WS_02</code>, I refreshed policy while testing different users:</p>
+<div class="highlight"><pre><span></span><code><span class="n">gpupdate</span> <span class="p">/</span><span class="n">force</span>
+</code></pre></div>
+<p>I also ran:</p>
+<div class="highlight"><pre><span></span><code><span class="n">gpresult</span> <span class="p">/</span><span class="nb">r</span>
+</code></pre></div>
+<p>on <code>WS_01</code> and <code>WS_02</code> to verify policy application independently.</p>
+<p>This provided an additional check that the policies worked across more than one domain-joined workstation rather than only on the original test client.</p>
+<hr />
+<h1 id="final-group-policy-structure">Final Group Policy Structure</h1>
+<p>At this stage, the Group Policy and password-policy configuration could be summarised as:</p>
+<pre class="mermaid"><code>flowchart TD
+    A[earth.local]
+
+    A --&gt; B[User Configuration]
+    B --&gt; C[Desktop Restriction]
+    B --&gt; D[Wallpaper Policies]
+
+    C --&gt; E[Recycle Bin Restriction]
+
+    D --&gt; F[IT Wallpaper]
+    D --&gt; G[General Wallpaper]
+
+    F --&gt; H[Security Filtering]
+    G --&gt; H
+
+    A --&gt; I[Default Domain Policy]
+    I --&gt; J[Domain Password Policy]
+    I --&gt; K[Account Lockout Policy]
+
+    A --&gt; L[Password Settings Container]
+    L --&gt; M[IT Password Settings Object]
+    M --&gt; N[IT-Team]</code></pre>
+<hr />
+<h1 id="key-learning">Key Learning</h1>
+<p>This stage moved the lab beyond simply creating users and computers in Active Directory and into centrally managing their behaviour.</p>
+<p>The most useful lessons were:</p>
+<ul>
+<li>A GPO should be <strong>tested from the client</strong>, not assumed to work because it exists in Group Policy Management.</li>
+<li><code>gpupdate /force</code> is useful when testing policy changes without waiting for the normal refresh cycle.</li>
+<li><code>gpresult /r</code> provides evidence of which policies actually apply to a user.</li>
+<li>A file referenced by a user policy must be accessible from the client that needs it.</li>
+<li>Testing a UNC path independently with <code>Test-Path</code> helps separate file-access problems from Group Policy problems.</li>
+<li>Security Filtering can be used to scope policies according to security-group membership.</li>
+<li>Fine-Grained Password Policies use <strong>Password Settings Objects</strong>, rather than normal GPOs.</li>
+<li>Password and account-lockout policies should be verified using test accounts.</li>
+<li>PowerShell provides a quick way to check and change account-lockout state.</li>
+</ul>
+<p>The troubleshooting around the wallpaper was particularly useful because the GPO itself was not initially the problem. The policy referenced a resource that the client could not access.</p>
+<p>By testing each layer independently: <strong>policy application, network path, file access, and user context</strong> — I was able to identify the actual cause rather than repeatedly changing the GPO.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

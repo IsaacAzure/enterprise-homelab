@@ -1,0 +1,1652 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../windows_server/">
+      
+      
+        <link rel="next" href="../dns/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Domain Setup - Enterprise Windows Infrastructure Lab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#domain-controller-configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Enterprise Windows Infrastructure Lab" class="md-header__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Windows Infrastructure Lab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Domain Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Enterprise Windows Infrastructure Lab" class="md-nav__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Enterprise Windows Infrastructure Lab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/kvm_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KVM Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/architecture_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Network
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Directory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Active Directory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../windows_server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Setup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#role-in-the-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Role in the Lab
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-configure-the-preferred-dns-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Configure the Preferred DNS Server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-install-active-directory-domain-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Install Active Directory Domain Services
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-promote-the-server-to-a-domain-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Promote the Server to a Domain Controller
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-configure-the-new-forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Configure the New Forest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Configure the New Forest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#domain-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directory-services-restore-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Services Restore Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-dns-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: DNS Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-confirm-the-netbios-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Confirm the NetBIOS Name
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-active-directory-database-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Active Directory Database Paths
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Active Directory Database Paths">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ntds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NTDS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sysvol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SYSVOL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-complete-the-promotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Complete the Promotion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-9-take-a-domain-controller-snapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 9: Take a Domain Controller Snapshot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../windows_clients/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Clients
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ou_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OUs, Users & Security Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Group Policy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Group Policy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../group-policy/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delegated Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Delegated Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permission Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Permission Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/helpdesk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Help Desk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/administrative_sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administrative SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Remote Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote-administration/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#role-in-the-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Role in the Lab
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-configure-the-preferred-dns-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Configure the Preferred DNS Server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-install-active-directory-domain-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Install Active Directory Domain Services
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-promote-the-server-to-a-domain-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Promote the Server to a Domain Controller
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-configure-the-new-forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Configure the New Forest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Configure the New Forest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#domain-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directory-services-restore-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Services Restore Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-dns-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: DNS Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-confirm-the-netbios-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Confirm the NetBIOS Name
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-active-directory-database-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Active Directory Database Paths
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Active Directory Database Paths">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ntds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NTDS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sysvol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SYSVOL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-complete-the-promotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Complete the Promotion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-9-take-a-domain-controller-snapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 9: Take a Domain Controller Snapshot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="domain-controller-configuration">Domain Controller Configuration</h1>
+<p>With the Windows Server 2025 VM installed, the next stage was to configure it as the first Domain Controller for the home lab.</p>
+<p>The new Active Directory forest and domain would be:</p>
+<div class="highlight"><pre><span></span><code>earth.local
+</code></pre></div>
+<p>The Domain Controller would become the central authentication and management system for the Windows environment.</p>
+<hr />
+<h2 id="role-in-the-lab">Role in the Lab</h2>
+<p>The Windows Server would provide the foundation for the Windows infrastructure:</p>
+<pre class="mermaid"><code>flowchart TD
+    DC[Windows Server 2025&lt;br&gt;Domain Controller]
+
+    DC --&gt; AD[Active Directory Domain Services]
+    AD --&gt; DOMAIN[earth.local]
+
+    DOMAIN --&gt; USERS[Users]
+    DOMAIN --&gt; GROUPS[Security Groups]
+    DOMAIN --&gt; COMPUTERS[Domain Computers]
+    DOMAIN --&gt; GPO[Group Policy]</code></pre>
+<p>Later stages of the lab would add DNS, DHCP, organisational units, Windows clients, Group Policy and delegated administration around this domain.</p>
+<hr />
+<h2 id="step-1-configure-the-preferred-dns-server">Step 1: Configure the Preferred DNS Server</h2>
+<p>Before promoting the server to a Domain Controller, I configured the network adapter's preferred DNS server.</p>
+<p>Open the Windows network adapters:</p>
+<div class="highlight"><pre><span></span><code>Windows + R
+</code></pre></div>
+<p>Then run:</p>
+<div class="highlight"><pre><span></span><code>ncpa.cpl
+</code></pre></div>
+<p>From the Network Connections window:</p>
+<ol>
+<li>Right-click the network adapter.</li>
+<li>Select <strong>Properties</strong>.</li>
+<li>Open <strong>Internet Protocol Version 4 (TCP/IPv4)</strong>.</li>
+<li>Configure the preferred DNS server.</li>
+</ol>
+<p>At this stage of the build, I used the gateway IP address as the preferred DNS server.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This reflects the configuration at this point in my original lab build. The network configuration was changed later when I created a dedicated libvirt network for the Active Directory environment.</p>
+</div>
+<hr />
+<h2 id="step-2-install-active-directory-domain-services">Step 2: Install Active Directory Domain Services</h2>
+<p>I used <strong>Server Manager</strong> to install Active Directory Domain Services.</p>
+<p>From the Server Manager dashboard:</p>
+<div class="highlight"><pre><span></span><code>Add Roles and Features
+</code></pre></div>
+<p>I selected:</p>
+<div class="highlight"><pre><span></span><code>Active Directory Domain Services
+</code></pre></div>
+<p>The required dependencies were automatically selected by the wizard.</p>
+<p>I then completed the installation.</p>
+<hr />
+<h2 id="step-3-promote-the-server-to-a-domain-controller">Step 3: Promote the Server to a Domain Controller</h2>
+<p>After the AD DS role installation completed, Server Manager displayed a notification flag indicating that additional configuration was required.</p>
+<p>From this notification I selected the option to:</p>
+<div class="highlight"><pre><span></span><code>Promote this server to a domain controller
+</code></pre></div>
+<p>Because this was the first Domain Controller in the lab, I created a new forest.</p>
+<p>The root domain name was:</p>
+<div class="highlight"><pre><span></span><code>earth.local
+</code></pre></div>
+<p>The resulting structure was:</p>
+<pre class="mermaid"><code>flowchart TD
+    FOREST[Active Directory Forest]
+    FOREST --&gt; DOMAIN[earth.local]
+    DOMAIN --&gt; DC[Windows Server 2025&lt;br&gt;Domain Controller]</code></pre>
+<hr />
+<h2 id="step-4-configure-the-new-forest">Step 4: Configure the New Forest</h2>
+<p>During the promotion wizard, I configured the settings required for the new Active Directory forest.</p>
+<h3 id="domain-name">Domain Name</h3>
+<p>The domain was configured as:</p>
+<div class="highlight"><pre><span></span><code>earth.local
+</code></pre></div>
+<p>This domain was created specifically for the isolated home-lab environment.</p>
+<hr />
+<h3 id="directory-services-restore-mode">Directory Services Restore Mode</h3>
+<p>I configured a <strong>Directory Services Restore Mode (DSRM)</strong> password.</p>
+<p>DSRM provides a recovery mode for Active Directory and can be used when maintenance or recovery of the directory database is required.</p>
+<p>The password itself is not included in the documentation.</p>
+<hr />
+<h2 id="step-5-dns-options">Step 5: DNS Options</h2>
+<p>During Domain Controller promotion, the DNS Server role was included automatically.</p>
+<p>On the <strong>DNS Options</strong> page, I left the <code>Create DNS delegation</code> option unchecked.</p>
+<p>There was no parent DNS zone for <code>earth.local</code> from which a delegation needed to be created.</p>
+<p>DNS itself was installed as part of the Domain Controller promotion.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>DNS configuration and verification are covered separately in the <strong>DNS Server</strong> section of the documentation.</p>
+</div>
+<hr />
+<h2 id="step-6-confirm-the-netbios-name">Step 6: Confirm the NetBIOS Name</h2>
+<p>During the promotion wizard, I confirmed that the automatically generated NetBIOS name matched the new domain.</p>
+<p>The domain was:</p>
+<div class="highlight"><pre><span></span><code>earth.local
+</code></pre></div>
+<p>and the NetBIOS domain name was:</p>
+<div class="highlight"><pre><span></span><code>EARTH
+</code></pre></div>
+<p>This would later appear when authenticating with domain accounts.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code>EARTH\Administrator
+</code></pre></div>
+<hr />
+<h2 id="step-7-active-directory-database-paths">Step 7: Active Directory Database Paths</h2>
+<p>The wizard provided configuration options for the Active Directory database, log files and SYSVOL.</p>
+<p>I retained the default locations.</p>
+<p>The two important components are:</p>
+<h3 id="ntds">NTDS</h3>
+<p>The <strong>NTDS</strong> database stores Active Directory information such as:</p>
+<ul>
+<li>Users</li>
+<li>Computers</li>
+<li>Groups</li>
+<li>Directory objects</li>
+</ul>
+<hr />
+<h3 id="sysvol">SYSVOL</h3>
+<p><strong>SYSVOL</strong> stores files that need to be available to domain members, including:</p>
+<ul>
+<li>Group Policy files</li>
+<li>Logon scripts</li>
+<li>Other domain-wide configuration files</li>
+</ul>
+<p>For this lab, the default paths were sufficient.</p>
+<hr />
+<h2 id="step-8-complete-the-promotion">Step 8: Complete the Promotion</h2>
+<p>After reviewing the configuration, I started the installation.</p>
+<p>Once the promotion completed, Windows Server required a restart.</p>
+<p>After rebooting, the login screen reflected the new Active Directory domain:</p>
+<div class="highlight"><pre><span></span><code>EARTH\Administrator
+</code></pre></div>
+<p>This confirmed that the server was now operating as a Domain Controller for:</p>
+<div class="highlight"><pre><span></span><code>earth.local
+</code></pre></div>
+<p>The core Windows infrastructure had now changed from:</p>
+<pre class="mermaid"><code>flowchart LR
+    BEFORE[Standalone&lt;br&gt;Windows Server]
+    BEFORE --&gt; PROMOTION[AD DS Promotion]
+    PROMOTION --&gt; AFTER[Domain Controller&lt;br&gt;earth.local]</code></pre>
+<hr />
+<h2 id="step-9-take-a-domain-controller-snapshot">Step 9: Take a Domain Controller Snapshot</h2>
+<p>Before making further changes to Active Directory, I created a snapshot of the Domain Controller VM from the Fedora host.</p>
+<p>The command used was:</p>
+<div class="highlight"><pre><span></span><code>virsh<span class="w"> </span>snapshot-create-as<span class="w"> </span>&lt;vm_name&gt;<span class="w"> </span>&lt;snapshot_name&gt;<span class="w"> </span>--disk-only
+</code></pre></div>
+<p>The VM disk images were stored under:</p>
+<div class="highlight"><pre><span></span><code>/var/lib/libvirt/images
+</code></pre></div>
+<p>This provided a recovery point before continuing with the remainder of the Active Directory configuration.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Taking a snapshot at major milestones makes it much easier to recover a home lab after configuration mistakes or experiments.</p>
+</div>
+<hr />
+<h2 id="result">Result</h2>
+<p>At the end of this stage:</p>
+<ul>
+<li>Windows Server 2025 was running as a Domain Controller.</li>
+<li>Active Directory Domain Services was installed.</li>
+<li>A new forest had been created.</li>
+<li>The domain was <code>earth.local</code>.</li>
+<li>The NetBIOS domain name was <code>EARTH</code>.</li>
+<li>DNS had been installed as part of Domain Controller promotion.</li>
+<li>A DSRM password had been configured.</li>
+<li>The server successfully restarted into the new domain.</li>
+<li>A VM snapshot was taken before further configuration.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+    HOST[Fedora Linux Host]
+    HOST --&gt; KVM[KVM / QEMU]
+    KVM --&gt; DC[Windows Server 2025]
+
+    DC --&gt; ADDS[Active Directory Domain Services]
+    ADDS --&gt; EARTH[earth.local]
+
+    DC --&gt; DNS[DNS Server]
+
+    EARTH --&gt; FUTURE[Future Domain Infrastructure]
+    FUTURE --&gt; USERS[Users &amp; Groups]
+    FUTURE --&gt; CLIENTS[Windows Clients]
+    FUTURE --&gt; GPO[Group Policy]
+    FUTURE --&gt; DELEGATION[Delegated Administration]</code></pre>
+<p>The next stage was to verify and configure the <a href="../dns/">DNS Server</a> role.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

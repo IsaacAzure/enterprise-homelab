@@ -1,0 +1,1545 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../overview/">
+      
+      
+        <link rel="next" href="../sysadmin/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Help Desk - Enterprise Windows Infrastructure Lab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#help-desk-testing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Enterprise Windows Infrastructure Lab" class="md-header__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Windows Infrastructure Lab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Help Desk
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Enterprise Windows Infrastructure Lab" class="md-nav__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Enterprise Windows Infrastructure Lab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../environment/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../environment/kvm_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KVM Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../environment/architecture_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Network
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Directory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Active Directory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../active-directory/windows_server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../active-directory/domain_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../active-directory/dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../active-directory/dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../active-directory/windows_clients/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Clients
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../active-directory/ou_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OUs, Users & Security Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Group Policy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Group Policy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../group-policy/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delegated Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Delegated Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permission Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Permission Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Help Desk
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Help Desk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#help-desk-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Help Desk Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Help Desk Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selecting-a-test-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selecting a Test User
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Selecting a Test User">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-1-reset-user-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 1 — Reset User Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-2-unlock-a-user-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 2 — Unlock a User Account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-3-read-user-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 3 — Read User Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-4-modify-privileged-group-membership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 4 — Modify Privileged Group Membership
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigating-the-group-identity-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Investigating the Group Identity Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-5-delete-a-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 5 — Delete a User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-6-create-a-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 6 — Create a User
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administrative_sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administrative SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Remote Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../remote-administration/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#help-desk-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Help Desk Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Help Desk Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selecting-a-test-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selecting a Test User
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Selecting a Test User">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-1-reset-user-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 1 — Reset User Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-2-unlock-a-user-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 2 — Unlock a User Account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-3-read-user-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 3 — Read User Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-4-modify-privileged-group-membership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 4 — Modify Privileged Group Membership
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigating-the-group-identity-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Investigating the Group Identity Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-5-delete-a-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 5 — Delete a User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-6-create-a-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 6 — Create a User
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Help Desk</h1>
+
+<h2 id="help-desk-testing">Help Desk Testing</h2>
+<p>I began the delegation testing with the Help Desk role, using <strong>Thomas Anderson's</strong> Help Desk account.</p>
+<p>The objective was to verify that Help Desk could perform its expected day-to-day support tasks against users in the <code>Company Users</code> OU, while confirming that more privileged administrative operations remained unavailable.</p>
+<h3 id="selecting-a-test-user">Selecting a Test User</h3>
+<p>Before making any changes, I queried the <code>Company Users</code> OU to select an account for testing:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-SearchBase</span> <span class="s2">&quot;OU=Company Users,DC=earth,DC=local&quot;</span>
+</code></pre></div>
+<p>I selected Ebenezer Scrooge, a Finance user with the SamAccountName escr.</p>
+<p>I then checked the account's current state before beginning the tests:</p>
+<p><div class="highlight"><pre><span></span><code>Get-ADUser -Identity &quot;escr&quot; `
+    -Properties Enabled, LockedOut, PasswordExpired, PasswordLastSet, PasswordNeverExpires, LastLogonDate |
+Select Name, SamAccountName, Enabled, LockedOut, PasswordExpired,
+       PasswordLastSet, PasswordNeverExpires, LastLogonDate
+</code></pre></div>
+This gave me a baseline against which I could validate the changes made during testing.</p>
+<p><img alt="Initial account state" src="/assets/images/escr_initial_account_state.png" /></p>
+<h4 id="test-1-reset-user-password">Test 1 — Reset User Password</h4>
+<p>The first test was to confirm that Help Desk could reset a user's password and require the user to change it at their next logon.</p>
+<p>Using the Help Desk account, I ran:
+Set-ADAccountPassword -Identity "escr" <code>-Reset</code>
+    -NewPassword (ConvertTo-SecureString "Password1" -AsPlainText -Force)
+<div class="highlight"><pre><span></span><code>Set-ADUser -Identity &quot;escr&quot; -ChangePasswordAtLogon $true
+</code></pre></div></p>
+<p>Both commands completed successfully.</p>
+<p>I then signed in as Ebenezer using the temporary password. Windows immediately prompted the user to change the password, confirming that both the reset and change password at next logon settings had been applied successfully.</p>
+<p><img alt="User propmpted to change password" src="/assets/images/escr_change_pword.png" /> <img alt="Password change screen" src="/assets/images/escr_change_pword2.png" /> </p>
+<p>As an additional check, I queried pwdLastSet before and after the user changed the password:
+<div class="highlight"><pre><span></span><code>Get-ADUser -Identity &quot;escr&quot; -Properties pwdLastSet |
+Select Name, pwdLastSet
+</code></pre></div></p>
+<p>Before the password change, pwdLastSet was blank. After the user completed the password change, the attribute contained a timestamp.</p>
+<p>Result: PASS</p>
+<p>Help Desk could reset a user's password and require a password change at next logon as intended.</p>
+<h4 id="test-2-unlock-a-user-account">Test 2 — Unlock a User Account</h4>
+<p>I next tested whether Help Desk could unlock a locked user account.</p>
+<p>First, I checked the domain's account lockout threshold:
+<code>Get-ADDefaultDomainPasswordPolicy |
+Select LockOutThreshold</code></p>
+<p>I deliberately entered the wrong password enough times to lock Ebenezer's account and then queried the account again to verify its state:
+Get-ADUser -Identity "escr" <code>-Properties Enabled, LockedOut, PasswordExpired, PasswordLastSet, PasswordNeverExpires, LastLogonDate |
+Select Name, SamAccountName, Enabled, LockedOut, PasswordExpired,
+       PasswordLastSet, PasswordNeverExpires, LastLogonDate</code></p>
+<p>The account showed as locked.</p>
+<p>I then attempted to unlock it:
+<code>Unlock-ADAccount -Identity "escr"</code></p>
+<p>This failed with an insufficient access rights error.</p>
+<p><strong>Investigating the Failed Test</strong></p>
+<p>This showed that my original Help Desk delegation was incomplete.</p>
+<p>I had delegated password-reset permissions and read access, but resetting a password and unlocking an account are separate operations in Active Directory. Because Help Desk had read access, it could see that the account was locked, but it did not have permission to modify the attribute responsible for the lockout state.</p>
+<p>After investigating the required permission, I identified lockoutTime as the relevant attribute.</p>
+<p>I returned to the Delegation of Control configuration for the Company Users OU and added:</p>
+<p>Custom task → User objects → Property-specific permissions → Write lockoutTime</p>
+<p>I then immediately re-ran: <code>Unlock-ADAccount -Identity "escr"</code></p>
+<p>This time the command completed successfully.</p>
+<p>A final <code>'Get-ADUser'</code> query confirmed that the account was no longer locked, and I was able to sign in as Ebenezer again.</p>
+<p>Result: FAIL → REMEDIATED → PASS</p>
+<div class="admonition note">
+<p class="admonition-title">Found during testing: Password reset and account unlock are separate delegated permissions. My initial delegation allowed Help Desk to read the user's lockout state but not modify it. Testing exposed the missing <code>Write lockoutTime</code> permission, which I added before successfully re-testing the operation.</p>
+</div>
+<h4 id="test-3-read-user-information">Test 3 — Read User Information</h4>
+<p>Help Desk should be able to view user information without having unrestricted ability to modify user attributes.</p>
+<p>This had already been demonstrated throughout the previous tests. The Help Desk account could successfully query users with commands such as: <code>Get-ADUser -Identity "escr"</code></p>
+<p>I could also browse user objects through Active Directory Users and Computers <code>(dsa.msc)</code>.</p>
+<p>However, fields requiring write permissions remained unavailable for modification through ADUC.</p>
+<p>Result: PASS</p>
+<p>Help Desk had the required visibility into user objects without receiving unrestricted write access.</p>
+<h4 id="test-4-modify-privileged-group-membership">Test 4 — Modify Privileged Group Membership</h4>
+<p>I next tested whether the Help Desk account could add a user to the SysAdmin security group.</p>
+<p>I attempted: <code>Add-ADGroupMember -Identity "EL_SysAdmins"
+    -Members "escr"
+    -ErrorAction Stop</code>
+My initial attempt produced an unexpected error stating that EL_SysAdmins could not be found.</p>
+<p>At first, I suspected that Help Desk lacked read access to the security group. However, before treating this as a delegation problem, I tested the group directly:
+<code>Get-ADGroup -Identity "EL_SysAdmins"</code></p>
+<p>This also failed.</p>
+<p>I then ran the same query from the Domain Controller session and received the same result, ruling out the Help Desk account's permissions as the cause.</p>
+<p>Interestingly, querying another group worked: <code>Get-ADGroup -Identity "EL_Admins"</code></p>
+<h4 id="investigating-the-group-identity-problem">Investigating the Group Identity Problem</h4>
+<p>During the earlier RBAC restructuring, several security groups had originally been created using the EE_ prefix before being renamed to the correct EL_ convention.</p>
+<p>Although the visible group name had been changed, I discovered that the pre-Windows 2000 group name (SamAccountName) still contained the old value.</p>
+<p>For example:</p>
+<p>Current group name: EL_SysAdmins
+Existing SamAccountName: EE_SysAdmins</p>
+<p>I corrected the value: <code>Set-ADGroup -Identity "EE_SysAdmins"
+    -SamAccountName "EL_SysAdmins"</code></p>
+<p>I then verified the result:
+<code>Get-ADGroup -Identity "EL_SysAdmins" -Properties SamAccountName
+Select Name, SamAccountName</code>
+Rather than assuming this was an isolated issue, I checked every AD group for mismatches between its current name and <code>SamAccountName</code>:
+<div class="highlight"><pre><span></span><code>Get-ADGroup -Filter * -Properties SamAccountName |
+Where-Object { $_.Name -ne $_.SamAccountName } |
+Select Name, SamAccountName
+</code></pre></div></p>
+<p>The query identified four additional mismatches, which I corrected using the same method.
+<img alt="Name/SamAccountName mismatch query and fix" src="/assets/images/troubleshooting_old_new_SamAccountName2.png" /></p>
+<p>With the naming issue resolved, I returned to the original Help Desk permission test:
+<code>Add-ADGroupMember -Identity "EL_SysAdmins"
+    -Members "escr"
+    -ErrorAction Stop</code></p>
+<p>This time Active Directory located the group correctly but returned insufficient access rights.</p>
+<p>That was the expected result.</p>
+<p>Result: PASS</p>
+<p>Help Desk could not add users to the SysAdmin security group.</p>
+<div class="admonition note">
+<p class="admonition-title">Found during testing: Renaming an AD group's visible name did not automatically leave the group's SamAccountName aligned with my new naming convention.</p>
+</div>
+<p>The delegation test exposed several groups where the current name used the <code>EL_</code> prefix while <code>SamAccountName</code> retained the previous <code>EE_</code> value.</p>
+<p>I corrected the affected groups and used a domain-wide query to verify that no further naming mismatches remained.</p>
+<h3 id="test-5-delete-a-user">Test 5 — Delete a User</h3>
+<p>Help Desk should not have permission to delete user objects.</p>
+<p>I attempted to delete the test user:
+<code>Remove-ADUser -Identity "escr"</code></p>
+<p>After confirming the deletion prompt, Active Directory returned an Access Denied error.
+<img alt="Remove-ADUser test" src="/assets/images/helpdesk_delete_user_test.png" /></p>
+<p>Result: PASS</p>
+<p>Help Desk could not delete user objects.</p>
+<h3 id="test-6-create-a-user">Test 6 — Create a User</h3>
+<p>Finally, I tested whether Help Desk could create a new user in the Company Users OU:</p>
+<p><code>New-ADUser 
+    -Name "Test User" 
+    -SamAccountName "tuse" 
+    -Path "OU=Company Users,DC=earth,DC=local" 
+    -Enabled $true
+    -AccountPassword (ConvertTo-SecureString "Password1" -AsPlainText -Force)</code></p>
+<p>Active Directory returned:
+<code>Access is denied</code></p>
+<p><img alt="New-ADUser test" src="/assets/images/helpdesk_create_user_test.png" /></p>
+<p>Result: PASS</p>
+<p>Help Desk could not create user objects.</p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Expected</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>View user information</td>
+<td>Allowed</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Reset user password</td>
+<td>Allowed</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Force password change at next logon</td>
+<td>Allowed</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Unlock locked account</td>
+<td>Allowed</td>
+<td>FAIL → REMEDIATED → PASS</td>
+</tr>
+<tr>
+<td>Modify unrestricted user attributes</td>
+<td>Denied</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Add user to SysAdmin group</td>
+<td>Denied</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Delete user</td>
+<td>Denied</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Create user</td>
+<td>Denied</td>
+<td>PASS</td>
+</tr>
+</tbody>
+</table>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<p>The testing confirmed that the Help Desk role had the permissions required for routine account support while remaining restricted from higher-risk administrative operations.</p>
+<p>The tests also exposed two issues that were not apparent from the delegation configuration alone:</p>
+<ul>
+<li>The Help Desk delegation was missing the <code>Write lockoutTime</code> permission required to unlock user accounts.</li>
+<li>Several renamed security groups retained their previous <code>SamAccountName</code>, resulting in inconsistent group identities.</li>
+</ul>
+<p>Both issues were corrected and successfully re-tested before the Help Desk validation was completed.</p>
+<p>This demonstrated the importance of validating delegated permissions through real administrative operations rather than relying solely on the configured access-control entries.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
