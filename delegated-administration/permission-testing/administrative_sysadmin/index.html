@@ -1059,6 +1059,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Step 3: Reset computer account password:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1367,6 +1384,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Step 3: Reset computer account password:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1589,7 +1623,35 @@ The query returned TEST-PC01 under:</p>
 <p>OU=Workstations,DC=earth,DC=local</p>
 <p><img alt="success full object creation" src="/assets/images/adm_sysadmin_New_ADComp.png" /></p>
 <h4 id="step-2-delete-computer-objects">Step 2: Delete computer objects:</h4>
+<p>I Wanted to test deleting computer objects, so created a second test computer object with name TEST-PC02</p>
+<p>Then I Deleted the newly created computer object:
+<div class="highlight"><pre><span></span><code>    <span class="nb">Remove-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC02&quot;</span>
+</code></pre></div>
+I Verified deletion via a <code>Get-ADComputer</code> command and checked off another test.</p>
+<p><img alt="computer object deletion" src="/assets/images/adm_sysadm_delete_computer.png" /></p>
 <h4 id="step-3-reset-computer-account-password">Step 3: Reset computer account password:</h4>
+<div class="admonition note">
+<p class="admonition-title">Why does this permission matter if users log in with user passwords, what are computer object passwords for? - <strong><em>Computer Object passwords allow workstations to prove their identity to Domain Controllers</em></strong>.</p>
+</div>
+<h5 id="scenario">Scenario:</h5>
+<p>A domain-joined client goes offline for an extended period. In the meantime, Windows automatically rotates the computer account's password in AD (roughly every 30 days by default). 
+When the client comes back online, its locally-stored password no longer matches AD's record, and the two sides fall out of sync.</p>
+<p>The affected machine can still be pinged and is reachable on the network, but no domain account can log into it. The user sees: <strong><em>"The trust relationship between this workstation and the primary domain failed."</em></strong></p>
+<p>Real-world fix for this involves two separate halves:</p>
+<ul>
+<li>Reset the password on the AD side: Set-ADAccountPassword -Identity "WS_01$" -Reset</li>
+<li>Reset the password on the client side to match, run locally on the affected machine using a local admin account: Reset-ComputerMachinePassword -Server "WIN-FD0SR0GQS6P" -Credential (Get-Credential)</li>
+<li>Restart the client, then confirm a normal domain login succeeds</li>
+</ul>
+<p>An alternative some sysadmins use instead: simply unjoin and rejoin the machine to the domain which may be more disruptive, but sometimes faster than chasing a stubborn password mismatch.
+This is genuinely why the standard Sysadmin/Help Desk delegation includes computer account password reset rights: it's a common, real fix for a common, real problem not just a theoretical permission.</p>
+<p>Moving on to actually testing the delegated right itself against TEST-PC01.
+Before resetting, checked the current password timestamp as a baseline:
+<div class="highlight"><pre><span></span><code>  <span class="nb">Get-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-Properties</span> <span class="n">PasswordLastSet</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Name</span><span class="p">,</span> <span class="n">PasswordLastSet</span>
+</code></pre></div></p>
+<p>Ran the reset: <code>Powershell Set-ADAccountPassword -Identity "TEST-PC01$" -Reset -NewPassword (ConvertTo-SecureString "R4nd0m!C0mputerPW#2026xz" -AsPlainText -Force)</code></p>
+<p>Then validates by re-running the <code>Get-ADComputer</code> command I had just ran.</p>
+<p><img alt="Reset Computer Object" src="/assets/images/adm_sysadm_computer_pword_reset.png" /></p>
 <h4 id="step-4-write-all-properties-on-computer-objects">Step 4: Write all properties on computer objects:</h4>
 
 
