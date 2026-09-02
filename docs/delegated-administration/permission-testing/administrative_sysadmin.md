@@ -232,10 +232,44 @@ OU=Workstations,DC=earth,DC=local
 
 #### Step 2: Delete computer objects:
 
+I Wanted to test deleting computer objects, so created a second test computer object with name TEST-PC02
 
+Then I Deleted the newly created computer object:
+```powershell
+    Remove-ADComputer -Identity "TEST-PC02"
+```
+I Verified deletion via a `Get-ADComputer` command and checked off another test.
+
+![computer object deletion](/assets/images/adm_sysadm_delete_computer.png)
 
 #### Step 3: Reset computer account password:
 
+!!! note "Why does this permission matter if users log in with user passwords, what are computer object passwords for? - ***Computer Object passwords allow workstations to prove their identity to Domain Controllers***."
 
+##### Scenario: 
+A domain-joined client goes offline for an extended period. In the meantime, Windows automatically rotates the computer account's password in AD (roughly every 30 days by default). 
+When the client comes back online, its locally-stored password no longer matches AD's record, and the two sides fall out of sync.
 
+The affected machine can still be pinged and is reachable on the network, but no domain account can log into it. The user sees: ***"The trust relationship between this workstation and the primary domain failed."***
+
+Real-world fix for this involves two separate halves:
+
+* Reset the password on the AD side: Set-ADAccountPassword -Identity "WS_01$" -Reset
+* Reset the password on the client side to match, run locally on the affected machine using a local admin account: Reset-ComputerMachinePassword -Server "WIN-FD0SR0GQS6P" -Credential (Get-Credential)
+* Restart the client, then confirm a normal domain login succeeds
+
+An alternative some sysadmins use instead: simply unjoin and rejoin the machine to the domain which may be more disruptive, but sometimes faster than chasing a stubborn password mismatch.
+This is genuinely why the standard Sysadmin/Help Desk delegation includes computer account password reset rights: it's a common, real fix for a common, real problem not just a theoretical permission.
+
+Moving on to actually testing the delegated right itself against TEST-PC01.
+Before resetting, checked the current password timestamp as a baseline:
+```Powershell
+  Get-ADComputer -Identity "TEST-PC01" -Properties PasswordLastSet | Select Name, PasswordLastSet
+```
+
+Ran the reset: ```Powershell Set-ADAccountPassword -Identity "TEST-PC01$" -Reset -NewPassword (ConvertTo-SecureString "R4nd0m!C0mputerPW#2026xz" -AsPlainText -Force)```
+
+Then validates by re-running the ```Get-ADComputer``` command I had just ran.
+
+![Reset Computer Object](/assets/images/adm_sysadm_computer_pword_reset.png)
 #### Step 4: Write all properties on computer objects:
