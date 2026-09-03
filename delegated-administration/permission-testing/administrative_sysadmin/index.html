@@ -1653,6 +1653,57 @@ Before resetting, checked the current password timestamp as a baseline:
 <p>Then validates by re-running the <code>Get-ADComputer</code> command I had just ran.</p>
 <p><img alt="Reset Computer Object" src="/assets/images/adm_sysadm_computer_pword_reset.png" /></p>
 <h4 id="step-4-write-all-properties-on-computer-objects">Step 4: Write all properties on computer objects:</h4>
+<p>To test this, I wanted to select some properties to modify.</p>
+<p>I ran a command to see the full list of available properties on the object:
+<div class="highlight"><pre><span></span><code>  <span class="nb">Get-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">Format-List</span> <span class="p">*</span>
+</code></pre></div>
+<img alt="List all object properties" src="/assets/images/list_object_properties.png" />
+From the list, I selected <code>Description, DisplayName, ManagedBy and OperatingSystem</code> as the properties to modify.</p>
+<p>Starting with Description, I ran:
+<div class="highlight"><pre><span></span><code>  <span class="nb">Set-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-Description</span> <span class="s2">&quot;Mic check 2, 1, 2&quot;</span>
+</code></pre></div>
+This returned no error. To quickly validate, I ran:
+<div class="highlight"><pre><span></span><code>  <span class="nb">Get-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-Properties</span> <span class="n">Description</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Description</span>
+</code></pre></div>
+Which printed the desired updated description.
+<img alt="description update validation" src="/assets/images/admin_sysadmin_write_validation.png" /></p>
+<p>I then decided to update the remaining properties in a single command:
+<div class="highlight"><pre><span></span><code>  <span class="nb">Set-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-DisplayName</span> <span class="s2">&quot;TestMe!&quot;</span> <span class="n">-ManagedBy</span> <span class="s2">&quot;Kate Libby Admin&quot;</span> <span class="n">-OperatingSystem</span> <span class="s2">&quot;Windows 11&quot;</span>
+</code></pre></div>
+This produced an error:</p>
+<div class="admonition failure">
+<p class="admonition-title">ManagedBy identity could not be resolved</p>
+<div class="highlight"><pre><span></span><code>Set-ADComputer : Identity info provided in the extended attribute:
+&#39;ManagedBy&#39; could not be resolved.
+
+Reason: Cannot find an object with identity:
+&#39;Kate Libby Admin&#39; under: &#39;DC=earth,DC=local&#39;.
+</code></pre></div>
+</div>
+<p>I quickly understood this was due to the Kate Libby Admin entry, and corrected the command to use her <code>SamAccountName</code> instead, <code>klib.admin</code>:
+<div class="highlight"><pre><span></span><code>  <span class="nb">Set-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-DisplayName</span> <span class="s2">&quot;TestMe!&quot;</span> <span class="n">-ManagedBy</span> <span class="s2">&quot;klib.Admin&quot;</span> <span class="n">-OperatingSystem</span> <span class="s2">&quot;Windows 11&quot;</span>
+</code></pre></div>
+No error was returned. I validated via:
+<div class="highlight"><pre><span></span><code>  <span class="nb">Get-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-Properties</span> <span class="n">Description</span><span class="p">,</span> <span class="n">DisplayName</span><span class="p">,</span> <span class="n">ManagedBy</span><span class="p">,</span> <span class="n">OperatingSystem</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Description</span><span class="p">,</span> <span class="n">DisplayName</span><span class="p">,</span> <span class="n">ManagedBy</span><span class="p">,</span> <span class="n">OperatingSystem</span>
+</code></pre></div>
+This returned output confirming all writes were successful.
+<img alt="other property update validation" src="/assets/images/admin_sysadmin_write_validation2.png" /></p>
+<p>To add some extra testing, I logged in to Kate Libby's standard account to run the same command and validate that I would get an error.</p>
+<p>I ran:
+<div class="highlight"><pre><span></span><code>Get-ADComputer -Identity &quot;TEST-PC01&quot; -Properties Description, DisplayName, ManagedBy, OperatingSystem | Select Description, DisplayName, ManagedBy, OperatingSystem
+</code></pre></div>
+This was successful, as desired. I then tested the write permissions:
+<div class="highlight"><pre><span></span><code>  <span class="nb">Set-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-Description</span> <span class="s2">&quot;Should fail&quot;</span>
+</code></pre></div>
+This unexpectedly succeeded, with no error returned, revealing that the standard EL_SysAdmins account had write access to computer objects it should never have had.
+Root cause: the permission had been granted as part of a combined Access Control Entry (ACE) from earlier delegation, bundled together with other rights rather than as separate. 
+AD doesn't allow surgically stripping a single right out of a combined ACE.</p>
+<p>Fix: removed the combined permission entry entirely from the Workstations OU(s) where EL_SysAdmins was delegated, then re-ran delegation from scratch, this time selecting only Read, Read all properties, and Reset password, deliberately leaving out Write/Create/Delete.
+Retested as k.libby (standard):
+<div class="highlight"><pre><span></span><code>  <span class="nb">Set-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-Description</span> <span class="s2">&quot;Should fail&quot;</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+</code></pre></div>
+This time it correctly returned an access denied error, confirming the fix.
+<img alt="standard user validation" src="/assets/images/admin_sysadmin_write_validation3.png" /></p>
 
 
 
