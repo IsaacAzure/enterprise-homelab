@@ -273,3 +273,72 @@ Then validates by re-running the ```Get-ADComputer``` command I had just ran.
 
 ![Reset Computer Object](/assets/images/adm_sysadm_computer_pword_reset.png)
 #### Step 4: Write all properties on computer objects:
+
+To test this, I wanted to select some properties to modify.
+
+I ran a command to see the full list of available properties on the object:
+```powershell
+  Get-ADComputer -Identity "TEST-PC01" -Properties * | Format-List *
+```
+![List all object properties](/assets/images/list_object_properties.png)
+From the list, I selected `Description, DisplayName, ManagedBy and OperatingSystem` as the properties to modify.
+
+Starting with Description, I ran:
+```powershell
+  Set-ADComputer -Identity "TEST-PC01" -Description "Mic check 2, 1, 2"
+```
+This returned no error. To quickly validate, I ran:
+```powershell
+  Get-ADComputer -Identity "TEST-PC01" -Properties Description | Select Description
+```
+Which printed the desired updated description.
+![description update validation](/assets/images/admin_sysadmin_write_validation.png)
+
+I then decided to update the remaining properties in a single command:
+```powershell
+  Set-ADComputer -Identity "TEST-PC01" -DisplayName "TestMe!" -ManagedBy "Kate Libby Admin" -OperatingSystem "Windows 11"
+```
+This produced an error:
+
+!!! failure "ManagedBy identity could not be resolved"
+
+    ```text
+    Set-ADComputer : Identity info provided in the extended attribute:
+    'ManagedBy' could not be resolved.
+
+    Reason: Cannot find an object with identity:
+    'Kate Libby Admin' under: 'DC=earth,DC=local'.
+    ```
+
+I quickly understood this was due to the Kate Libby Admin entry, and corrected the command to use her `SamAccountName` instead, `klib.admin`:
+```powershell
+  Set-ADComputer -Identity "TEST-PC01" -DisplayName "TestMe!" -ManagedBy "klib.Admin" -OperatingSystem "Windows 11"
+```
+No error was returned. I validated via:
+```powershell
+  Get-ADComputer -Identity "TEST-PC01" -Properties Description, DisplayName, ManagedBy, OperatingSystem | Select Description, DisplayName, ManagedBy, OperatingSystem
+```
+This returned output confirming all writes were successful.
+![other property update validation](/assets/images/admin_sysadmin_write_validation2.png)
+
+To add some extra testing, I logged in to Kate Libby's standard account to run the same command and validate that I would get an error.
+
+I ran:
+```Poweshell 
+Get-ADComputer -Identity "TEST-PC01" -Properties Description, DisplayName, ManagedBy, OperatingSystem | Select Description, DisplayName, ManagedBy, OperatingSystem
+```
+This was successful, as desired. I then tested the write permissions:
+```powershell
+  Set-ADComputer -Identity "TEST-PC01" -Description "Should fail"
+```
+This unexpectedly succeeded, with no error returned, revealing that the standard EL_SysAdmins account had write access to computer objects it should never have had.
+Root cause: the permission had been granted as part of a combined Access Control Entry (ACE) from earlier delegation, bundled together with other rights rather than as separate. 
+AD doesn't allow surgically stripping a single right out of a combined ACE.
+
+Fix: removed the combined permission entry entirely from the Workstations OU(s) where EL_SysAdmins was delegated, then re-ran delegation from scratch, this time selecting only Read, Read all properties, and Reset password, deliberately leaving out Write/Create/Delete.
+Retested as k.libby (standard):
+```powershell
+  Set-ADComputer -Identity "TEST-PC01" -Description "Should fail" -ErrorAction Stop
+```
+This time it correctly returned an access denied error, confirming the fix.
+![standard user validation](/assets/images/admin_sysadmin_write_validation3.png)
