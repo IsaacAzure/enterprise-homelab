@@ -1268,7 +1268,7 @@ Gateway: 192.168.150.1
 <li>Configured the scope for the new network.</li>
 <li>Activated the replacement <code>.150</code> scope.</li>
 </ol>
-<p><img alt="DHCP Manager showing the original 192.168.124 scope inactive and the new 192.168.150 scope active" src="/assets/images/dhcp_scopes.png" /></p>
+<p><img alt="DHCP Manager showing the original 192.168.124 scope inactive and the new 192.168.150 scope active" src="../../assets/images/dhcp_scopes.png" /></p>
 <p>The original <code>.124</code> scope was retained but inactive, while the replacement <code>.150</code> scope became the active DHCP scope for the home lab.</p>
 <hr />
 <h2 id="configure-the-final-dhcp-scope-options">Configure the Final DHCP Scope Options</h2>
@@ -1279,7 +1279,7 @@ Gateway: 192.168.150.1
 <li><strong>006 DNS Servers</strong> — directs clients to the Domain Controller for DNS resolution.</li>
 <li><strong>015 DNS Domain Name</strong> — provides the <code>earth.local</code> DNS domain name.</li>
 </ul>
-<p><img alt="DHCP scope options showing 003 Router, 006 DNS Servers, and 015 DNS Domain Name" src="/assets/images/dhcp_scope_options.png" /></p>
+<p><img alt="DHCP scope options showing 003 Router, 006 DNS Servers, and 015 DNS Domain Name" src="../../assets/images/dhcp_scope_options.png" /></p>
 <p>These options allow DHCP clients to receive the appropriate gateway while using the Domain Controller for DNS resolution within the <code>earth.local</code> environment.</p>
 <p>The resulting DHCP flow was:</p>
 <pre class="mermaid"><code>flowchart LR
@@ -1303,7 +1303,7 @@ Gateway: 192.168.150.1
 <p>I also tested connectivity from the Windows client using PowerShell:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Test-NetConnection</span> <span class="n">google</span><span class="p">.</span><span class="n">com</span> <span class="n">-Port</span> <span class="n">443</span>
 </code></pre></div>
-<p><img alt="PowerShell Test-NetConnection test to google.com" src="/assets/images/dhcp_connectivity_test.png" /></p>
+<p><img alt="PowerShell Test-NetConnection test to google.com" src="../../assets/images/dhcp_connectivity_test.png" /></p>
 <h2 id="this-provided-an-additional-check-that-the-client-could-resolve-an-external-hostname-and-communicate-beyond-the-internal-lab-network">This provided an additional check that the client could resolve an external hostname and communicate beyond the internal lab network.</h2>
 <h2 id="checklist-to-run-through-whenever-creating-a-new-networksubnet">Checklist to Run Through Whenever Creating a New Network/Subnet:</h2>
 <p>After troubleshooting the networking issues in the lab, I created the following checklist to use whenever creating a new network or subnet.</p>
