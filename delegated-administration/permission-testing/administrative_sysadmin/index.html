@@ -1459,7 +1459,7 @@ The command returned no error.</p>
 <p>I verified that the user had been created successfully:
 <div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">-Identity</span> <span class="s2">&quot;tuse&quot;</span>
 </code></pre></div>
-<img alt="New-ADUser" src="/assets/images/adm_sys_test_user.png" /></p>
+<img alt="New-ADUser" src="../../../assets/images/adm_sys_test_user.png" /></p>
 <p>The query returned the new account, confirming that the Administrative SysAdmin role could create user objects in Company Users.</p>
 <p>However, I had not supplied GivenName or Surname, so those attributes were not populated.</p>
 <p>I created a second account with the additional attributes:
@@ -1493,7 +1493,7 @@ The deletion initially returned Access is denied.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">-Identity</span> <span class="s2">&quot;tuse2&quot;</span>
 </code></pre></div>
 The query could no longer find the user, validating the deletion.</p>
-<p><img alt="Delete Test User" src="/assets/images/adm_sys_remove_test_user.png" /></p>
+<p><img alt="Delete Test User" src="../../../assets/images/adm_sys_remove_test_user.png" /></p>
 <div class="admonition success">
 <p class="admonition-title">User deletion confirmed</p>
 </div>
@@ -1537,7 +1537,7 @@ Insufficient access rights to perform the operation.
 <div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">-Identity</span> <span class="s2">&quot;tuse&quot;</span> <span class="n">-Properties</span> <span class="n">MemberOf</span> <span class="p">|</span>
     <span class="nb">Select-Object</span> <span class="n">Name</span><span class="p">,</span> <span class="n">MemberOf</span>
 </code></pre></div>
-<img alt="Modify Group validation" src="/assets/images/adm_sys_modify_group_validation.png" /></p>
+<img alt="Modify Group validation" src="../../../assets/images/adm_sys_modify_group_validation.png" /></p>
 <div class="admonition success">
 <p class="admonition-title">Group-membership management confirmed</p>
 </div>
@@ -1621,14 +1621,14 @@ At line:1 char:1
 </code></pre></div>
 The query returned TEST-PC01 under:</p>
 <p>OU=Workstations,DC=earth,DC=local</p>
-<p><img alt="success full object creation" src="/assets/images/adm_sysadmin_New_ADComp.png" /></p>
+<p><img alt="success full object creation" src="../../../assets/images/adm_sysadmin_New_ADComp.png" /></p>
 <h4 id="step-2-delete-computer-objects">Step 2: Delete computer objects:</h4>
 <p>I Wanted to test deleting computer objects, so created a second test computer object with name TEST-PC02</p>
 <p>Then I Deleted the newly created computer object:
 <div class="highlight"><pre><span></span><code>    <span class="nb">Remove-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC02&quot;</span>
 </code></pre></div>
 I Verified deletion via a <code>Get-ADComputer</code> command and checked off another test.</p>
-<p><img alt="computer object deletion" src="/assets/images/adm_sysadm_delete_computer.png" /></p>
+<p><img alt="computer object deletion" src="../../../assets/images/adm_sysadm_delete_computer.png" /></p>
 <h4 id="step-3-reset-computer-account-password">Step 3: Reset computer account password:</h4>
 <div class="admonition note">
 <p class="admonition-title">Why does this permission matter if users log in with user passwords, what are computer object passwords for? - <strong><em>Computer Object passwords allow workstations to prove their identity to Domain Controllers</em></strong>.</p>
@@ -1657,7 +1657,7 @@ Before resetting, checked the current password timestamp as a baseline:
 <p>I ran a command to see the full list of available properties on the object:
 <div class="highlight"><pre><span></span><code>  <span class="nb">Get-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">Format-List</span> <span class="p">*</span>
 </code></pre></div>
-<img alt="List all object properties" src="/assets/images/list_object_properties.png" />
+<img alt="List all object properties" src="../../../assets/images/list_object_properties.png" />
 From the list, I selected <code>Description, DisplayName, ManagedBy and OperatingSystem</code> as the properties to modify.</p>
 <p>Starting with Description, I ran:
 <div class="highlight"><pre><span></span><code>  <span class="nb">Set-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-Description</span> <span class="s2">&quot;Mic check 2, 1, 2&quot;</span>
@@ -1666,7 +1666,7 @@ This returned no error. To quickly validate, I ran:
 <div class="highlight"><pre><span></span><code>  <span class="nb">Get-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-Properties</span> <span class="n">Description</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Description</span>
 </code></pre></div>
 Which printed the desired updated description.
-<img alt="description update validation" src="/assets/images/admin_sysadmin_write_validation.png" /></p>
+<img alt="description update validation" src="../../../assets/images/admin_sysadmin_write_validation.png" /></p>
 <p>I then decided to update the remaining properties in a single command:
 <div class="highlight"><pre><span></span><code>  <span class="nb">Set-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-DisplayName</span> <span class="s2">&quot;TestMe!&quot;</span> <span class="n">-ManagedBy</span> <span class="s2">&quot;Kate Libby Admin&quot;</span> <span class="n">-OperatingSystem</span> <span class="s2">&quot;Windows 11&quot;</span>
 </code></pre></div>
@@ -1687,7 +1687,7 @@ No error was returned. I validated via:
 <div class="highlight"><pre><span></span><code>  <span class="nb">Get-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-Properties</span> <span class="n">Description</span><span class="p">,</span> <span class="n">DisplayName</span><span class="p">,</span> <span class="n">ManagedBy</span><span class="p">,</span> <span class="n">OperatingSystem</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Description</span><span class="p">,</span> <span class="n">DisplayName</span><span class="p">,</span> <span class="n">ManagedBy</span><span class="p">,</span> <span class="n">OperatingSystem</span>
 </code></pre></div>
 This returned output confirming all writes were successful.
-<img alt="other property update validation" src="/assets/images/admin_sysadmin_write_validation2.png" /></p>
+<img alt="other property update validation" src="../../../assets/images/admin_sysadmin_write_validation2.png" /></p>
 <p>To add some extra testing, I logged in to Kate Libby's standard account to run the same command and validate that I would get an error.</p>
 <p>I ran:
 <div class="highlight"><pre><span></span><code>Get-ADComputer -Identity &quot;TEST-PC01&quot; -Properties Description, DisplayName, ManagedBy, OperatingSystem | Select Description, DisplayName, ManagedBy, OperatingSystem
@@ -1703,7 +1703,7 @@ Retested as k.libby (standard):
 <div class="highlight"><pre><span></span><code>  <span class="nb">Set-ADComputer</span> <span class="n">-Identity</span> <span class="s2">&quot;TEST-PC01&quot;</span> <span class="n">-Description</span> <span class="s2">&quot;Should fail&quot;</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
 </code></pre></div>
 This time it correctly returned an access denied error, confirming the fix.
-<img alt="standard user validation" src="/assets/images/admin_sysadmin_write_validation3.png" /></p>
+<img alt="standard user validation" src="../../../assets/images/admin_sysadmin_write_validation3.png" /></p>
 
 
 

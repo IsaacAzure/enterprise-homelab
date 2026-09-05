@@ -1312,7 +1312,7 @@ Select Name, SamAccountName, Enabled, LockedOut, PasswordExpired,
        PasswordLastSet, PasswordNeverExpires, LastLogonDate
 </code></pre></div>
 This gave me a baseline against which I could validate the changes made during testing.</p>
-<p><img alt="Initial account state" src="/assets/images/escr_initial_account_state.png" /></p>
+<p><img alt="Initial account state" src="../../../assets/images/escr_initial_account_state.png" /></p>
 <h4 id="test-1-reset-user-password">Test 1 — Reset User Password</h4>
 <p>The first test was to confirm that Help Desk could reset a user's password and require the user to change it at their next logon.</p>
 <p>Using the Help Desk account, I ran:
@@ -1322,7 +1322,7 @@ Set-ADAccountPassword -Identity "escr" <code>-Reset</code>
 </code></pre></div></p>
 <p>Both commands completed successfully.</p>
 <p>I then signed in as Ebenezer using the temporary password. Windows immediately prompted the user to change the password, confirming that both the reset and change password at next logon settings had been applied successfully.</p>
-<p><img alt="User propmpted to change password" src="/assets/images/escr_change_pword.png" /> <img alt="Password change screen" src="/assets/images/escr_change_pword2.png" /> </p>
+<p><img alt="User propmpted to change password" src="../../../assets/images/escr_change_pword.png" /> <img alt="Password change screen" src="/assets/images/escr_change_pword2.png" /> </p>
 <p>As an additional check, I queried pwdLastSet before and after the user changed the password:
 <div class="highlight"><pre><span></span><code>Get-ADUser -Identity &quot;escr&quot; -Properties pwdLastSet |
 Select Name, pwdLastSet
@@ -1391,7 +1391,7 @@ Where-Object { $_.Name -ne $_.SamAccountName } |
 Select Name, SamAccountName
 </code></pre></div></p>
 <p>The query identified four additional mismatches, which I corrected using the same method.
-<img alt="Name/SamAccountName mismatch query and fix" src="/assets/images/troubleshooting_old_new_SamAccountName2.png" /></p>
+<img alt="Name/SamAccountName mismatch query and fix" src="../../../assets/images/troubleshooting_old_new_SamAccountName2.png" /></p>
 <p>With the naming issue resolved, I returned to the original Help Desk permission test:
 <code>Add-ADGroupMember -Identity "EL_SysAdmins"
     -Members "escr"
@@ -1410,7 +1410,7 @@ Select Name, SamAccountName
 <p>I attempted to delete the test user:
 <code>Remove-ADUser -Identity "escr"</code></p>
 <p>After confirming the deletion prompt, Active Directory returned an Access Denied error.
-<img alt="Remove-ADUser test" src="/assets/images/helpdesk_delete_user_test.png" /></p>
+<img alt="Remove-ADUser test" src="../../../assets/images/helpdesk_delete_user_test.png" /></p>
 <p>Result: PASS</p>
 <p>Help Desk could not delete user objects.</p>
 <h3 id="test-6-create-a-user">Test 6 — Create a User</h3>
@@ -1423,7 +1423,7 @@ Select Name, SamAccountName
     -AccountPassword (ConvertTo-SecureString "Password1" -AsPlainText -Force)</code></p>
 <p>Active Directory returned:
 <code>Access is denied</code></p>
-<p><img alt="New-ADUser test" src="/assets/images/helpdesk_create_user_test.png" /></p>
+<p><img alt="New-ADUser test" src="../../../assets/images/helpdesk_create_user_test.png" /></p>
 <p>Result: PASS</p>
 <p>Help Desk could not create user objects.</p>
 <table>

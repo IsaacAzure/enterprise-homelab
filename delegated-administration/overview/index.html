@@ -1681,7 +1681,7 @@
 <li>David Lightman — Systems Administrator</li>
 </ul>
 <p>No Help Desk users were given separate administrative accounts.</p>
-<p><img alt="Administrative accounts created for selected IT roles" src="/assets/images/ad_admin_accounts.png" /></p>
+<p><img alt="Administrative accounts created for selected IT roles" src="../../assets/images/ad_admin_accounts.png" /></p>
 <p>Administrative accounts followed the format:
 xxxx.admin@earth.local</p>
 <p>The intention was to separate normal day-to-day user activity from privileged administrative work.</p>
@@ -1743,7 +1743,7 @@ Create a custom task to delegate
 OU Properties
 → Security
 → Advanced</p>
-<p><img alt="Help Desk delegated permissions configured in Active Directory" src="/assets/images/ad_helpdesk_delegation.png" /></p>
+<p><img alt="Help Desk delegated permissions configured in Active Directory" src="../../assets/images/ad_helpdesk_delegation.png" /></p>
 <p>This provided a way to verify the access control entries created by the Delegation of Control Wizard.</p>
 <h2 id="initial-sysadmin-delegation">Initial SysAdmin Delegation</h2>
 <p>For the SysAdmin group, I initially took a broader approach using custom delegated permissions.</p>
@@ -1796,7 +1796,7 @@ Help Desk should be able to perform selected support tasks for non-IT users.</p>
 
     A --&gt; K[Groups]
     A --&gt; L[Admin-Accounts]</code></pre>
-<p><img alt="Revised Active Directory OU structure with IT and Admin Accounts separated from Company Users" src="/assets/images/ad_revised_ou_structure.png" /></p>
+<p><img alt="Revised Active Directory OU structure with IT and Admin Accounts separated from Company Users" src="../../assets/images/ad_revised_ou_structure.png" /></p>
 <p>This created a much cleaner administrative boundary.</p>
 <p>Company Users now represented the non-IT workforce, while IT accounts existed separately.</p>
 <p>Before moving the OU, I temporarily disabled Protect object from accidental deletion, moved the OU, and then enabled the protection again.</p>
@@ -1809,7 +1809,7 @@ Help Desk should be able to perform selected support tasks for non-IT users.</p>
 <li><code>Get-GPInheritance -Target "OU=Company Users,DC=earth,DC=local"</code></li>
 <li><code>Get-GPInheritance -Target "OU=Sales,OU=Company Users,DC=earth,DC=local"</code></li>
 </ul>
-<p><img alt="PowerShell Get-GPInheritance validation after restructuring the Active Directory OUs" src="/assets/images/ad_ou_gpo_inheritance_check.png" /></p>
+<p><img alt="PowerShell Get-GPInheritance validation after restructuring the Active Directory OUs" src="../../assets/images/ad_ou_gpo_inheritance_check.png" /></p>
 <p>The checks showed that the expected GPOs were still linked to the correct OUs.</p>
 <p>I then performed an additional user-level validation: <code>gpupdate /force</code>
 After signing out and back in: <code>gpresult /r /scope:user</code></p>
