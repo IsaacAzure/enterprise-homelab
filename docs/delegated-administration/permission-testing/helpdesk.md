@@ -24,7 +24,7 @@ Select Name, SamAccountName, Enabled, LockedOut, PasswordExpired,
 ```
 This gave me a baseline against which I could validate the changes made during testing.
 
-![Initial account state](/assets/images/escr_initial_account_state.png)
+![Initial account state](../../assets/images/escr_initial_account_state.png)
 
 #### Test 1 — Reset User Password
 
@@ -42,7 +42,7 @@ Both commands completed successfully.
 
 I then signed in as Ebenezer using the temporary password. Windows immediately prompted the user to change the password, confirming that both the reset and change password at next logon settings had been applied successfully.
 
-![User propmpted to change password](/assets/images/escr_change_pword.png) ![Password change screen](/assets/images/escr_change_pword2.png) 
+![User propmpted to change password](../../assets/images/escr_change_pword.png) ![Password change screen](/assets/images/escr_change_pword2.png) 
 
 As an additional check, I queried pwdLastSet before and after the user changed the password:
 ```
@@ -162,7 +162,7 @@ Select Name, SamAccountName
 ```
 
 The query identified four additional mismatches, which I corrected using the same method.
-![Name/SamAccountName mismatch query and fix](/assets/images/troubleshooting_old_new_SamAccountName2.png)
+![Name/SamAccountName mismatch query and fix](../../assets/images/troubleshooting_old_new_SamAccountName2.png)
 
 With the naming issue resolved, I returned to the original Help Desk permission test:
 `Add-ADGroupMember -Identity "EL_SysAdmins"
@@ -191,7 +191,7 @@ I attempted to delete the test user:
 `Remove-ADUser -Identity "escr"`
 
 After confirming the deletion prompt, Active Directory returned an Access Denied error.
-![Remove-ADUser test](/assets/images/helpdesk_delete_user_test.png)
+![Remove-ADUser test](../../assets/images/helpdesk_delete_user_test.png)
 
 Result: PASS
 
@@ -212,7 +212,7 @@ Finally, I tested whether Help Desk could create a new user in the Company Users
 Active Directory returned:
 `Access is denied`
 
-![New-ADUser test](/assets/images/helpdesk_create_user_test.png)
+![New-ADUser test](../../assets/images/helpdesk_create_user_test.png)
 
 Result: PASS
 

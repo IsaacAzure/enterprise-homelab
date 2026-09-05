@@ -22,7 +22,7 @@ I verified that the user had been created successfully:
 ```Powershell
 Get-ADUser -Identity "tuse"
 ```
-![New-ADUser](/assets/images/adm_sys_test_user.png)
+![New-ADUser](../../assets/images/adm_sys_test_user.png)
 
 The query returned the new account, confirming that the Administrative SysAdmin role could create user objects in Company Users.
 
@@ -67,7 +67,7 @@ Get-ADUser -Identity "tuse2"
 ```
 The query could no longer find the user, validating the deletion.
 
-![Delete Test User](/assets/images/adm_sys_remove_test_user.png)
+![Delete Test User](../../assets/images/adm_sys_remove_test_user.png)
 
 !!! success "User deletion confirmed"
 After correcting the delegation, the Administrative SysAdmin role could delete user objects within the intended scope.
@@ -122,7 +122,7 @@ I verified the membership through the test user's MemberOf attribute:
 Get-ADUser -Identity "tuse" -Properties MemberOf |
     Select-Object Name, MemberOf
 ```
-![Modify Group validation](/assets/images/adm_sys_modify_group_validation.png)
+![Modify Group validation](../../assets/images/adm_sys_modify_group_validation.png)
 
 !!! success "Group-membership management confirmed"
 The Administrative SysAdmin role could manage group membership after permissions were applied to the OU containing the group objects.
@@ -228,7 +228,7 @@ The query returned TEST-PC01 under:
 
 OU=Workstations,DC=earth,DC=local
 
-![success full object creation](/assets/images/adm_sysadmin_New_ADComp.png)
+![success full object creation](../../assets/images/adm_sysadmin_New_ADComp.png)
 
 #### Step 2: Delete computer objects:
 
@@ -240,7 +240,7 @@ Then I Deleted the newly created computer object:
 ```
 I Verified deletion via a `Get-ADComputer` command and checked off another test.
 
-![computer object deletion](/assets/images/adm_sysadm_delete_computer.png)
+![computer object deletion](../../assets/images/adm_sysadm_delete_computer.png)
 
 #### Step 3: Reset computer account password:
 
@@ -280,7 +280,7 @@ I ran a command to see the full list of available properties on the object:
 ```powershell
   Get-ADComputer -Identity "TEST-PC01" -Properties * | Format-List *
 ```
-![List all object properties](/assets/images/list_object_properties.png)
+![List all object properties](../../assets/images/list_object_properties.png)
 From the list, I selected `Description, DisplayName, ManagedBy and OperatingSystem` as the properties to modify.
 
 Starting with Description, I ran:
@@ -292,7 +292,7 @@ This returned no error. To quickly validate, I ran:
   Get-ADComputer -Identity "TEST-PC01" -Properties Description | Select Description
 ```
 Which printed the desired updated description.
-![description update validation](/assets/images/admin_sysadmin_write_validation.png)
+![description update validation](../../assets/images/admin_sysadmin_write_validation.png)
 
 I then decided to update the remaining properties in a single command:
 ```powershell
@@ -319,7 +319,7 @@ No error was returned. I validated via:
   Get-ADComputer -Identity "TEST-PC01" -Properties Description, DisplayName, ManagedBy, OperatingSystem | Select Description, DisplayName, ManagedBy, OperatingSystem
 ```
 This returned output confirming all writes were successful.
-![other property update validation](/assets/images/admin_sysadmin_write_validation2.png)
+![other property update validation](../../assets/images/admin_sysadmin_write_validation2.png)
 
 To add some extra testing, I logged in to Kate Libby's standard account to run the same command and validate that I would get an error.
 
@@ -341,4 +341,4 @@ Retested as k.libby (standard):
   Set-ADComputer -Identity "TEST-PC01" -Description "Should fail" -ErrorAction Stop
 ```
 This time it correctly returned an access denied error, confirming the fix.
-![standard user validation](/assets/images/admin_sysadmin_write_validation3.png)
+![standard user validation](../../assets/images/admin_sysadmin_write_validation3.png)

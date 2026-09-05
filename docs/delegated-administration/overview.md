@@ -64,7 +64,7 @@ Administrative accounts were created for:
 
 No Help Desk users were given separate administrative accounts.
 
-![Administrative accounts created for selected IT roles](/assets/images/ad_admin_accounts.png)
+![Administrative accounts created for selected IT roles](../assets/images/ad_admin_accounts.png)
 
 Administrative accounts followed the format:
 xxxx.admin@earth.local
@@ -144,7 +144,7 @@ OU Properties
 → Security
 → Advanced
 
-![Help Desk delegated permissions configured in Active Directory](/assets/images/ad_helpdesk_delegation.png)
+![Help Desk delegated permissions configured in Active Directory](../assets/images/ad_helpdesk_delegation.png)
 
 This provided a way to verify the access control entries created by the Delegation of Control Wizard.
 
@@ -224,7 +224,7 @@ flowchart TD
     A --> L[Admin-Accounts]
 ```
 
-![Revised Active Directory OU structure with IT and Admin Accounts separated from Company Users](/assets/images/ad_revised_ou_structure.png)
+![Revised Active Directory OU structure with IT and Admin Accounts separated from Company Users](../assets/images/ad_revised_ou_structure.png)
 
 This created a much cleaner administrative boundary.
 
@@ -243,7 +243,7 @@ I checked GPO inheritance using PowerShell:
 * `Get-GPInheritance -Target "OU=Company Users,DC=earth,DC=local"`
 * `Get-GPInheritance -Target "OU=Sales,OU=Company Users,DC=earth,DC=local"`
 
-![PowerShell Get-GPInheritance validation after restructuring the Active Directory OUs](/assets/images/ad_ou_gpo_inheritance_check.png)
+![PowerShell Get-GPInheritance validation after restructuring the Active Directory OUs](../assets/images/ad_ou_gpo_inheritance_check.png)
 
 The checks showed that the expected GPOs were still linked to the correct OUs.
 
