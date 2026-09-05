@@ -1095,7 +1095,7 @@
 <p>To open it:</p>
 <div class="highlight"><pre><span></span><code><span class="n">gpmc</span><span class="p">.</span><span class="n">msc</span>
 </code></pre></div>
-<p><img alt="Group Policy Management Console for the earth.local domain" src="/assets/images/gpo_management_console.png" /></p>
+<p><img alt="Group Policy Management Console for the earth.local domain" src="../assets/images/gpo_management_console.png" /></p>
 <hr />
 <h1 id="desktop-restriction-gpo">Desktop Restriction GPO</h1>
 <p>One of the first policies I created was a desktop restriction that removed the Recycle Bin icon for selected non-IT users.</p>
@@ -1107,7 +1107,7 @@
             └── Remove Recycle Bin icon from desktop
 </code></pre></div>
 <p>I opened the policy setting and selected <strong>Enabled</strong>.</p>
-<p><img alt="Recycle Bin desktop restriction policy" src="/assets/images/gpo_recycle_bin_policy.png" /></p>
+<p><img alt="Recycle Bin desktop restriction policy" src="../assets/images/gpo_recycle_bin_policy.png" /></p>
 <hr />
 <h2 id="testing-the-restriction">Testing the Restriction</h2>
 <p>I booted <code>WS_01</code> and signed in as <strong>Michael Scott</strong> to test the policy.</p>
@@ -1116,7 +1116,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">gpupdate</span> <span class="p">/</span><span class="n">force</span>
 </code></pre></div>
 <p>After the policy refresh and a new sign-in, the restriction was applied successfully.</p>
-<p><img alt="Recycle Bin restriction verified on a test user" src="/assets/images/gpo_recycle_bin_verification.png" /></p>
+<p><img alt="Recycle Bin restriction verified on a test user" src="../assets/images/gpo_recycle_bin_verification.png" /></p>
 <p>This provided my first practical test of applying a user configuration through Group Policy and then verifying the result from a domain-joined workstation.</p>
 <hr />
 <h1 id="wallpaper-group-policies">Wallpaper Group Policies</h1>
@@ -1181,7 +1181,7 @@
 </code></pre></div>
 <p>I placed the wallpaper images inside the folder and then shared the folder over the network.</p>
 <p>Read access was provided for the users that needed to retrieve the files.</p>
-<p><img alt="Wallpaper network share configuration" src="/assets/images/gpo_wallpaper_share.png" /></p>
+<p><img alt="Wallpaper network share configuration" src="../../assets/images/gpo_wallpaper_share.png" /></p>
 <p>This also reinforced that <strong>share permissions and NTFS permissions are separate controls</strong> and both need to permit the required access.</p>
 <hr />
 <h2 id="switching-to-a-unc-path">Switching to a UNC Path</h2>
@@ -1193,7 +1193,7 @@
 <p>The test returned:</p>
 <div class="highlight"><pre><span></span><code>True
 </code></pre></div>
-<p><img alt="Testing access to the wallpaper UNC path" src="/assets/images/gpo_wallpaper_test_path.png" /></p>
+<p><img alt="Testing access to the wallpaper UNC path" src="../../assets/images/gpo_wallpaper_test_path.png" /></p>
 <p>This gave me a simple way to separate a <strong>file-access problem</strong> from a <strong>Group Policy problem</strong>.</p>
 <p>If <code>Test-Path</code> could not access the file, there would be little value troubleshooting the GPO itself first.</p>
 <hr />
@@ -1203,12 +1203,12 @@
 </code></pre></div>
 <p>I signed out and then signed back into Ross Geller's account.</p>
 <p>The non-IT wallpaper now appeared correctly.</p>
-<p><img alt="General user wallpaper applied through Group Policy" src="/assets/images/gpo_wallpaper_general_user.png" /></p>
+<p><img alt="General user wallpaper applied through Group Policy" src="../../assets/images/gpo_wallpaper_general_user.png" /></p>
 <hr />
 <h2 id="verifying-the-it-wallpaper">Verifying the IT Wallpaper</h2>
 <p>I repeated the wallpaper process for the IT users.</p>
 <p>I then signed in as <strong>Kate Libby</strong> and confirmed that the IT-specific wallpaper was displayed.</p>
-<p><img alt="IT user wallpaper applied through Group Policy" src="/assets/images/gpo_wallpaper_it_user.png" /></p>
+<p><img alt="IT user wallpaper applied through Group Policy" src="../../assets/images/gpo_wallpaper_it_user.png" /></p>
 <p>At this point, the lab could apply different visual configurations depending on the user.</p>
 <hr />
 <h1 id="security-filtering">Security Filtering</h1>
@@ -1230,8 +1230,8 @@
 <div class="highlight"><pre><span></span><code><span class="n">gpresult</span> <span class="p">/</span><span class="nb">r</span>
 </code></pre></div>
 <p>I ran the command while signed in as different users rather than relying only on visible changes such as the desktop wallpaper.</p>
-<p><img alt="gpresult verification for an IT user" src="/assets/images/gpo_gpresult_it_user.png" /></p>
-<p><img alt="gpresult verification for a general user" src="/assets/images/gpo_gpresult_general_user.png" /></p>
+<p><img alt="gpresult verification for an IT user" src="../../assets/images/gpo_gpresult_it_user.png" /></p>
+<p><img alt="gpresult verification for a general user" src="../../assets/images/gpo_gpresult_general_user.png" /></p>
 <p>This helped confirm that the intended GPOs were applying without unwanted overlap between the user groups.</p>
 <hr />
 <h1 id="password-policy-and-account-lockout">Password Policy and Account Lockout</h1>
@@ -1254,7 +1254,7 @@
                 └── Account Policies
                     └── Password Policy
 </code></pre></div>
-<p><img alt="Domain password policy configuration" src="/assets/images/gpo_domain_password_policy.png" /></p>
+<p><img alt="Domain password policy configuration" src="../assets/images/gpo_domain_password_policy.png" /></p>
 <p>For testing purposes, I deliberately made the domain-wide password requirements relatively weak.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1266,7 +1266,7 @@
 <p>The lockout threshold was configured for:</p>
 <div class="highlight"><pre><span></span><code>3 invalid logon attempts
 </code></pre></div>
-<p><img alt="Domain account lockout policy" src="/assets/images/gpo_account_lockout_policy.png" /></p>
+<p><img alt="Domain account lockout policy" src="../assets/images/gpo_account_lockout_policy.png" /></p>
 <p>This allowed me to deliberately lock a test account and verify both the lockout behaviour and the administrative recovery process.</p>
 <hr />
 <h1 id="fine-grained-password-policy-for-it">Fine-Grained Password Policy for IT</h1>
@@ -1287,7 +1287,7 @@
 </code></pre></div>
 <p>I configured the Password Settings Object and set its precedence to <code>1</code>.</p>
 <p>I then used <strong>Directly Applies To</strong> and selected the <code>IT-Team</code> security group.</p>
-<p><img alt="IT Password Settings Object" src="/assets/images/gpo_it_pso.png" /></p>
+<p><img alt="IT Password Settings Object" src="../assets/images/gpo_it_pso.png" /></p>
 <p>The intended password-policy relationship was therefore:</p>
 <pre class="mermaid"><code>flowchart TD
     A[earth.local]
@@ -1305,7 +1305,7 @@
 <p>When prompted for a new password, I entered: <code>password</code></p>
 <p>This was intentionally chosen because it would have satisfied the weaker domain policy I had configured for testing, but it did not satisfy the stronger IT password policy.</p>
 <p>The password was rejected.</p>
-<p><img alt="Password rejected by the IT Password Settings Object" src="/assets/images/gpo_pso_password_rejected.png" /></p>
+<p><img alt="Password rejected by the IT Password Settings Object" src="../../assets/images/gpo_pso_password_rejected.png" /></p>
 <div class="admonition success">
 <p class="admonition-title">PSO verified</p>
 <p>The password being rejected for Kate demonstrated that the more specific IT Password Settings Object was taking effect rather than the weaker default domain password requirements.</p>
@@ -1320,7 +1320,7 @@
 <h1 id="testing-account-lockout">Testing Account Lockout</h1>
 <p>I then deliberately entered Patrick's password incorrectly.</p>
 <p>After <strong>3 invalid attempts</strong> the account became locked as designed.</p>
-<p><img alt="Patrick Bateman account lockout" src="/assets/images/gpo_account_lockout.png" /></p>
+<p><img alt="Patrick Bateman account lockout" src="../../assets/images/gpo_account_lockout.png" /></p>
 <p>Initially, I unlocked the account using Active Directory Users and Computers and confirmed that Patrick could sign in again.</p>
 <p>I then repeated the test so that I could practise checking and managing account lockouts through PowerShell.</p>
 <hr />
@@ -1331,7 +1331,7 @@
 <p><code>LockedOut</code> returned:</p>
 <div class="highlight"><pre><span></span><code>True
 </code></pre></div>
-<p><img alt="Patrick Bateman account shown as locked out in PowerShell" src="/assets/images/gpo_account_unlock_powershell1.png" /></p>
+<p><img alt="Patrick Bateman account shown as locked out in PowerShell" src="../../assets/images/gpo_account_unlock_powershell1.png" /></p>
 <p>This confirmed from Active Directory itself that the account was locked.</p>
 <hr />
 <h2 id="unlocking-the-account">Unlocking the Account</h2>
@@ -1344,7 +1344,7 @@
 <p>This time:</p>
 <div class="highlight"><pre><span></span><code>LockedOut : False
 </code></pre></div>
-<p><img alt="Unlocking Patrick Bateman and verifying the account state with PowerShell" src="/assets/images/gpo_account_unlock_powershell.png" /></p>
+<p><img alt="Unlocking Patrick Bateman and verifying the account state with PowerShell" src="../../assets/images/gpo_account_unlock_powershell.png" /></p>
 <p>Finally, I signed back into Patrick's account as an additional verification that the account was usable again.</p>
 <hr />
 <h1 id="cross-client-gpo-verification">Cross-Client GPO Verification</h1>
