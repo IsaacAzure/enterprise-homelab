@@ -1686,6 +1686,29 @@ Access is denied.
 <p class="admonition-title">RSoP Planning confirmed</p>
 <p>The Modeling Wizard worked after the DCOM policy was applied to the Domain Controller and the required remote launch and activation permissions were granted.</p>
 </div>
+<details class="warning">
+<summary>Correction — DCOM/WMI permissions were not actually required</summary>
+<p>Following further testing (see
+<a href="../administrative_sysadmin/#rsop-planning">RSoP Planning</a>),
+the DCOM Access/Launch/Activation permissions and WMI namespace security changes made during
+the original troubleshooting were deliberately removed and retested, for both <code>EL_SysAdmins</code>
+and <code>EL_Adm_SysAdmins</code>:</p>
+<ul>
+<li>Removed the <code>DCOM Grants</code> GPO permission for the relevant Sysadmin group, retested RSoP Planning = still worked.</li>
+<li>Removed the WMI namespace security role for the same group, retested again = still worked.</li>
+<li>Logged out and back in to rule out a cached success, retested a third time = still worked.</li>
+</ul>
+<p>RSoP Planning continued to function correctly with only the AD delegation
+(<code>Generate Resultant Set of Policy (Planning)</code> and <code>(Logging)</code>, delegated at the correct
+scope, including on the relevant computer object/OU) in place.</p>
+<p><strong>Conclusion</strong>: the DCOM/WMI changes made earlier in this investigation were not actually
+required to resolve the original issue. The true root cause, in both cases was the AD
+delegation itself not DCOM or WMI. The DCOM/WMI configuration is left in place and
+documented here as a record of the troubleshooting process, but should not be treated as a
+necessary part of the working solution. Resolving an issue after making several changes does
+not confirm all of those changes were responsible, each should be verified independently
+where practical as was done here.</p>
+</details>
 <hr />
 <h3 id="step-10-understand-the-troubleshooting-sequence">Step 10: Understand the Troubleshooting Sequence</h3>
 <p>The RSoP Planning failure was not caused by one missing permission. The investigation exposed multiple independent layers.</p>

@@ -1094,6 +1094,73 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#common-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manage-gpo-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage GPO Links:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsop-planning-and-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RSoP Planning and Logging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RSoP Planning and Logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsop-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RSoP Planning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1419,6 +1486,73 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#common-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manage-gpo-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manage GPO Links:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsop-planning-and-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RSoP Planning and Logging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RSoP Planning and Logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsop-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RSoP Planning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1704,6 +1838,67 @@ Retested as k.libby (standard):
 </code></pre></div>
 This time it correctly returned an access denied error, confirming the fix.
 <img alt="standard user validation" src="../../../assets/images/admin_sysadmin_write_validation3.png" /></p>
+<h3 id="common-tasks">Common tasks</h3>
+<h4 id="manage-gpo-links">Manage GPO Links:</h4>
+<p>To test this I wanted to first allow my admin to be able to create GPOs, then manage them.
+I had to enable that permission as currently only my DC could create new GPOs.
+To enable on my DC, I ran:
+<code>Win + R &gt; gpmc.msc</code>
+Then I navigated to the delegation tab of Group Policy Objects. I added <code>EL_Adm_SysAdmins</code> to the delegation and then immediately ran: <code>Powershell New-GPO -Name "Admin Test"</code>
+This was successful.
+<img alt="New GPO" src="../../../assets/images/admin_new_GPO.png" /></p>
+<p>I then proceeded to link this new GPO to Company Users.
+<code>Powershell New-GPLink -Name "Admin Test" -Target "OU=Company Users,DC=earth,DC=local"</code>
+Which was successful, running: <code>Get-GPInheritance -Target "OU=Company Users,DC=earth,DC=local"</code> validated this.
+<img alt="New GPO link" src="../../../assets/images/admin_link_GPO.png" />
+Then I simply unlinked and validated using the respective commands:
+<div class="highlight"><pre><span></span><code><span class="nb">Remove-GPLink</span> <span class="n">-Name</span> <span class="s2">&quot;Admin Test&quot;</span> <span class="n">-Target</span> <span class="s2">&quot;OU=Company Users,DC=earth,DC=local&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-GPInheritance</span> <span class="n">-Target</span> <span class="s2">&quot;OU=Company Users,DC=earth,DC=local&quot;</span>
+</code></pre></div>
+<img alt="Remove GPO link" src="../../../assets/images/admin_remove_link_GPO.png" /></p>
+<p>Then I deleted the test GPO using: <code>Powershell Remove-GPO -Name "Admin Test"</code>
+Validating via: <code>Powershell Get-GPO -Name "Admin Test"</code>
+<img alt="`Remove GPO" src="../../../assets/images/admin_remove_GPO.png" /></p>
+<h4 id="rsop-planning-and-logging">RSoP Planning and Logging</h4>
+<h5 id="logging">Logging</h5>
+<p>I ran gpresult /r /user EARTH\msco — the same command I ran with Kate Libby’s standard tier, just to confirm it worked. It did, so logging was validated.</p>
+<h5 id="rsop-planning">RSoP Planning</h5>
+<p>Ran the Group Policy Modeling Wizard as <code>k.libby-adm</code>, targeting a domain user and WS_01.
+Reached the summary of selections page successfully, but received the following error on
+generation:</p>
+<div class="admonition failure">
+<p class="admonition-title">Group Policy error</p>
+<p>The wizard was unable to generate the computer's data due to insufficient permissions.</p>
+<p>Only the user's data will be displayed.</p>
+</div>
+<p>This narrowed the problem to the computer-side RSoP computation specifically, since the
+user-side data generated correctly.</p>
+<p>Compared delegation directly against the standard-tier account, which was already working:</p>
+<div class="highlight"><pre><span></span><code><span class="n">dsacls</span> <span class="s2">&quot;CN=WS_01,OU=Workstations,DC=earth,DC=local&quot;</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">&quot;EL_Adm_SysAdmins&quot;</span>
+<span class="n">dsacls</span> <span class="s2">&quot;CN=WS_01,OU=Workstations,DC=earth,DC=local&quot;</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">&quot;EL_SysAdmins&quot;</span>
+</code></pre></div>
+<p><code>EL_SysAdmins</code> had explicit <code>Generate Resultant Set of Policy (Planning)</code> and <code>(Logging)</code>
+entries directly on the WS_01 computer object. <code>EL_Adm_SysAdmins</code> had none, despite already
+holding the general RSoP extended right delegated at the domain root.</p>
+<div class="admonition note">
+<p class="admonition-title">Finding</p>
+<p>RSoP Planning/Logging rights need to be delegated at two potentially different levels:
+a general extended right covers user-side computation, but computer-side RSoP data
+specifically requires the same extended right delegated on the computer object or its
+containing OU.</p>
+</div>
+<p>Fixed by delegating <code>Generate Resultant Set of Policy (Planning)</code> and <code>(Logging)</code> to
+<code>EL_Adm_SysAdmins</code> directly on the Workstations OU. Retested and the wizard generated both
+computer and user data successfully with no error.</p>
+<div class="admonition note">
+<p class="admonition-title">Further Testing of neccessary permissions for planning</p>
+</div>
+<p>Further tested whether the earlier DCOM/WMI permission changes were actually required for this
+to work: removed both from <code>EL_Adm_SysAdmins</code>, retested, still worked; logged out and back in
+to rule out a cached result, retested again, still worked. Confirmed the AD delegation alone
+was the actual fix, both here and for the original <code>EL_SysAdmins</code> issue. See the correction
+note on the <a href="../sysadmin/#identify-the-missing-remote-dcom-permissions">SysAdmin</a> page for the full detail.</p>
 
 
 
