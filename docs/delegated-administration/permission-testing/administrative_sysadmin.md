@@ -342,3 +342,80 @@ Retested as k.libby (standard):
 ```
 This time it correctly returned an access denied error, confirming the fix.
 ![standard user validation](../../assets/images/admin_sysadmin_write_validation3.png)
+
+### Common tasks
+
+#### Manage GPO Links:
+
+To test this I wanted to first allow my admin to be able to create GPOs, then manage them.
+I had to enable that permission as currently only my DC could create new GPOs.
+To enable on my DC, I ran:
+`Win + R > gpmc.msc`
+Then I navigated to the delegation tab of Group Policy Objects. I added `EL_Adm_SysAdmins` to the delegation and then immediately ran: ```Powershell New-GPO -Name "Admin Test"```
+This was successful.
+![New GPO](../../assets/images/admin_new_GPO.png)
+
+I then proceeded to link this new GPO to Company Users.
+```Powershell New-GPLink -Name "Admin Test" -Target "OU=Company Users,DC=earth,DC=local"```
+Which was successful, running: `Get-GPInheritance -Target "OU=Company Users,DC=earth,DC=local"` validated this.
+![New GPO link](../../assets/images/admin_link_GPO.png)
+Then I simply unlinked and validated using the respective commands:
+```Powershell
+Remove-GPLink -Name "Admin Test" -Target "OU=Company Users,DC=earth,DC=local"
+```
+```Powershell
+Get-GPInheritance -Target "OU=Company Users,DC=earth,DC=local"
+```
+![Remove GPO link](../../assets/images/admin_remove_link_GPO.png)
+
+Then I deleted the test GPO using: ```Powershell Remove-GPO -Name "Admin Test"```
+Validating via: ```Powershell Get-GPO -Name "Admin Test"```
+![`Remove GPO](../../assets/images/admin_remove_GPO.png)
+
+#### RSoP Planning and Logging
+
+##### Logging
+I ran gpresult /r /user EARTH\msco — the same command I ran with Kate Libby’s standard tier, just to confirm it worked. It did, so logging was validated.
+
+##### RSoP Planning
+
+Ran the Group Policy Modeling Wizard as `k.libby-adm`, targeting a domain user and WS_01.
+Reached the summary of selections page successfully, but received the following error on
+generation:
+
+!!! failure "Group Policy error"
+    The wizard was unable to generate the computer's data due to insufficient permissions.
+
+    Only the user's data will be displayed.
+
+This narrowed the problem to the computer-side RSoP computation specifically, since the
+user-side data generated correctly.
+
+Compared delegation directly against the standard-tier account, which was already working:
+
+```powershell
+dsacls "CN=WS_01,OU=Workstations,DC=earth,DC=local" | Select-String "EL_Adm_SysAdmins"
+dsacls "CN=WS_01,OU=Workstations,DC=earth,DC=local" | Select-String "EL_SysAdmins"
+```
+
+`EL_SysAdmins` had explicit `Generate Resultant Set of Policy (Planning)` and `(Logging)`
+entries directly on the WS_01 computer object. `EL_Adm_SysAdmins` had none, despite already
+holding the general RSoP extended right delegated at the domain root.
+
+!!! note "Finding"
+    RSoP Planning/Logging rights need to be delegated at two potentially different levels:
+    a general extended right covers user-side computation, but computer-side RSoP data
+    specifically requires the same extended right delegated on the computer object or its
+    containing OU.
+
+Fixed by delegating `Generate Resultant Set of Policy (Planning)` and `(Logging)` to
+`EL_Adm_SysAdmins` directly on the Workstations OU. Retested and the wizard generated both
+computer and user data successfully with no error.
+
+!!! note "Further Testing of neccessary permissions for planning"
+
+Further tested whether the earlier DCOM/WMI permission changes were actually required for this
+to work: removed both from `EL_Adm_SysAdmins`, retested, still worked; logged out and back in
+to rule out a cached result, retested again, still worked. Confirmed the AD delegation alone
+was the actual fix, both here and for the original `EL_SysAdmins` issue. See the correction
+note on the [SysAdmin](sysadmin.md/#identify-the-missing-remote-dcom-permissions) page for the full detail.

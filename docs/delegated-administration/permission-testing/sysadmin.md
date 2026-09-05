@@ -364,6 +364,29 @@ After signing out and back in as Kate, I ran the Modeling Wizard again. This tim
 !!! success "RSoP Planning confirmed"
     The Modeling Wizard worked after the DCOM policy was applied to the Domain Controller and the required remote launch and activation permissions were granted.
 
+??? warning "Correction — DCOM/WMI permissions were not actually required"
+    Following further testing (see
+    [RSoP Planning](administrative_sysadmin.md#rsop-planning)),
+    the DCOM Access/Launch/Activation permissions and WMI namespace security changes made during
+    the original troubleshooting were deliberately removed and retested, for both `EL_SysAdmins`
+    and `EL_Adm_SysAdmins`:
+
+    - Removed the `DCOM Grants` GPO permission for the relevant Sysadmin group, retested RSoP Planning = still worked.
+    - Removed the WMI namespace security role for the same group, retested again = still worked.
+    - Logged out and back in to rule out a cached success, retested a third time = still worked.
+
+    RSoP Planning continued to function correctly with only the AD delegation
+    (`Generate Resultant Set of Policy (Planning)` and `(Logging)`, delegated at the correct
+    scope, including on the relevant computer object/OU) in place.
+
+    **Conclusion**: the DCOM/WMI changes made earlier in this investigation were not actually
+    required to resolve the original issue. The true root cause, in both cases was the AD
+    delegation itself not DCOM or WMI. The DCOM/WMI configuration is left in place and
+    documented here as a record of the troubleshooting process, but should not be treated as a
+    necessary part of the working solution. Resolving an issue after making several changes does
+    not confirm all of those changes were responsible, each should be verified independently
+    where practical as was done here.
+
 ---
 
 ### Step 10: Understand the Troubleshooting Sequence
