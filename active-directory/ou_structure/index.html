@@ -1272,7 +1272,7 @@
 <li>Configure the password.</li>
 <li>Complete the user creation wizard.</li>
 </ol>
-<p><img alt="Creating an Active Directory user account" src="/assets/images/ad_user_creation.png" /></p>
+<p><img alt="Creating an Active Directory user account" src="../../assets/images/ad_user_creation.png" /></p>
 <p>For this lab, I kept the user logon naming convention simple.</p>
 <p>I also disabled <strong>User must change password at next logon</strong> for these initial accounts. This reduced unnecessary interruptions while repeatedly logging into test accounts during the lab.</p>
 <div class="admonition note">
@@ -1296,7 +1296,7 @@
 <li>Set <strong>Group type</strong> to <strong>Security</strong>.</li>
 <li>Click <strong>OK</strong>.</li>
 </ol>
-<p><img alt="Creating an Active Directory security group" src="/assets/images/ad_security_group_creation.png" /></p>
+<p><img alt="Creating an Active Directory security group" src="../../assets/images/ad_security_group_creation.png" /></p>
 <p>I used <strong>Global Security Groups</strong> so that users within the domain could be grouped according to their role.</p>
 <p>At this stage, the grouping model was intentionally simple:</p>
 <pre class="mermaid"><code>flowchart TD
@@ -1320,9 +1320,9 @@
 <li>Add the resolved account to the group.</li>
 </ol>
 <p>The <code>IT-Team</code> group contained the users representing the IT department.</p>
-<p><img alt="IT-Team security group membership" src="/assets/images/ad_it_team_members.png" /></p>
+<p><img alt="IT-Team security group membership" src="../../assets/images/ad_it_team_members.png" /></p>
 <p>The <code>General</code> group contained the users representing the wider company departments.</p>
-<p><img alt="General security group membership" src="/assets/images/ad_general_group_members.png" /></p>
+<p><img alt="General security group membership" src="../../assets/images/ad_general_group_members.png" /></p>
 <p>This gave me two groups that could later be used when testing policies and applying different configurations to different sets of users.</p>
 <hr />
 <h2 id="initial-active-directory-structure">Initial Active Directory Structure</h2>
