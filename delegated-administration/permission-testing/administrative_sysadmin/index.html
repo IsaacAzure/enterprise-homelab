@@ -1161,6 +1161,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1553,6 +1575,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1899,6 +1943,107 @@ to work: removed both from <code>EL_Adm_SysAdmins</code>, retested, still worked
 to rule out a cached result, retested again, still worked. Confirmed the AD delegation alone
 was the actual fix, both here and for the original <code>EL_SysAdmins</code> issue. See the correction
 note on the <a href="../sysadmin/#identify-the-missing-remote-dcom-permissions">SysAdmin</a> page for the full detail.</p>
+<p>The decisive difference from the standard SysAdmin investigation was scope, not mechanism:</p>
+<ol>
+<li>A general RSoP extended right delegated at the domain root was sufficient for user-side computation.</li>
+<li>Computer-side computation required the same right delegated specifically on the computer object's OU.</li>
+<li>The DCOM/WMI configuration inherited from the earlier SysAdmin troubleshooting played no actual role here, confirmed by removing it and retesting successfully.</li>
+</ol>
+<hr />
+<h3 id="final-validation-summary">Final Validation Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Expected result</th>
+<th>Actual result</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create user objects</td>
+<td>Allowed</td>
+<td>User created successfully (after supplying GivenName/Surname)</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Delete user objects</td>
+<td>Allowed</td>
+<td>Initially denied; corrected via predefined delegation task, then succeeded</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Modify user attributes</td>
+<td>Allowed</td>
+<td>Department, Title, and Description updated successfully</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Modify group membership</td>
+<td>Allowed</td>
+<td>Initially denied; corrected by delegating on the Groups OU, then succeeded</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Create computer objects</td>
+<td>Allowed</td>
+<td>Initially failed with a generic error; corrected by delegating on Workstations OU, then succeeded</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Delete computer objects</td>
+<td>Allowed</td>
+<td>Deletion completed and verified</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Reset computer account password</td>
+<td>Allowed</td>
+<td>Password reset completed; <code>PasswordLastSet</code> confirmed the change</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Write all properties on computer objects</td>
+<td>Allowed</td>
+<td>Description, DisplayName, ManagedBy, and OperatingSystem all updated successfully</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Standard SysAdmin cannot write computer properties</td>
+<td>Denied</td>
+<td>Initially succeeded unexpectedly (misconfigured ACE); corrected, then correctly denied</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Manage GPO links (create, link, unlink, delete)</td>
+<td>Allowed</td>
+<td>Test GPO created, linked, unlinked, and deleted successfully</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>RSoP Logging</td>
+<td>Allowed</td>
+<td>Applied GPO data returned for <code>msco</code>, matching standard-tier result</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>RSoP Planning</td>
+<td>Allowed</td>
+<td>Initially failed on computer-side data; corrected by delegating RSoP rights on the Workstations OU, then succeeded</td>
+<td>Pass</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="key-takeaways">Key Takeaways</h3>
+<p>This exercise reinforced several important lessons:</p>
+<ul>
+<li>Displayed or "effective" permissions are not a substitute for testing the actual administrative operation; the deletion test exposed a gap between what Effective Access showed and what the command required.</li>
+<li>Permissions granted together as part of one combined Access Control Entry cannot be selectively removed; a misconfigured or overly broad grant has to be removed and rebuilt from scratch, not surgically trimmed.</li>
+<li>Object-level delegation can differ from OU-level or domain-level delegation for the same right; RSoP Planning required the extended right on the specific computer object's OU, not just a broader grant that already covered user-side computation.</li>
+<li>Resolving an issue after making several changes does not confirm all of those changes were responsible; the DCOM/WMI permissions applied during the original SysAdmin RSoP Planning investigation were later proven unnecessary once tested independently.</li>
+</ul>
 
 
 
