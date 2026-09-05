@@ -291,7 +291,7 @@ I therefore:
 3. Configured the scope for the new network.
 4. Activated the replacement `.150` scope.
 
-![DHCP Manager showing the original 192.168.124 scope inactive and the new 192.168.150 scope active](/assets/images/dhcp_scopes.png)
+![DHCP Manager showing the original 192.168.124 scope inactive and the new 192.168.150 scope active](../assets/images/dhcp_scopes.png)
 
 The original `.124` scope was retained but inactive, while the replacement `.150` scope became the active DHCP scope for the home lab.
 
@@ -307,7 +307,7 @@ The configured scope options included:
 - **006 DNS Servers** — directs clients to the Domain Controller for DNS resolution.
 - **015 DNS Domain Name** — provides the `earth.local` DNS domain name.
 
-![DHCP scope options showing 003 Router, 006 DNS Servers, and 015 DNS Domain Name](/assets/images/dhcp_scope_options.png)
+![DHCP scope options showing 003 Router, 006 DNS Servers, and 015 DNS Domain Name](../assets/images/dhcp_scope_options.png)
 
 These options allow DHCP clients to receive the appropriate gateway while using the Domain Controller for DNS resolution within the `earth.local` environment.
 
@@ -350,7 +350,7 @@ I also tested connectivity from the Windows client using PowerShell:
 Test-NetConnection google.com -Port 443
 ```
 
-![PowerShell Test-NetConnection test to google.com](/assets/images/dhcp_connectivity_test.png)
+![PowerShell Test-NetConnection test to google.com](../assets/images/dhcp_connectivity_test.png)
 
 This provided an additional check that the client could resolve an external hostname and communicate beyond the internal lab network.
 ---
