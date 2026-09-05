@@ -419,3 +419,39 @@ to work: removed both from `EL_Adm_SysAdmins`, retested, still worked; logged ou
 to rule out a cached result, retested again, still worked. Confirmed the AD delegation alone
 was the actual fix, both here and for the original `EL_SysAdmins` issue. See the correction
 note on the [SysAdmin](sysadmin.md/#identify-the-missing-remote-dcom-permissions) page for the full detail.
+
+The decisive difference from the standard SysAdmin investigation was scope, not mechanism:
+
+1. A general RSoP extended right delegated at the domain root was sufficient for user-side computation.
+2. Computer-side computation required the same right delegated specifically on the computer object's OU.
+3. The DCOM/WMI configuration inherited from the earlier SysAdmin troubleshooting played no actual role here, confirmed by removing it and retesting successfully.
+
+---
+
+### Final Validation Summary
+
+| Test                                          | Expected result | Actual result                                                                 | Status |
+| ---------------------------------------------- | ---------------- | ------------------------------------------------------------------------------ | ------ |
+| Create user objects                            | Allowed           | User created successfully (after supplying GivenName/Surname)                  | Pass   |
+| Delete user objects                            | Allowed           | Initially denied; corrected via predefined delegation task, then succeeded     | Pass   |
+| Modify user attributes                         | Allowed           | Department, Title, and Description updated successfully                        | Pass   |
+| Modify group membership                        | Allowed           | Initially denied; corrected by delegating on the Groups OU, then succeeded     | Pass   |
+| Create computer objects                        | Allowed           | Initially failed with a generic error; corrected by delegating on Workstations OU, then succeeded | Pass   |
+| Delete computer objects                        | Allowed           | Deletion completed and verified                                                | Pass   |
+| Reset computer account password                | Allowed           | Password reset completed; `PasswordLastSet` confirmed the change               | Pass   |
+| Write all properties on computer objects       | Allowed           | Description, DisplayName, ManagedBy, and OperatingSystem all updated successfully | Pass   |
+| Standard SysAdmin cannot write computer properties | Denied        | Initially succeeded unexpectedly (misconfigured ACE); corrected, then correctly denied | Pass   |
+| Manage GPO links (create, link, unlink, delete) | Allowed          | Test GPO created, linked, unlinked, and deleted successfully                    | Pass   |
+| RSoP Logging                                   | Allowed           | Applied GPO data returned for `msco`, matching standard-tier result            | Pass   |
+| RSoP Planning                                  | Allowed           | Initially failed on computer-side data; corrected by delegating RSoP rights on the Workstations OU, then succeeded | Pass   |
+
+---
+
+### Key Takeaways
+
+This exercise reinforced several important lessons:
+
+- Displayed or "effective" permissions are not a substitute for testing the actual administrative operation; the deletion test exposed a gap between what Effective Access showed and what the command required.
+- Permissions granted together as part of one combined Access Control Entry cannot be selectively removed; a misconfigured or overly broad grant has to be removed and rebuilt from scratch, not surgically trimmed.
+- Object-level delegation can differ from OU-level or domain-level delegation for the same right; RSoP Planning required the extended right on the specific computer object's OU, not just a broader grant that already covered user-side computation.
+- Resolving an issue after making several changes does not confirm all of those changes were responsible; the DCOM/WMI permissions applied during the original SysAdmin RSoP Planning investigation were later proven unnecessary once tested independently.
