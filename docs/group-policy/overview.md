@@ -25,7 +25,7 @@ To open it:
 gpmc.msc
 ```
 
-![Group Policy Management Console for the earth.local domain](/assets/images/gpo_management_console.png)
+![Group Policy Management Console for the earth.local domain](../assets/images/gpo_management_console.png)
 
 ---
 
@@ -45,7 +45,7 @@ User Configuration
 
 I opened the policy setting and selected **Enabled**.
 
-![Recycle Bin desktop restriction policy](/assets/images/gpo_recycle_bin_policy.png)
+![Recycle Bin desktop restriction policy](../assets/images/gpo_recycle_bin_policy.png)
 
 ---
 
@@ -63,7 +63,7 @@ gpupdate /force
 
 After the policy refresh and a new sign-in, the restriction was applied successfully.
 
-![Recycle Bin restriction verified on a test user](/assets/images/gpo_recycle_bin_verification.png)
+![Recycle Bin restriction verified on a test user](../assets/images/gpo_recycle_bin_verification.png)
 
 This provided my first practical test of applying a user configuration through Group Policy and then verifying the result from a domain-joined workstation.
 
@@ -168,7 +168,7 @@ I placed the wallpaper images inside the folder and then shared the folder over 
 
 Read access was provided for the users that needed to retrieve the files.
 
-![Wallpaper network share configuration](/assets/images/gpo_wallpaper_share.png)
+![Wallpaper network share configuration](../assets/images/gpo_wallpaper_share.png)
 
 This also reinforced that **share permissions and NTFS permissions are separate controls** and both need to permit the required access.
 
@@ -192,7 +192,7 @@ The test returned:
 True
 ```
 
-![Testing access to the wallpaper UNC path](/assets/images/gpo_wallpaper_test_path.png)
+![Testing access to the wallpaper UNC path](../assets/images/gpo_wallpaper_test_path.png)
 
 This gave me a simple way to separate a **file-access problem** from a **Group Policy problem**.
 
@@ -212,7 +212,7 @@ I signed out and then signed back into Ross Geller's account.
 
 The non-IT wallpaper now appeared correctly.
 
-![General user wallpaper applied through Group Policy](/assets/images/gpo_wallpaper_general_user.png)
+![General user wallpaper applied through Group Policy](../assets/images/gpo_wallpaper_general_user.png)
 
 ---
 
@@ -222,7 +222,7 @@ I repeated the wallpaper process for the IT users.
 
 I then signed in as **Kate Libby** and confirmed that the IT-specific wallpaper was displayed.
 
-![IT user wallpaper applied through Group Policy](/assets/images/gpo_wallpaper_it_user.png)
+![IT user wallpaper applied through Group Policy](../assets/images/gpo_wallpaper_it_user.png)
 
 At this point, the lab could apply different visual configurations depending on the user.
 
@@ -261,9 +261,9 @@ gpresult /r
 
 I ran the command while signed in as different users rather than relying only on visible changes such as the desktop wallpaper.
 
-![gpresult verification for an IT user](/assets/images/gpo_gpresult_it_user.png)
+![gpresult verification for an IT user](../assets/images/gpo_gpresult_it_user.png)
 
-![gpresult verification for a general user](/assets/images/gpo_gpresult_general_user.png)
+![gpresult verification for a general user](../assets/images/gpo_gpresult_general_user.png)
 
 This helped confirm that the intended GPOs were applying without unwanted overlap between the user groups.
 
@@ -297,7 +297,7 @@ Default Domain Policy
                     └── Password Policy
 ```
 
-![Domain password policy configuration](/assets/images/gpo_domain_password_policy.png)
+![Domain password policy configuration](../assets/images/gpo_domain_password_policy.png)
 
 For testing purposes, I deliberately made the domain-wide password requirements relatively weak.
 
@@ -316,7 +316,7 @@ The lockout threshold was configured for:
 3 invalid logon attempts
 ```
 
-![Domain account lockout policy](/assets/images/gpo_account_lockout_policy.png)
+![Domain account lockout policy](../assets/images/gpo_account_lockout_policy.png)
 
 This allowed me to deliberately lock a test account and verify both the lockout behaviour and the administrative recovery process.
 
@@ -354,7 +354,7 @@ I configured the Password Settings Object and set its precedence to `1`.
 
 I then used **Directly Applies To** and selected the `IT-Team` security group.
 
-![IT Password Settings Object](/assets/images/gpo_it_pso.png)
+![IT Password Settings Object](../assets/images/gpo_it_pso.png)
 
 The intended password-policy relationship was therefore:
 
@@ -385,7 +385,7 @@ This was intentionally chosen because it would have satisfied the weaker domain 
 
 The password was rejected.
 
-![Password rejected by the IT Password Settings Object](/assets/images/gpo_pso_password_rejected.png)
+![Password rejected by the IT Password Settings Object](../assets/images/gpo_pso_password_rejected.png)
 
 !!! success "PSO verified"
     The password being rejected for Kate demonstrated that the more specific IT Password Settings Object was taking effect rather than the weaker default domain password requirements.
@@ -410,7 +410,7 @@ I then deliberately entered Patrick's password incorrectly.
 
 After **3 invalid attempts** the account became locked as designed.
 
-![Patrick Bateman account lockout](/assets/images/gpo_account_lockout.png)
+![Patrick Bateman account lockout](../assets/images/gpo_account_lockout.png)
 
 Initially, I unlocked the account using Active Directory Users and Computers and confirmed that Patrick could sign in again.
 
@@ -432,7 +432,7 @@ Get-ADUser pbat -Properties LockedOut
 True
 ```
 
-![Patrick Bateman account shown as locked out in PowerShell](/assets/images/gpo_account_unlock_powershell1.png)
+![Patrick Bateman account shown as locked out in PowerShell](../assets/images/gpo_account_unlock_powershell1.png)
 
 This confirmed from Active Directory itself that the account was locked.
 
@@ -458,7 +458,7 @@ This time:
 LockedOut : False
 ```
 
-![Unlocking Patrick Bateman and verifying the account state with PowerShell](/assets/images/gpo_account_unlock_powershell.png)
+![Unlocking Patrick Bateman and verifying the account state with PowerShell](../assets/images/gpo_account_unlock_powershell.png)
 
 Finally, I signed back into Patrick's account as an additional verification that the account was usable again.
 
