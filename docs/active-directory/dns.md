@@ -226,7 +226,7 @@ The configured forwarders were:
 - `8.8.8.8` — Google DNS
 - `1.1.1.1` — Cloudflare DNS
 
-![DNS forwarders configured on the Domain Controller](/assets/images/dns_forwarders.png)
+![DNS forwarders configured on the Domain Controller](../assets/images/dns_forwarders.png)
 
 This allows the Domain Controller to answer internal `earth.local` queries itself while forwarding external DNS requests to upstream resolvers.
 

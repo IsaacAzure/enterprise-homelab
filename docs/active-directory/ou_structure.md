@@ -79,7 +79,7 @@ To create a user through ADUC:
 4. Configure the password.
 5. Complete the user creation wizard.
 
-![Creating an Active Directory user account](/assets/images/ad_user_creation.png)
+![Creating an Active Directory user account](../assets/images/ad_user_creation.png)
 
 For this lab, I kept the user logon naming convention simple.
 
@@ -108,7 +108,7 @@ To create each security group:
 5. Set **Group type** to **Security**.
 6. Click **OK**.
 
-![Creating an Active Directory security group](/assets/images/ad_security_group_creation.png)
+![Creating an Active Directory security group](../assets/images/ad_security_group_creation.png)
 
 I used **Global Security Groups** so that users within the domain could be grouped according to their role.
 
@@ -143,11 +143,11 @@ From ADUC:
 
 The `IT-Team` group contained the users representing the IT department.
 
-![IT-Team security group membership](/assets/images/ad_it_team_members.png)
+![IT-Team security group membership](../assets/images/ad_it_team_members.png)
 
 The `General` group contained the users representing the wider company departments.
 
-![General security group membership](/assets/images/ad_general_group_members.png)
+![General security group membership](../assets/images/ad_general_group_members.png)
 
 This gave me two groups that could later be used when testing policies and applying different configurations to different sets of users.
 
