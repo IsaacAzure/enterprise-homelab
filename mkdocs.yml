@@ -46,6 +46,7 @@ nav:
           - Help Desk: delegated-administration/permission-testing/helpdesk.md
           - SysAdmin: delegated-administration/permission-testing/sysadmin.md
           - Administrative SysAdmin: delegated-administration/permission-testing/administrative_sysadmin.md
+          - NetAdmin/Admin NetAdmin: delegated-administration/permission-testing/netadmin.md
 
   - Remote Administration:
       - Overview: remote-administration/overview.md
