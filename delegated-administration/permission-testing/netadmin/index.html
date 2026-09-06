@@ -943,6 +943,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1084,6 +1106,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1158,6 +1202,72 @@ and <code>Win + R &gt; dhcpmgmt.msc</code></p>
 <p class="admonition-title">NetAdmin standard tier confirmed correctly restricted</p>
 <p>This confirmed that having the RSAT tools installed and being able to open the consoles is not the same as having rights to use them. The standard-tier identity could launch both tools, since that's a local action, but every actual query against the DNS/DHCP servers was correctly denied, since this identity was never added to DnsAdmins or DHCP Administrators.</p>
 </div>
+<hr />
+<h3 id="final-validation-summary">Final Validation Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Expected result</th>
+<th>Actual result</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard identity is not a member of DnsAdmins/DHCP Administrators</td>
+<td>Confirmed absent</td>
+<td>Verified via <code>Get-ADGroupMember</code> on both built-in groups</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Standard identity: DNS Manager access</td>
+<td>Denied</td>
+<td>Console opened, but selecting the server returned Access Denied</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Standard identity: DHCP console access</td>
+<td>Denied</td>
+<td>Console opened, but no scopes or leases visible; only a server name could be added</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Admin identity nested in DnsAdmins and DHCP Administrators</td>
+<td>Allowed</td>
+<td>Confirmed via <code>Get-ADGroupMember</code> on both built-in groups</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Admin identity: DNS Manager access</td>
+<td>Allowed</td>
+<td>Zones and records visible and editable</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Admin identity: DHCP console access</td>
+<td>Allowed</td>
+<td>Scopes and leases visible and editable</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>RSAT DNS/DHCP tools installed where missing</td>
+<td>Allowed</td>
+<td>Confirmed absent via <code>Get-WindowsCapability</code>, installed via <code>Add-WindowsCapability</code>, confirmed present afterward</td>
+<td>Pass</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="key-takeaways">Key Takeaways</h3>
+<p>This exercise reinforced several important lessons:</p>
+<ul>
+<li>Not every role benefits from the standard/admin capability split used for Sysadmin. Where a built-in group grants a fairly complete privilege with no useful reduced version, tiering is better applied at the level of <em>which identity is ever a member of the group</em>, rather than trying to invent an artificial partial capability.</li>
+<li>A day-to-day identity should never be a member of a privileged built-in group such as DnsAdmins or DHCP Administrators; a dedicated identity should exist solely for that purpose and be used for nothing else.</li>
+<li>Having a management console installed and able to open is not the same as having permission to use it. Both DNS Manager and DHCP console opened successfully for the standard-tier identity, since launching a console is a local action requiring no AD rights, but every actual query against the server was correctly denied.</li>
+<li>RSAT tool availability and AD/built-in group permissions are two entirely separate things to verify; a missing console and a denied permission produce different symptoms and require different fixes.</li>
+<li>Built-in groups such as DnsAdmins and DHCP Administrators, created automatically when the relevant server roles are installed, are a distinct delegation mechanism from OU-based Delegation of Control, and don't require any OU-level permissions of their own to function.</li>
+</ul>
 
 
 
