@@ -77,3 +77,29 @@ However:
 
 !!! success "NetAdmin standard tier confirmed correctly restricted"
     This confirmed that having the RSAT tools installed and being able to open the consoles is not the same as having rights to use them. The standard-tier identity could launch both tools, since that's a local action, but every actual query against the DNS/DHCP servers was correctly denied, since this identity was never added to DnsAdmins or DHCP Administrators.
+
+---
+
+### Final Validation Summary
+
+| Test                                                    | Expected result | Actual result                                                                 | Status |
+| -------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------ | ------ |
+| Standard identity is not a member of DnsAdmins/DHCP Administrators | Confirmed absent | Verified via `Get-ADGroupMember` on both built-in groups                        | Pass   |
+| Standard identity: DNS Manager access                   | Denied            | Console opened, but selecting the server returned Access Denied                | Pass   |
+| Standard identity: DHCP console access                  | Denied            | Console opened, but no scopes or leases visible; only a server name could be added | Pass   |
+| Admin identity nested in DnsAdmins and DHCP Administrators | Allowed         | Confirmed via `Get-ADGroupMember` on both built-in groups                        | Pass   |
+| Admin identity: DNS Manager access                      | Allowed           | Zones and records visible and editable                                          | Pass   |
+| Admin identity: DHCP console access                     | Allowed           | Scopes and leases visible and editable                                          | Pass   |
+| RSAT DNS/DHCP tools installed where missing              | Allowed           | Confirmed absent via `Get-WindowsCapability`, installed via `Add-WindowsCapability`, confirmed present afterward | Pass   |
+
+---
+
+### Key Takeaways
+
+This exercise reinforced several important lessons:
+
+- Not every role benefits from the standard/admin capability split used for Sysadmin. Where a built-in group grants a fairly complete privilege with no useful reduced version, tiering is better applied at the level of *which identity is ever a member of the group*, rather than trying to invent an artificial partial capability.
+- A day-to-day identity should never be a member of a privileged built-in group such as DnsAdmins or DHCP Administrators; a dedicated identity should exist solely for that purpose and be used for nothing else.
+- Having a management console installed and able to open is not the same as having permission to use it. Both DNS Manager and DHCP console opened successfully for the standard-tier identity, since launching a console is a local action requiring no AD rights, but every actual query against the server was correctly denied.
+- RSAT tool availability and AD/built-in group permissions are two entirely separate things to verify; a missing console and a denied permission produce different symptoms and require different fixes.
+- Built-in groups such as DnsAdmins and DHCP Administrators, created automatically when the relevant server roles are installed, are a distinct delegation mechanism from OU-based Delegation of Control, and don't require any OU-level permissions of their own to function.
