@@ -90,7 +90,6 @@ However:
 | Admin identity nested in DnsAdmins and DHCP Administrators | Allowed         | Confirmed via `Get-ADGroupMember` on both built-in groups                        | Pass   |
 | Admin identity: DNS Manager access                      | Allowed           | Zones and records visible and editable                                          | Pass   |
 | Admin identity: DHCP console access                     | Allowed           | Scopes and leases visible and editable                                          | Pass   |
-| RSAT DNS/DHCP tools installed where missing              | Allowed           | Confirmed absent via `Get-WindowsCapability`, installed via `Add-WindowsCapability`, confirmed present afterward | Pass   |
 
 ---
 
