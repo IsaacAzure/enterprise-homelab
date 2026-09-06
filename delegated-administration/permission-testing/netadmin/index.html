@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../administrative_sysadmin/">
+      
+      
+        <link rel="next" href="../../../remote-administration/overview/">
       
       
         
@@ -19,7 +23,7 @@
     
     
       
-        <title>Netadmin - Enterprise Windows Infrastructure Lab</title>
+        <title>NetAdmin/Admin NetAdmin - Enterprise Windows Infrastructure Lab</title>
       
     
     
@@ -61,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#netadmin" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -93,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Netadmin
+              NetAdmin/Admin NetAdmin
             
           </span>
         </div>
@@ -655,18 +664,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -687,7 +698,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -730,18 +741,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
         
           
           <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
@@ -762,7 +775,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -852,6 +865,88 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NetAdmin/Admin NetAdmin
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NetAdmin/Admin NetAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#netadmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NetAdmin
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -972,6 +1067,25 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#netadmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NetAdmin
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -987,9 +1101,63 @@
 
 
 
-  <h1>Netadmin</h1>
+  <h1>NetAdmin/Admin NetAdmin</h1>
 
-
+<h3 id="netadmin">NetAdmin</h3>
+<p>For this role, and its Admin Tier variant, I did not see useful reasoning for a read-only DNS/DHCP role in the manner of the SysAdmins tiering. To even configure such a role may have been more work than any usefulness.</p>
+<div class="admonition note">
+<p class="admonition-title">Design decision</p>
+<p>The split here is purpose-based, not capability-based. One role for regular duties (email, browsing, attending meetings, research, writing documentation) and another for NetAdmin tasks such as the creation and modification of DNS zones.</p>
+</div>
+<p><code>EL_NetAdmin</code> was therefore simply a group for the users to access, but with no privileged actions at all, in the ilk of the normal Company Users. <code>EL_Adm_NetAdmin</code> was added to both <strong>DnsAdmins</strong> and <strong>DHCP Administrators</strong>, the preconfigured groups created automatically when the DHCP and DNS roles are added to the DC.</p>
+<p>The following commands were used to achieve this:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Add-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">&quot;DnsAdmins&quot;</span> <span class="n">-Members</span> <span class="s2">&quot;EL_Adm_NetAdmins&quot;</span>
+<span class="nb">Add-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">&quot;DHCP Administrators&quot;</span> <span class="n">-Members</span> <span class="s2">&quot;EL_Adm_NetAdmins&quot;</span>
+</code></pre></div>
+<p>I verified Rache Bartmoss, the Admin-tiered user, was the only user in the group.</p>
+<p><img alt="Add Admin NetAdmin to DNS/DHCP groups" src="../../../assets/images/adm_net_dns_dhcp.png" /></p>
+<p>I then validated the move via:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">&quot;DnsAdmins&quot;</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Name</span>
+<span class="nb">Get-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">&quot;DHCP Administrators&quot;</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Name</span>
+</code></pre></div>
+<p><img alt="Validated Add Admin NetAdmin to DNS/DHCP groups" src="../../../assets/images/val_adm_net_dns_dhcp.png" /></p>
+<p>I then logged in as Rache's admin account to confirm he could access DNS Manager and DHCP via:
+<code>Win + R &gt; dnsmgmt.msc</code></p>
+<p>But it could not be found.</p>
+<div class="admonition failure">
+<p class="admonition-title">Console not found</p>
+<p>DNS Manager could not be opened. I suspected it was likely not installed on the workstation.</p>
+</div>
+<p>I ran:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WindowsCapability</span> <span class="n">-Online</span> <span class="n">-Name</span> <span class="s2">&quot;Rsat.Dns*&quot;</span>
+<span class="nb">Get-WindowsCapability</span> <span class="n">-Online</span> <span class="n">-Name</span> <span class="s2">&quot;Rsat.DHCP*&quot;</span>
+</code></pre></div>
+<p>to validate the absence of both required tools and the output confirmed both were not present.</p>
+<p><img alt="Confirmed DNS/DHCP tools were not present" src="../../../assets/images/dns_get_win_capable.png" /></p>
+<p>So I installed both via:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Add-WindowsCapability</span> <span class="n">-Online</span> <span class="n">-Name</span> <span class="s2">&quot;Rsat.Dns.Tools~~~~0.0.1.0&quot;</span>
+<span class="nb">Add-WindowsCapability</span> <span class="n">-Online</span> <span class="n">-Name</span> <span class="s2">&quot;Rsat.DHCP.Tools~~~~0.0.1.0&quot;</span>
+</code></pre></div>
+<p>After installation I tried:
+<code>Win + R &gt; dnsmgmt.msc</code>
+and <code>Win + R &gt; dhcpmgmt.msc</code></p>
+<p>and both were successful for Rache's admin user.</p>
+<div class="admonition success">
+<p class="admonition-title">NetAdmin admin tier confirmed</p>
+<p>With <code>EL_Adm_NetAdmin</code> nested inside DnsAdmins and DHCP Administrators, and RSAT tools installed on the workstation, Rache's admin account could open and use both DNS Manager and DHCP console.</p>
+</div>
+<p>I then confirmed the negative path, logging in as the standard-tier identity to verify no privileged access existed.</p>
+<p>Both consoles opened successfully, since the RSAT tools themselves were installed here too, and simply launching a console is a local action requiring no AD permissions.</p>
+<p>However:</p>
+<ul>
+<li>In the DHCP console, no scopes or leases were visible, only the ability to add a server name. Nothing beyond that would load.</li>
+<li>In DNS Manager, selecting the server returned <strong>Access Denied</strong>.</li>
+</ul>
+<p><img alt="Denial of access for normal netadmin" src="../../../assets/images/netadmin_dns_denied.png" /></p>
+<div class="admonition success">
+<p class="admonition-title">NetAdmin standard tier confirmed correctly restricted</p>
+<p>This confirmed that having the RSAT tools installed and being able to open the consoles is not the same as having rights to use them. The standard-tier identity could launch both tools, since that's a local action, but every actual query against the DNS/DHCP servers was correctly denied, since this identity was never added to DnsAdmins or DHCP Administrators.</p>
+</div>
 
 
 
