@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../netadmin/">
+      
+      
+        <link rel="next" href="../../../remote-administration/overview/">
       
       
         
@@ -19,7 +23,7 @@
     
     
       
-        <title>Secadmin - Enterprise Windows Infrastructure Lab</title>
+        <title>SecAdmin/Admin SecAdmin - Enterprise Windows Infrastructure Lab</title>
       
     
     
@@ -61,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#testing-secadmin-and-admin-tier-secadmin" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -93,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Secadmin
+              SecAdmin/Admin SecAdmin
             
           </span>
         </div>
@@ -655,18 +664,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -687,7 +698,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -730,18 +741,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
         
           
           <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
@@ -762,7 +775,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -885,6 +898,88 @@
 
               
             
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SecAdmin/Admin SecAdmin
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SecAdmin/Admin SecAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#testing-secadmin-and-admin-tier-secadmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing — SecAdmin and Admin Tier SecAdmin
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1000,6 +1095,25 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#testing-secadmin-and-admin-tier-secadmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing — SecAdmin and Admin Tier SecAdmin
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1015,9 +1129,33 @@
 
 
 
-  <h1>Secadmin</h1>
+  <h1>SecAdmin/Admin SecAdmin</h1>
 
-
+<h2 id="testing-secadmin-and-admin-tier-secadmin">Testing — SecAdmin and Admin Tier SecAdmin</h2>
+<p>I wanted SecAdmins to be able to read all user information, run RSoP Logging and Planning, and read event logs.</p>
+<p>When delegating the permissions, I added both the standard and admin tier to the same flow to add permissions concurrently.</p>
+<p>I ran:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Add-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">&quot;Event Log Readers&quot;</span> <span class="n">-Members</span> <span class="s2">&quot;EL_SecAdmin&quot;</span><span class="p">,</span> <span class="s2">&quot;EL_Adm_SecAdmins&quot;</span>
+</code></pre></div>
+<p>to give both tiers access to view event logs.</p>
+<p>I validated via:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">&quot;Event Log Readers&quot;</span>
+</code></pre></div>
+<p>which showed the two groups now as Event Log Readers members.</p>
+<p><img alt="Event log reader members" src="../../../assets/images/event_log_members.png" /></p>
+<p>I then created a shared directory named <code>Security-Docs</code> and gave the standard tier <strong>Change</strong> share permissions.</p>
+<p>In the Security tab, I added <code>EL_SecAdmin</code> and gave them <strong>Modify</strong> permissions, allowing them to write to the directory.</p>
+<p>I then created a test file named "SecAdmin created this" as <code>EL_SecAdmin</code>, and this was successful.</p>
+<p><img alt="SecAdmin test file" src="../../../assets/images/secadmin_test_file.png" /></p>
+<p>I tested with <code>EL_Adm_SecAdmins</code> and verified that this group could not create files in the directory, as per my design choice: the admin tier is scoped to state-changing actions such as deployment and patch scheduling, not documentation writing, so it deliberately has no write access to this share.</p>
+<div class="admonition note">
+<p class="admonition-title">I fixed the naming consistency between SecAdmin and Admin SecAdmins</p>
+<p>Going forward <code>EL_SecAdmin</code> has been updated fully to be <code>EL_SecAdmins</code>. So this will be reflected in any notes and screenshots after this point.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">SecAdmin standard/admin tier write access confirmed correctly scoped</p>
+<p><code>EL_SecAdmin</code> can write to the documentation share as intended. <code>EL_Adm_SecAdmins</code> correctly cannot, consistent with the role's design: standard tier covers observational and documentation work, admin tier covers state-changing actions only.</p>
+</div>
 
 
 
