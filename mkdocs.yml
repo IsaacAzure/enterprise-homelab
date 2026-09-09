@@ -47,6 +47,6 @@ nav:
           - SysAdmin: delegated-administration/permission-testing/sysadmin.md
           - Administrative SysAdmin: delegated-administration/permission-testing/administrative_sysadmin.md
           - NetAdmin/Admin NetAdmin: delegated-administration/permission-testing/netadmin.md
-
+          - SecAdmin/Admin SecAdmin: delegated-administration/permission-testing/secadmin.md
   - Remote Administration:
       - Overview: remote-administration/overview.md
