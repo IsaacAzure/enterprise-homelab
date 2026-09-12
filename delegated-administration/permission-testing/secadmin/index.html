@@ -12,7 +12,7 @@
         <link rel="prev" href="../netadmin/">
       
       
-        <link rel="next" href="../../../remote-administration/overview/">
+        <link rel="next" href="../itmanagement/">
       
       
         
@@ -969,12 +969,118 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Testing — SecAdmin and Admin Tier SecAdmin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-tier-remaining-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Tier: Remaining Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-tier-secadmin-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Tier — SecAdmin Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../itmanagement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IT Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emergency_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Emergency Acess
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1110,6 +1216,56 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Testing — SecAdmin and Admin Tier SecAdmin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-tier-remaining-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Tier: Remaining Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-tier-secadmin-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Tier — SecAdmin Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1156,6 +1312,147 @@
 <p class="admonition-title">SecAdmin standard/admin tier write access confirmed correctly scoped</p>
 <p><code>EL_SecAdmin</code> can write to the documentation share as intended. <code>EL_Adm_SecAdmins</code> correctly cannot, consistent with the role's design: standard tier covers observational and documentation work, admin tier covers state-changing actions only.</p>
 </div>
+<h3 id="standard-tier-remaining-validation">Standard Tier: Remaining Validation</h3>
+<p>I then tested that my SecAdmin could read all properties via:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="n">Department</span><span class="p">,</span> <span class="n">Title</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Name</span><span class="p">,</span> <span class="n">Department</span><span class="p">,</span> <span class="n">Title</span>
+</code></pre></div>
+<p>This was successful.</p>
+<p>I tested RSoP Logging permissions in similar fashion to the SysAdmin role by running:</p>
+<div class="highlight"><pre><span></span><code><span class="n">gpresult</span> <span class="p">/</span><span class="nb">r </span><span class="p">/</span><span class="n">user</span> <span class="n">EARTH</span><span class="p">\</span><span class="n">msco</span>
+</code></pre></div>
+<p>This was successful.</p>
+<p>I tested RSoP Planning permissions once again, in a similar fashion to the SysAdmin role, via:
+<code>Win + R &gt; gpmc.msc &gt; Group Policy Modeling &gt; Group Policy Modeling Wizard &gt; using Michael Scott and WS_01</code></p>
+<p>This was successful.</p>
+<p>Then I ran some quick should-fail validation checks:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Set-ADUser</span> <span class="n">-Identity</span> <span class="s2">&quot;&lt;test-user&gt;&quot;</span> <span class="n">-Department</span> <span class="s2">&quot;Should fail&quot;</span>
+<span class="nb">New-ADUser</span> <span class="n">-Name</span> <span class="s2">&quot;Should Fail&quot;</span>
+<span class="nb">Remove-ADUser</span> <span class="n">-Identity</span> <span class="s2">&quot;&lt;test-user&gt;&quot;</span>
+<span class="nb">Set-ADAccountPassword</span> <span class="n">-Identity</span> <span class="s2">&quot;&lt;test-user&gt;&quot;</span> <span class="n">-Reset</span>
+</code></pre></div>
+<p><img alt="SecAdmin should fails" src="../../../assets/images/secadmin_should_fail.png" /></p>
+<p>All failed as desired.</p>
+<div class="admonition success">
+<p class="admonition-title">SecAdmin standard tier fully closed</p>
+<p>No permission bleeding from other roles or misconfigurations here. Least privilege ideology in action.</p>
+</div>
+<h3 id="admin-tier-secadmin-testing">Admin Tier — SecAdmin Testing</h3>
+<p>I wanted <code>EL_Adm_SecAdmin</code> to be able to modify group membership, so this was delegated.</p>
+<p>I decided to move Richie Rich into the Help Desk group, tested via:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Add-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">&quot;EL_HelpDesk&quot;</span> <span class="n">-Members</span> <span class="s2">&quot;rric&quot;</span>
+</code></pre></div>
+<p>This was successful. I removed him from the Help Desk group shortly afterwards.</p>
+<p><img alt="SecAdmin admin tier modify group member" src="../../../assets/images/secadmin_adm_member_modify.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Remaining admin tier tasks deferred pending lab development</p>
+<p>Two further admin tier responsibilities were identified for this role: patch scheduling and cancellation, and deployment/build rights. Neither can be meaningfully tested yet.</p>
+<p>Patch scheduling depends on WSUS, which is not yet built in the lab, this is a WSUS console permission rather than an Active Directory object permission, so it will be tested once WSUS is in place.</p>
+<p>Deployment/build rights depend on having a concrete target to delegate against, such as a monitoring or SIEM-style tool. No such tool currently exists in the lab, so testing this artificially against nothing real would not be a meaningful validation. Both will be revisited once the relevant infrastructure exists.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">SecAdmin admin tier group membership modification confirmed</p>
+<p><code>EL_Adm_SecAdmin</code> can modify group membership as intended, consistent with the role's design: state-changing actions belong to the admin tier, not the standard tier.</p>
+</div>
+<hr />
+<h3 id="final-validation-summary">Final Validation Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Expected result</th>
+<th>Actual result</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard tier: read all user information</td>
+<td>Allowed</td>
+<td>Returned full results including Department and Title</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Standard tier: RSoP Logging</td>
+<td>Allowed</td>
+<td>Applied GPO data returned for <code>msco</code></td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Standard tier: RSoP Planning</td>
+<td>Allowed</td>
+<td>Modelling Wizard succeeded for Michael Scott / WS_01</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Standard tier: read event logs (Event Log Readers)</td>
+<td>Allowed</td>
+<td>Nested into built-in Event Log Readers group, confirmed via <code>Get-ADGroupMember</code></td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Standard tier: write to documentation share</td>
+<td>Allowed</td>
+<td>Test file created successfully in Security-Docs</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Standard tier: modify a user attribute</td>
+<td>Denied</td>
+<td><code>Set-ADUser -Department</code> failed</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Standard tier: create a user</td>
+<td>Denied</td>
+<td><code>New-ADUser</code> failed</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Standard tier: delete a user</td>
+<td>Denied</td>
+<td><code>Remove-ADUser</code> failed</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Standard tier: reset a password</td>
+<td>Denied</td>
+<td><code>Set-ADAccountPassword -Reset</code> failed</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Admin tier: write to documentation share</td>
+<td>Denied</td>
+<td>Initially misconfigured via a conflicting parent-folder permission; corrected, then correctly denied</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Admin tier: modify group membership</td>
+<td>Allowed</td>
+<td>Test user added to and removed from EL_HelpDesk successfully</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>Admin tier: patch scheduling/cancellation</td>
+<td>Not yet testable</td>
+<td>Deferred — depends on WSUS (Stage 4), not yet built</td>
+<td>Deferred</td>
+</tr>
+<tr>
+<td>Admin tier: deployment/build rights</td>
+<td>Not yet testable</td>
+<td>Deferred — no concrete deployment target exists in the lab yet</td>
+<td>Deferred</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="key-takeaways">Key Takeaways</h3>
+<p>This exercise reinforced several important lessons:</p>
+<ul>
+<li>Not every role fits the same standard/admin split used for Sysadmin; SecAdmin's tiering is capability-based, separating observational work (logs, monitoring, documentation) from state-changing work (deployment, patch control), rather than separating identity-and-purpose as with NetAdmin.</li>
+<li>Built-in groups such as Event Log Readers provide a clean, minimal way to grant a specific, narrow capability (reading logs) without needing broader administrative rights, the same pattern already seen with DnsAdmins and DHCP Administrators.</li>
+<li>Not all planned testing can be completed on the same schedule; some administrative rights depend on infrastructure that doesn't exist yet in the lab. Recording these as explicitly deferred, rather than silently skipped or forced through an artificial test, keeps the documentation honest about what has and has not actually been validated.</li>
+</ul>
 
 
 
