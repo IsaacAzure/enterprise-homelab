@@ -9,25 +9,25 @@
       
       
       
-        <link rel="prev" href="../netadmin/">
+        <link rel="prev" href="../overview/">
       
       
-        <link rel="next" href="../itmanagement/">
+        <link rel="next" href="../../delegated-administration/overview/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>SecAdmin/Admin SecAdmin - Enterprise Windows Infrastructure Lab</title>
+        <title>Additional GPOs - Enterprise Windows Infrastructure Lab</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -46,9 +46,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#testing-secadmin-and-admin-tier-secadmin" class="md-skip">
+        <a href="#windows-update-deferral-gpo" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Enterprise Windows Infrastructure Lab" class="md-header__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+    <a href="../.." title="Enterprise Windows Infrastructure Lab" class="md-header__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SecAdmin/Admin SecAdmin
+              Additional GPOs
             
           </span>
         </div>
@@ -180,7 +180,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Enterprise Windows Infrastructure Lab" class="md-nav__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+    <a href="../.." title="Enterprise Windows Infrastructure Lab" class="md-nav__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -198,7 +198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -272,7 +272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../environment/overview/" class="md-nav__link">
+      <a href="../../environment/overview/" class="md-nav__link">
         
   
   
@@ -300,7 +300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../environment/kvm_setup/" class="md-nav__link">
+      <a href="../../environment/kvm_setup/" class="md-nav__link">
         
   
   
@@ -328,7 +328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../environment/architecture_network/" class="md-nav__link">
+      <a href="../../environment/architecture_network/" class="md-nav__link">
         
   
   
@@ -410,7 +410,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active-directory/windows_server/" class="md-nav__link">
+      <a href="../../active-directory/windows_server/" class="md-nav__link">
         
   
   
@@ -438,7 +438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active-directory/domain_setup/" class="md-nav__link">
+      <a href="../../active-directory/domain_setup/" class="md-nav__link">
         
   
   
@@ -466,7 +466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active-directory/dns/" class="md-nav__link">
+      <a href="../../active-directory/dns/" class="md-nav__link">
         
   
   
@@ -494,7 +494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active-directory/dhcp/" class="md-nav__link">
+      <a href="../../active-directory/dhcp/" class="md-nav__link">
         
   
   
@@ -522,7 +522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active-directory/windows_clients/" class="md-nav__link">
+      <a href="../../active-directory/windows_clients/" class="md-nav__link">
         
   
   
@@ -550,7 +550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active-directory/ou_structure/" class="md-nav__link">
+      <a href="../../active-directory/ou_structure/" class="md-nav__link">
         
   
   
@@ -582,18 +582,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -614,7 +616,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -632,7 +634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../group-policy/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -640,279 +642,6 @@
     
   
     Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../group-policy/additional_GPOs/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Additional GPOs
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Delegated Administration
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Delegated Administration
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../overview/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Permission Testing
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Permission Testing
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helpdesk/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Help Desk
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../sysadmin/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    SysAdmin
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../administrative_sysadmin/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Administrative SysAdmin
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../netadmin/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    NetAdmin/Admin NetAdmin
   
 
     
@@ -947,7 +676,7 @@
   <span class="md-ellipsis">
     
   
-    SecAdmin/Admin SecAdmin
+    Additional GPOs
   
 
     
@@ -965,7 +694,7 @@
   <span class="md-ellipsis">
     
   
-    SecAdmin/Admin SecAdmin
+    Additional GPOs
   
 
     
@@ -989,38 +718,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#testing-secadmin-and-admin-tier-secadmin" class="md-nav__link">
+  <a href="#windows-update-deferral-gpo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Testing — SecAdmin and Admin Tier SecAdmin
+        Windows Update Deferral GPO
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Testing — SecAdmin and Admin Tier SecAdmin">
+    <nav class="md-nav" aria-label="Windows Update Deferral GPO">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#standard-tier-remaining-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Standard Tier: Remaining Validation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#admin-tier-secadmin-testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Admin Tier — SecAdmin Testing
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#final-validation-summary" class="md-nav__link">
@@ -1058,6 +765,60 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delegated Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Delegated Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -1065,7 +826,222 @@
   
   
     <li class="md-nav__item">
-      <a href="../itmanagement/" class="md-nav__link">
+      <a href="../../delegated-administration/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permission Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Permission Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/helpdesk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Help Desk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/administrative_sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administrative SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/netadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NetAdmin/Admin NetAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/secadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SecAdmin/Admin SecAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/itmanagement/" class="md-nav__link">
         
   
   
@@ -1093,7 +1069,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../emergency_access/" class="md-nav__link">
+      <a href="../../delegated-administration/permission-testing/emergency_access/" class="md-nav__link">
         
   
   
@@ -1183,7 +1159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../remote-administration/overview/" class="md-nav__link">
+      <a href="../../remote-administration/overview/" class="md-nav__link">
         
   
   
@@ -1236,38 +1212,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#testing-secadmin-and-admin-tier-secadmin" class="md-nav__link">
+  <a href="#windows-update-deferral-gpo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Testing — SecAdmin and Admin Tier SecAdmin
+        Windows Update Deferral GPO
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Testing — SecAdmin and Admin Tier SecAdmin">
+    <nav class="md-nav" aria-label="Windows Update Deferral GPO">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#standard-tier-remaining-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Standard Tier: Remaining Validation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#admin-tier-secadmin-testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Admin Tier — SecAdmin Testing
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#final-validation-summary" class="md-nav__link">
@@ -1313,74 +1267,32 @@
 
 
 
-  <h1>SecAdmin/Admin SecAdmin</h1>
+  <h1>Additional GPOs</h1>
 
-<h2 id="testing-secadmin-and-admin-tier-secadmin">Testing — SecAdmin and Admin Tier SecAdmin</h2>
-<p>I wanted SecAdmins to be able to read all user information, run RSoP Logging and Planning, and read event logs.</p>
-<p>When delegating the permissions, I added both the standard and admin tier to the same flow to add permissions concurrently.</p>
-<p>I ran:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Add-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">&quot;Event Log Readers&quot;</span> <span class="n">-Members</span> <span class="s2">&quot;EL_SecAdmin&quot;</span><span class="p">,</span> <span class="s2">&quot;EL_Adm_SecAdmins&quot;</span>
-</code></pre></div>
-<p>to give both tiers access to view event logs.</p>
-<p>I validated via:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">&quot;Event Log Readers&quot;</span>
-</code></pre></div>
-<p>which showed the two groups now as Event Log Readers members.</p>
-<p><img alt="Event log reader members" src="../../../assets/images/event_log_members.png" /></p>
-<p>I then created a shared directory named <code>Security-Docs</code> and gave the standard tier <strong>Change</strong> share permissions.</p>
-<p>In the Security tab, I added <code>EL_SecAdmin</code> and gave them <strong>Modify</strong> permissions, allowing them to write to the directory.</p>
-<p>I then created a test file named "SecAdmin created this" as <code>EL_SecAdmin</code>, and this was successful.</p>
-<p><img alt="SecAdmin test file" src="../../../assets/images/secadmin_test_file.png" /></p>
-<p>I tested with <code>EL_Adm_SecAdmins</code> and verified that this group could not create files in the directory, as per my design choice: the admin tier is scoped to state-changing actions such as deployment and patch scheduling, not documentation writing, so it deliberately has no write access to this share.</p>
+<h2 id="windows-update-deferral-gpo">Windows Update Deferral GPO</h2>
+<p>After getting prompts to update my Windows VMs, I wanted to create a GPO that would defer updates to when I wanted to update the VMs.</p>
 <div class="admonition note">
-<p class="admonition-title">I fixed the naming consistency between SecAdmin and Admin SecAdmins</p>
-<p>Going forward <code>EL_SecAdmin</code> has been updated fully to be <code>EL_SecAdmins</code>. So this will be reflected in any notes and screenshots after this point.</p>
+<p class="admonition-title">Real-world justification</p>
+<p>In real world practice this would be utilised for risk mitigation in regards to possible bugs when updating, and would allow for greater control of when updates should occur.</p>
 </div>
-<div class="admonition success">
-<p class="admonition-title">SecAdmin standard/admin tier write access confirmed correctly scoped</p>
-<p><code>EL_SecAdmin</code> can write to the documentation share as intended. <code>EL_Adm_SecAdmins</code> correctly cannot, consistent with the role's design: standard tier covers observational and documentation work, admin tier covers state-changing actions only.</p>
-</div>
-<h3 id="standard-tier-remaining-validation">Standard Tier: Remaining Validation</h3>
-<p>I then tested that my SecAdmin could read all properties via:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="n">Department</span><span class="p">,</span> <span class="n">Title</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Name</span><span class="p">,</span> <span class="n">Department</span><span class="p">,</span> <span class="n">Title</span>
-</code></pre></div>
-<p>This was successful.</p>
-<p>I tested RSoP Logging permissions in similar fashion to the SysAdmin role by running:</p>
-<div class="highlight"><pre><span></span><code><span class="n">gpresult</span> <span class="p">/</span><span class="nb">r </span><span class="p">/</span><span class="n">user</span> <span class="n">EARTH</span><span class="p">\</span><span class="n">msco</span>
-</code></pre></div>
-<p>This was successful.</p>
-<p>I tested RSoP Planning permissions once again, in a similar fashion to the SysAdmin role, via:
-<code>Win + R &gt; gpmc.msc &gt; Group Policy Modeling &gt; Group Policy Modeling Wizard &gt; using Michael Scott and WS_01</code></p>
-<p>This was successful.</p>
-<p>Then I ran some quick should-fail validation checks:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Set-ADUser</span> <span class="n">-Identity</span> <span class="s2">&quot;&lt;test-user&gt;&quot;</span> <span class="n">-Department</span> <span class="s2">&quot;Should fail&quot;</span>
-<span class="nb">New-ADUser</span> <span class="n">-Name</span> <span class="s2">&quot;Should Fail&quot;</span>
-<span class="nb">Remove-ADUser</span> <span class="n">-Identity</span> <span class="s2">&quot;&lt;test-user&gt;&quot;</span>
-<span class="nb">Set-ADAccountPassword</span> <span class="n">-Identity</span> <span class="s2">&quot;&lt;test-user&gt;&quot;</span> <span class="n">-Reset</span>
-</code></pre></div>
-<p><img alt="SecAdmin should fails" src="../../../assets/images/secadmin_should_fail.png" /></p>
-<p>All failed as desired.</p>
-<div class="admonition success">
-<p class="admonition-title">SecAdmin standard tier fully closed</p>
-<p>No permission bleeding from other roles or misconfigurations here. Least privilege ideology in action.</p>
-</div>
-<h3 id="admin-tier-secadmin-testing">Admin Tier — SecAdmin Testing</h3>
-<p>I wanted <code>EL_Adm_SecAdmin</code> to be able to modify group membership, so this was delegated.</p>
-<p>I decided to move Richie Rich into the Help Desk group, tested via:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Add-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">&quot;EL_HelpDesk&quot;</span> <span class="n">-Members</span> <span class="s2">&quot;rric&quot;</span>
-</code></pre></div>
-<p>This was successful. I removed him from the Help Desk group shortly afterwards.</p>
-<p><img alt="SecAdmin admin tier modify group member" src="../../../assets/images/secadmin_adm_member_modify.png" /></p>
+<p>To create the GPO, I ran:<code>Win + R &gt; gpmc.msc</code></p>
+<p>I then created a new GPO and proceeded to edit it:
+<code>Computer Configuration → Policies → Administrative Templates → Windows Components →
+Windows Update → Manage updates offered from Windows Update</code></p>
+<p>I then edited:</p>
+<ul>
+<li><strong>Select when Quality Updates are received</strong> — 14 days</li>
+<li><strong>Select when Preview Builds and Feature Updates are received</strong> — 14 days</li>
+</ul>
+<p>This was then linked to the Workstations OU.</p>
 <div class="admonition note">
-<p class="admonition-title">Remaining admin tier tasks deferred pending lab development</p>
-<p>Two further admin tier responsibilities were identified for this role: patch scheduling and cancellation, and deployment/build rights. Neither can be meaningfully tested yet.</p>
-<p>Patch scheduling depends on WSUS, which is not yet built in the lab, this is a WSUS console permission rather than an Active Directory object permission, so it will be tested once WSUS is in place.</p>
-<p>Deployment/build rights depend on having a concrete target to delegate against, such as a monitoring or SIEM-style tool. No such tool currently exists in the lab, so testing this artificially against nothing real would not be a meaningful validation. Both will be revisited once the relevant infrastructure exists.</p>
+<p class="admonition-title">Placeholder — WSUS</p>
+<p>This GPO-based deferral is a placeholder until WSUS is properly configured in Stage 4. Once WSUS is in place, update approval should flow through WSUS rather than GPO deferral alone, giving full control over which updates are approved and distributed, not just when clients are allowed to check for them.</p>
 </div>
-<div class="admonition success">
-<p class="admonition-title">SecAdmin admin tier group membership modification confirmed</p>
-<p><code>EL_Adm_SecAdmin</code> can modify group membership as intended, consistent with the role's design: state-changing actions belong to the admin tier, not the standard tier.</p>
-</div>
+<p>I then ran <code>gpupdate /force</code> on the clients and restarted, confirming the policy applied via:</p>
+<div class="highlight"><pre><span></span><code><span class="n">gpresult</span> <span class="p">/</span><span class="nb">r </span><span class="p">/</span><span class="n">scope</span><span class="p">:</span><span class="n">computer</span>
+</code></pre></div>
+<p>The GPO showed correctly under Applied Group Policy Objects.</p>
 <hr />
 <h3 id="final-validation-summary">Final Validation Summary</h3>
 <table>
@@ -1394,92 +1306,37 @@
 </thead>
 <tbody>
 <tr>
-<td>Standard tier: read all user information</td>
-<td>Allowed</td>
-<td>Returned full results including Department and Title</td>
+<td>GPO created and linked to Workstations OU</td>
+<td>Applied</td>
+<td>GPO appeared correctly under Applied GPOs</td>
 <td>Pass</td>
 </tr>
 <tr>
-<td>Standard tier: RSoP Logging</td>
-<td>Allowed</td>
-<td>Applied GPO data returned for <code>msco</code></td>
+<td>Quality Updates deferred 14 days</td>
+<td>Configured</td>
+<td>Setting applied as configured</td>
 <td>Pass</td>
 </tr>
 <tr>
-<td>Standard tier: RSoP Planning</td>
-<td>Allowed</td>
-<td>Modelling Wizard succeeded for Michael Scott / WS_01</td>
+<td>Preview Builds and Feature Updates deferred 14 days</td>
+<td>Configured</td>
+<td>Setting applied as configured</td>
 <td>Pass</td>
 </tr>
 <tr>
-<td>Standard tier: read event logs (Event Log Readers)</td>
-<td>Allowed</td>
-<td>Nested into built-in Event Log Readers group, confirmed via <code>Get-ADGroupMember</code></td>
+<td>GPO confirmed applied on client after refresh and restart</td>
+<td>Applied</td>
+<td>Confirmed via <code>gpresult /r /scope:computer</code></td>
 <td>Pass</td>
-</tr>
-<tr>
-<td>Standard tier: write to documentation share</td>
-<td>Allowed</td>
-<td>Test file created successfully in Security-Docs</td>
-<td>Pass</td>
-</tr>
-<tr>
-<td>Standard tier: modify a user attribute</td>
-<td>Denied</td>
-<td><code>Set-ADUser -Department</code> failed</td>
-<td>Pass</td>
-</tr>
-<tr>
-<td>Standard tier: create a user</td>
-<td>Denied</td>
-<td><code>New-ADUser</code> failed</td>
-<td>Pass</td>
-</tr>
-<tr>
-<td>Standard tier: delete a user</td>
-<td>Denied</td>
-<td><code>Remove-ADUser</code> failed</td>
-<td>Pass</td>
-</tr>
-<tr>
-<td>Standard tier: reset a password</td>
-<td>Denied</td>
-<td><code>Set-ADAccountPassword -Reset</code> failed</td>
-<td>Pass</td>
-</tr>
-<tr>
-<td>Admin tier: write to documentation share</td>
-<td>Denied</td>
-<td>Initially misconfigured via a conflicting parent-folder permission; corrected, then correctly denied</td>
-<td>Pass</td>
-</tr>
-<tr>
-<td>Admin tier: modify group membership</td>
-<td>Allowed</td>
-<td>Test user added to and removed from EL_HelpDesk successfully</td>
-<td>Pass</td>
-</tr>
-<tr>
-<td>Admin tier: patch scheduling/cancellation</td>
-<td>Not yet testable</td>
-<td>Deferred — depends on WSUS (Stage 4), not yet built</td>
-<td>Deferred</td>
-</tr>
-<tr>
-<td>Admin tier: deployment/build rights</td>
-<td>Not yet testable</td>
-<td>Deferred — no concrete deployment target exists in the lab yet</td>
-<td>Deferred</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h3 id="key-takeaways">Key Takeaways</h3>
-<p>This exercise reinforced several important lessons:</p>
 <ul>
-<li>Not every role fits the same standard/admin split used for Sysadmin; SecAdmin's tiering is capability-based, separating observational work (logs, monitoring, documentation) from state-changing work (deployment, patch control), rather than separating identity-and-purpose as with NetAdmin.</li>
-<li>Built-in groups such as Event Log Readers provide a clean, minimal way to grant a specific, narrow capability (reading logs) without needing broader administrative rights, the same pattern already seen with DnsAdmins and DHCP Administrators.</li>
-<li>Not all planned testing can be completed on the same schedule; some administrative rights depend on infrastructure that doesn't exist yet in the lab. Recording these as explicitly deferred, rather than silently skipped or forced through an artificial test, keeps the documentation honest about what has and has not actually been validated.</li>
+<li>Deferring updates via GPO is a practical, low-effort way to gain control over patch timing without needing a dedicated update management server, useful as an interim measure before WSUS exists.</li>
+<li>This is explicitly a placeholder, not the intended long-term solution. GPO deferral only controls <em>when</em> a client checks for updates, not <em>which</em> updates are approved for the environment; WSUS (Stage 4) provides that finer-grained approval control and should replace this once built.</li>
+<li>As with other Computer Configuration policies, confirming the change with <code>gpresult /r /scope:computer</code> after a restart, rather than assuming success from the GPO editor alone, remains the reliable way to validate the policy actually applied.</li>
 </ul>
 
 
@@ -1530,10 +1387,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
