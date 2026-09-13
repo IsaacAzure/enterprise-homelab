@@ -38,6 +38,7 @@ nav:
 
   - Group Policy:
       - Overview: group-policy/overview.md
+      - Additional GPOs: group-policy/additional_GPOs.md      
 
   - Delegated Administration:
       - Overview: delegated-administration/overview.md
