@@ -38,7 +38,7 @@ nav:
 
   - Group Policy:
       - Overview: group-policy/overview.md
-      - Additional GPOs: group-policy/additional_GPOs.md      
+      - Additional GPOs: group-policy/additional_GPOs.md
 
   - Delegated Administration:
       - Overview: delegated-administration/overview.md
@@ -53,6 +53,7 @@ nav:
           - Emergency Acess: delegated-administration/permission-testing/emergency_access.md
   - Remote Administration:
       - Overview: remote-administration/overview.md
-  
+
   - Entra ID:
       - Entra ID Setup: entra-id/entra_setup.md
+      - Joining a Device: entra-id/hybrid_join.md
