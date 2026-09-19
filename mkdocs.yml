@@ -53,3 +53,6 @@ nav:
           - Emergency Acess: delegated-administration/permission-testing/emergency_access.md
   - Remote Administration:
       - Overview: remote-administration/overview.md
+  
+  - Entra ID:
+      - Entra ID Setup: entra-id/entra_setup.md
