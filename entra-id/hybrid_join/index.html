@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../../environment/architecture_network/">
+        <link rel="prev" href="../entra_setup/">
       
-      
-        <link rel="next" href="../domain_setup/">
       
       
         
@@ -23,7 +21,7 @@
     
     
       
-        <title>Windows Server Installation - Enterprise Windows Infrastructure Lab</title>
+        <title>Joining a Device - Enterprise Windows Infrastructure Lab</title>
       
     
     
@@ -66,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#windows-server-installation" class="md-skip">
+        <a href="#hybrid-azure-ad-join-ws_01" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Windows Server Installation
+              Joining a Device
             
           </span>
         </div>
@@ -360,20 +358,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -394,7 +390,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -409,37 +405,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Windows Server Installation
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../active-directory/windows_server/" class="md-nav__link">
         
   
   
@@ -455,81 +424,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#purpose-of-the-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Purpose of the Server
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vm-creation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        VM Creation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#windows-server-edition" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Windows Server Edition
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#initial-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Initial Configuration
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#planned-server-role" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Planned Server Role
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -542,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../domain_setup/" class="md-nav__link">
+      <a href="../../active-directory/domain_setup/" class="md-nav__link">
         
   
   
@@ -570,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dns/" class="md-nav__link">
+      <a href="../../active-directory/dns/" class="md-nav__link">
         
   
   
@@ -598,7 +492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dhcp/" class="md-nav__link">
+      <a href="../../active-directory/dhcp/" class="md-nav__link">
         
   
   
@@ -626,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../windows_clients/" class="md-nav__link">
+      <a href="../../active-directory/windows_clients/" class="md-nav__link">
         
   
   
@@ -654,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ou_structure/" class="md-nav__link">
+      <a href="../../active-directory/ou_structure/" class="md-nav__link">
         
   
   
@@ -1211,18 +1105,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1243,7 +1139,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1261,7 +1157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../entra-id/entra_setup/" class="md-nav__link">
+      <a href="../entra_setup/" class="md-nav__link">
         
   
   
@@ -1286,10 +1182,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../entra-id/hybrid_join/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Joining a Device
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1305,6 +1228,153 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-confirming-hybrid-join-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Confirming Hybrid Join Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-triggering-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Triggering Registration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-diagnosing-the-failure-event-viewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Diagnosing the Failure — Event Viewer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-root-cause-missing-azure-ad-kerberos-server-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Root Cause: Missing Azure AD Kerberos Server Object
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-creating-the-azure-ad-kerberos-server-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Creating the Azure AD Kerberos Server Object
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-clearing-stale-state-and-retrying" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Clearing Stale State and Retrying
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-confirming-success" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Confirming Success
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-a-separate-issue-prtsso-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. A Separate Issue: PRT/SSO Failure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. A Separate Issue: PRT/SSO Failure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1344,10 +1414,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose-of-the-server" class="md-nav__link">
+  <a href="#1-confirming-hybrid-join-prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Purpose of the Server
+        1. Confirming Hybrid Join Prerequisites
       
     </span>
   </a>
@@ -1355,10 +1425,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vm-creation" class="md-nav__link">
+  <a href="#2-triggering-registration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        VM Creation
+        2. Triggering Registration
       
     </span>
   </a>
@@ -1366,10 +1436,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#windows-server-edition" class="md-nav__link">
+  <a href="#3-diagnosing-the-failure-event-viewer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Windows Server Edition
+        3. Diagnosing the Failure — Event Viewer
       
     </span>
   </a>
@@ -1377,10 +1447,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-configuration" class="md-nav__link">
+  <a href="#4-root-cause-missing-azure-ad-kerberos-server-object" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Configuration
+        4. Root Cause: Missing Azure AD Kerberos Server Object
       
     </span>
   </a>
@@ -1388,10 +1458,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#planned-server-role" class="md-nav__link">
+  <a href="#5-creating-the-azure-ad-kerberos-server-object" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Planned Server Role
+        5. Creating the Azure AD Kerberos Server Object
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-clearing-stale-state-and-retrying" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Clearing Stale State and Retrying
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-confirming-success" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Confirming Success
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-a-separate-issue-prtsso-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. A Separate Issue: PRT/SSO Failure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. A Separate Issue: PRT/SSO Failure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
       
     </span>
   </a>
@@ -1415,57 +1557,180 @@
 
 
 
-<h1 id="windows-server-installation">Windows Server Installation</h1>
-<p>The first Windows system built for the lab was a Windows Server 2025 virtual machine.</p>
-<p>This server would later become the Domain Controller for the <code>earth.local</code> Active Directory environment and provide core infrastructure services including DNS and DHCP.</p>
+<h1 id="hybrid-azure-ad-join-ws_01">Hybrid Azure AD Join — WS_01</h1>
+<p>With TPM support confirmed on the Entra Connect server and BitLocker validated via <code>Get-BitLockerVolume</code>, the next step was the hybrid-joining of a Windows 11 client to the tenant and confirming it via <code>dsregcmd /status</code>.</p>
+<p>I used <strong>WS_01</strong> as my test client, since it was already domain-joined and had Entra Connect syncing its user objects.</p>
 <hr />
-<h2 id="purpose-of-the-server">Purpose of the Server</h2>
-<p>The Windows Server VM was created to provide the central infrastructure services for the Windows portion of the home lab.</p>
-<p>Its planned responsibilities included:</p>
+<h2 id="1-confirming-hybrid-join-prerequisites">1. Confirming Hybrid Join Prerequisites</h2>
+<p>Before triggering registration, I confirmed:</p>
 <ul>
-<li>Active Directory Domain Services</li>
-<li>Domain Controller</li>
-<li>DNS</li>
-<li>DHCP</li>
-<li>Group Policy management</li>
-<li>Centralised user and computer administration</li>
+<li>Entra Connect had <strong>Hybrid Azure AD join</strong> configured under <strong>Configure device options</strong>.</li>
+<li>The Service Connection Point (SCP) had been written to AD, under the Device Registration Configuration container in the Configuration partition.</li>
 </ul>
-<p>At this stage, however, the goal was simply to install the base operating system and prepare the VM for later configuration.</p>
 <hr />
-<h2 id="vm-creation">VM Creation</h2>
-<p>I created the Windows Server VM using the graphical <code>virt-manager</code> interface on the Fedora host.</p>
-<pre class="mermaid"><code>flowchart LR
-    HOST[Fedora Linux Host]
-    HOST --&gt; KVM[KVM / QEMU]
-    KVM --&gt; SERVER[Windows Server 2025 VM]</code></pre>
-<p>The Windows Server installation media was attached to the VM and the operating system was installed through the normal Windows setup process.</p>
-<hr />
-<h2 id="windows-server-edition">Windows Server Edition</h2>
-<p>The server was initially installed using a Windows Server 2025 evaluation installation.</p>
-<p>The edition was later changed to Windows Server Standard using DISM:</p>
-<div class="highlight"><pre><span></span><code><span class="n">DISM</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">Set-Edition</span><span class="p">:</span><span class="n">ServerStandard</span> <span class="p">/</span><span class="n">ProductKey</span><span class="p">:</span><span class="n">XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</span> <span class="p">/</span><span class="n">AcceptEula</span>
+<h2 id="2-triggering-registration">2. Triggering Registration</h2>
+<p>Hybrid join normally fires automatically at logon via a scheduled task. I triggered it manually to force an immediate attempt:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ScheduledTask</span> <span class="n">-TaskName</span> <span class="s2">&quot;Automatic-Device-Join&quot;</span> <span class="p">|</span> <span class="nb">Start-ScheduledTask</span>
 </code></pre></div>
-<p>The product key is intentionally omitted from the documentation.</p>
-<hr />
-<h2 id="initial-configuration">Initial Configuration</h2>
-<p>After installation, I performed the initial operating-system configuration.</p>
-<p>The system time and regional format were configured for:</p>
-<div class="highlight"><pre><span></span><code>UTC 00:00
+<p>I then checked status:</p>
+<div class="highlight"><pre><span></span><code><span class="n">dsregcmd</span> <span class="p">/</span><span class="n">status</span>
 </code></pre></div>
-<p>At this point the base Windows Server VM was operational and ready to be configured for its infrastructure role.</p>
+<p>This came back with <code>AzureAdJoined : NO</code>.</p>
 <hr />
-<h2 id="planned-server-role">Planned Server Role</h2>
-<p>The next stage of the lab was to convert the standalone Windows Server into the primary Domain Controller for the environment.</p>
-<p>The planned architecture was:</p>
-<pre class="mermaid"><code>flowchart TD
-    SERVER[Windows Server 2025]
+<h2 id="3-diagnosing-the-failure-event-viewer">3. Diagnosing the Failure — Event Viewer</h2>
+<p>Rather than guessing, I went straight to the source logs:</p>
+<p><strong>Applications and Services Logs → Microsoft → Windows → User Device Registration</strong> (both Admin and Operational)</p>
+<p>Running <code>dsregcmd /status /debug</code> alongside this gave a much more detailed picture than the plain status output. The relevant Diagnostic Data block showed:</p>
+<div class="highlight"><pre><span></span><code>Kerberos Ticket Test : FAIL [0x80090303]
+Registration Type : fallback_sync
+Server ErrorSubCode : error_missing_device
+Server Message : The device object by the given id (f87ed8ef-b923-4c78-8539-c9e49fd923e2) is not found.
+Server Operation : DeviceRenew
+</code></pre></div>
+<div class="admonition failure">
+<p class="admonition-title">Stale device state</p>
+<p>WS_01 already had local registration state left over from an earlier partial join attempt. It was trying to <strong>renew</strong> that registration rather than perform a fresh join — but the corresponding device object didn't exist on the Entra side. This meant every retry was doomed until the stale local state was cleared.</p>
+</div>
+<p>Alongside this, the event log surfaced a second, more informative entry:</p>
+<div class="highlight"><pre><span></span><code>The KDC proxy group policy has been configured successfully.
+Kerberos endpoint: https://login.microsoftonline.com/&lt;tenant-id&gt;/kerberos
+Kerberos realm: KERBEROS.MICROSOFTONLINE.COM
+KdcProxyServer_Enabled: TRUE
+</code></pre></div>
+<p>followed by:</p>
+<div class="highlight"><pre><span></span><code>Automatic registration failed at authentication phase. Unable to acquire Kerberos ticket.
+Exit code: The specified target is unknown or unreachable
+SPN: adrs/enterpriseregistration.windows.net
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Cloud Kerberos Trust, not classic hybrid join</p>
+<p>This told me my environment is using <strong>Cloud Kerberos Trust</strong> — the modern hybrid join mechanism that authenticates via a KDC proxy to <code>login.microsoftonline.com</code> rather than requiring line-of-sight to a domain controller. The GPO had configured the proxy correctly and the client could reach the endpoint, but the ticket request itself failed. This is a different (and newer) mechanism than most older hybrid-join troubleshooting guides assume, and worth documenting as a deliberate distinction.</p>
+</div>
+<hr />
+<h2 id="4-root-cause-missing-azure-ad-kerberos-server-object">4. Root Cause: Missing Azure AD Kerberos Server Object</h2>
+<p>Cloud Kerberos Trust depends on a dedicated computer object in the on-prem AD forest that represents Azure AD as a trusted Kerberos realm. Without it, there is nothing on the Entra side to issue a TGT against, which produced the "specified target is unknown or unreachable" failure.</p>
+<p>This object didn't exist yet, since it isn't created automatically by Entra Connect. It has to be created explicitly.</p>
+<hr />
+<h2 id="5-creating-the-azure-ad-kerberos-server-object">5. Creating the Azure AD Kerberos Server Object</h2>
+<p>From the DC, with RSAT and internet access available, I installed the required module:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">AzureADHybridAuthenticationManagement</span> <span class="n">-AllowClobber</span>
+</code></pre></div>
+<p>I then needed a credential object for my on-prem Domain Admin account. My first attempt failed:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$domainCred</span> <span class="p">=</span> <span class="nb">Get-Credential</span> <span class="n">EARTH</span><span class="p">\</span><span class="n">Administrator</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Get-Credential : Cannot bind argument to parameter &#39;Credential&#39; because it is null.
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Get-Credential parameter binding</p>
+<p>Passing the username as a bare positional argument can bind to the wrong parameter set on <code>Get-Credential</code>. Using <code>-UserName</code> explicitly resolves it:</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="nv">$domainCred</span> <span class="p">=</span> <span class="nb">Get-Credential</span> <span class="n">-UserName</span> <span class="s2">&quot;EARTH\Administrator&quot;</span> <span class="n">-Message</span> <span class="s2">&quot;Enter domain admin credentials&quot;</span>
+</code></pre></div>
+<p>With a working credential object, I created the Kerberos Server object:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$cloudUPN</span> <span class="p">=</span> <span class="s2">&quot;&lt;admin-upn&gt;@&lt;tenant&gt;.onmicrosoft.com&quot;</span> <span class="c">#using my actual entra credentials.</span>
 
-    SERVER --&gt; AD[Active Directory Domain Services]
-    SERVER --&gt; DNS[DNS Server]
-    SERVER --&gt; DHCP[DHCP Server]
-
-    AD --&gt; DOMAIN[earth.local]</code></pre>
-<p>The installation and configuration of Active Directory Domain Services is documented separately in the <a href="../domain_setup/">Domain Setup</a> section.</p>
+<span class="nb">Set-AzureADKerberosServer</span> <span class="n">-Domain</span> <span class="n">earth</span><span class="p">.</span><span class="n">local</span> <span class="n">-UserPrincipalName</span> <span class="nv">$cloudUPN</span> <span class="n">-DomainCredential</span> <span class="nv">$domainCred</span>
+</code></pre></div>
+<p>and confirmed it:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nb">Get-AzureADKerberosServer</span> <span class="n">-Domain</span> <span class="n">earth</span><span class="p">.</span><span class="n">local</span> <span class="n">-UserPrincipalName</span> <span class="nv">$cloudUPN</span> <span class="n">-DomainCredential</span> <span class="nv">$domainCred</span>
+</code></pre></div>
+<img alt="Confirmed Kerberos Server Object Creation" src="../../assets/images/kerberos_object.png" /></p>
+<p>I then forced a sync cycle so the new object would replicate to Entra without waiting for the scheduled interval:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nb">Start-ADSyncSyncCycle</span> <span class="n">-PolicyType</span> <span class="n">Delta</span>
+</code></pre></div>
+<img alt="forced sync" src="../../assets/images/forced_entra_sync.png" /></p>
+<hr />
+<h2 id="6-clearing-stale-state-and-retrying">6. Clearing Stale State and Retrying</h2>
+<p>With the Kerberos Server object in place, I cleared WS_01's stale local registration:</p>
+<div class="highlight"><pre><span></span><code><span class="n">dsregcmd</span> <span class="p">/</span><span class="n">leave</span>
+</code></pre></div>
+<p>and restarted the machine rather than just re-triggering the scheduled task, to make sure no leftover state carried over. The join task then ran automatically at the next domain-authenticated logon.</p>
+<hr />
+<h2 id="7-confirming-success">7. Confirming Success</h2>
+<div class="highlight"><pre><span></span><code><span class="n">dsregcmd</span> <span class="p">/</span><span class="n">status</span>
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code>AzureAdJoined : YES
+DomainJoined  : YES
+DeviceAuthStatus : SUCCESS
+TpmProtected : YES
+KeySignTest : PASSED
+</code></pre></div>
+<img alt="confirming sync success" src="../../assets/images/entra_sync_success.png" /></p>
+<div class="admonition success">
+<p class="admonition-title">Hybrid join confirmed</p>
+<p>WS_01 is now both domain-joined and Azure AD joined, with its device key backed by the TPM (<code>Microsoft Platform Crypto Provider</code>). This satisfied my Entra and Intune Checklist Phase 1.</p>
+</div>
+<hr />
+<h2 id="8-a-separate-issue-prtsso-failure">8. A Separate Issue: PRT/SSO Failure</h2>
+<p>Although the device join succeeded, <code>dsregcmd /status</code> also showed the signed-in test user (<code>dlig@earthlocal.com</code>) failing to acquire a Primary Refresh Token:</p>
+<div class="highlight"><pre><span></span><code>AzureAdPrt : NO
+Attempt Status : 0xc00000d0
+Server Error Code : invalid_request
+Server Error Description : AADSTS90002: Tenant &#39;earthlocal.com&#39; not found.
+</code></pre></div>
+<p>I re-tested this from a non-elevated session (the initial elevated run threw <code>ERROR_NO_SUCH_LOGON_SESSION</code>, since the default-account/WAM lookup needs a normal interactive logon context) and retried the sign-in to rule out a stale cached result. The error reproduced identically on a fresh attempt with a new correlation ID, confirming it wasn't a caching artifact.</p>
+<div class="admonition failure">
+<p class="admonition-title">Root cause: unverifiable custom domain</p>
+<p><code>earthlocal.com</code> is synced onto user UPNs via Entra Connect, but it is <strong>not, and cannot be, a verified custom domain</strong> in the tenant — verification requires proving ownership via a DNS TXT record, and I don't own real DNS for this domain. Realm discovery for PRT/SSO depends on the UPN's domain being verified, so this will fail for as long as the lab uses this suffix.</p>
+</div>
+<p>The test user that failed (<code>dlig@earthlocal.com</code>) was signed in under this unverified suffix. <code>onmicrosoft.com</code> is always verified by default (Microsoft owns it on the tenant's behalf), so a user signed in as <code>&lt;user&gt;@&lt;tenant&gt;.onmicrosoft.com</code> would get PRT/SSO working correctly. It isn't that SSO only ever works with <code>onmicrosoft.com</code> as a rule — a properly verified custom domain works identically — it's that in this lab, <code>onmicrosoft.com</code> is currently the <em>only</em> suffix with a verified domain behind it, so it's the only one that can complete realm discovery.</p>
+<h3 id="decision">Decision</h3>
+<p>This limitation doesn't block Intune enrollment, which depends on the device's Azure AD join state rather than user PRT/SSO. I've accepted this as a <strong>known, documented limitation</strong> of the lab rather than working around it, since a proper fix would require purchasing and verifying a real domain — a separate mini-project rather than something to solve mid-flow here. Device join success is what Phase 1 of the Intune Checklist required, and that's confirmed.</p>
+<hr />
+<h2 id="final-validation-summary">Final Validation Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hybrid Azure AD Join (<code>AzureAdJoined</code>)</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td>Domain Join (<code>DomainJoined</code>)</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td>Device Auth Status</td>
+<td>✅ SUCCESS</td>
+</tr>
+<tr>
+<td>TPM-backed device key</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td>Kerberos Ticket Test</td>
+<td>✅ PASS (after Kerberos Server object created)</td>
+</tr>
+<tr>
+<td>User PRT / SSO</td>
+<td>❌ Fails — unverifiable custom domain (accepted limitation)</td>
+</tr>
+<tr>
+<td>Device object present in Entra (verified via Graph)</td>
+<td>✅ YES — <code>trustType: ServerAd</code>, <code>isManaged: true</code></td>
+</tr>
+<tr>
+<td>Cloud-only sign-in at lock screen as workaround</td>
+<td>❌ Not a valid path on a hybrid-joined device (see correction below)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li><strong>A successful join doesn't mean a successful renew.</strong> Stale local registration state from a failed earlier attempt will keep trying to renew a device object that no longer exists server-side. <code>dsregcmd /leave</code> plus a full restart clears this cleanly.</li>
+<li><strong>Cloud Kerberos Trust is the modern hybrid join path</strong>, authenticating through a KDC proxy to <code>login.microsoftonline.com</code> rather than requiring on-prem line-of-sight to a DC. It depends on an Azure AD Kerberos Server object (<code>Set-AzureADKerberosServer</code>) that Entra Connect does not create automatically.</li>
+<li><strong><code>Get-Credential</code> parameter binding is easy to get wrong</strong> — passing a username as a bare positional argument can silently bind to the wrong parameter set. <code>-UserName</code> avoids the ambiguity.</li>
+<li><strong>Device join and user PRT/SSO are separate concerns.</strong> A device can be fully Azure AD joined and TPM-attested while the signed-in user still fails to get SSO, if the UPN's domain isn't verified in the tenant. For Intune enrollment purposes, the device join state is what matters.</li>
+<li><strong>Event Viewer beats <code>dsregcmd /status</code> alone for root-causing failures.</strong> The status output tells you pass/fail; the User Device Registration event log tells you why.</li>
+<li><strong>The Entra admin center's Devices blade isn't reliable for verification.</strong> It showed nothing for WS_01 despite the device being fully registered server-side (<code>trustType: ServerAd</code>). Querying Microsoft Graph directly (<code>GET /devices?$filter=displayName eq 'WS_01'</code>) confirmed the true state — worth treating as the authoritative check going forward rather than the portal UI.</li>
+<li><strong>Hybrid join and Azure AD join support different sign-in models.</strong> A hybrid-joined (domain-joined) device is built around an on-prem account signing in via Kerberos with a PRT layered on top in the background — it isn't designed to accept arbitrary Azure AD credentials as an "Other user" cloud-only sign-in the way a pure Azure-AD-joined device is. A consistent "username or password incorrect" across multiple verified, browser-confirmed accounts was the signal that this was a logon-flow limitation, not a credential problem.</li>
+</ul>
 
 
 
