@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../../remote-administration/overview/">
+        <link rel="prev" href="../hybrid_join/">
       
-      
-        <link rel="next" href="../hybrid_join/">
       
       
         
@@ -23,7 +21,7 @@
     
     
       
-        <title>Entra ID Setup - Enterprise Windows Infrastructure Lab</title>
+        <title>Device Enrolment - Enterprise Windows Infrastructure Lab</title>
       
     
     
@@ -66,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#directory-synchronisation" class="md-skip">
+        <a href="#device-enrolment" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Entra ID Setup
+              Device Enrolment
             
           </span>
         </div>
@@ -1156,35 +1154,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Entra ID Setup
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../entra_setup/" class="md-nav__link">
         
   
   
@@ -1200,152 +1173,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#directory-synchronisation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Directory Synchronisation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Directory Synchronisation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-add-the-new-upn-suffix" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1: Add the new UPN suffix
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-change-the-upn-suffix-for-existing-users" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2: Change the UPN suffix for existing users
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sign-in-testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sign-In Testing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ad-recycle-bin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AD Recycle Bin
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="AD Recycle Bin">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Testing
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-a-virtual-tpm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuring a Virtual TPM
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuring a Virtual TPM">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installing-the-vtpm-emulator-on-fedora" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Installing the vTPM emulator on Fedora
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adding-the-vtpm-device-to-the-vm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Adding the vTPM device to the VM
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#confirming-bitlocker-availability" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Confirming BitLocker availability
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1383,10 +1210,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../device_enrolment/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Device Enrolment
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1402,6 +1256,147 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-confirm-mdm-auto-enrolment-is-turned-on-for-the-tenant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Confirm MDM Auto-Enrolment Is Turned On for the Tenant
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-confirm-licensing-is-actually-assigned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Confirm Licensing Is Actually Assigned
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-attempted-to-trigger-enrolment-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Attempted to Trigger Enrolment Manually
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-checked-the-obvious-prerequisites-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Checked the Obvious Prerequisites First
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-root-cause-auto-enrolment-rides-the-same-silent-token-flow-as-prt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Root Cause: Auto-Enrolment Rides the Same Silent Token Flow as PRT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-working-around-it-interactive-enrolment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Working Around It — Interactive Enrolment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-confirming-enrolment-succeeded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Confirming Enrolment Succeeded
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-testing-whether-a-gpo-would-fix-silent-enrolment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Testing Whether a GPO Would Fix Silent Enrolment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-forcing-an-enrolment-attempt-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Forcing an Enrolment Attempt Directly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1431,6 +1426,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1439,49 +1436,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#directory-synchronisation" class="md-nav__link">
+  <a href="#1-confirm-mdm-auto-enrolment-is-turned-on-for-the-tenant" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Directory Synchronisation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Directory Synchronisation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-add-the-new-upn-suffix" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1: Add the new UPN suffix
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-change-the-upn-suffix-for-existing-users" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2: Change the UPN suffix for existing users
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sign-in-testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sign-In Testing
+        1. Confirm MDM Auto-Enrolment Is Turned On for the Tenant
       
     </span>
   </a>
@@ -1489,80 +1447,112 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ad-recycle-bin" class="md-nav__link">
+  <a href="#2-confirm-licensing-is-actually-assigned" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AD Recycle Bin
+        2. Confirm Licensing Is Actually Assigned
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="AD Recycle Bin">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Testing
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuring-a-virtual-tpm" class="md-nav__link">
+  <a href="#3-attempted-to-trigger-enrolment-manually" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuring a Virtual TPM
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuring a Virtual TPM">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installing-the-vtpm-emulator-on-fedora" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Installing the vTPM emulator on Fedora
+        3. Attempted to Trigger Enrolment Manually
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#adding-the-vtpm-device-to-the-vm" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#4-checked-the-obvious-prerequisites-first" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Adding the vTPM device to the VM
+        4. Checked the Obvious Prerequisites First
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#confirming-bitlocker-availability" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#5-root-cause-auto-enrolment-rides-the-same-silent-token-flow-as-prt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Confirming BitLocker availability
+        5. Root Cause: Auto-Enrolment Rides the Same Silent Token Flow as PRT
       
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#6-working-around-it-interactive-enrolment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Working Around It — Interactive Enrolment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-confirming-enrolment-succeeded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Confirming Enrolment Succeeded
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-testing-whether-a-gpo-would-fix-silent-enrolment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Testing Whether a GPO Would Fix Silent Enrolment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-forcing-an-enrolment-attempt-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Forcing an Enrolment Attempt Directly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1583,111 +1573,176 @@
 
 
 
-  <h1>Entra ID Setup</h1>
-
-<h2 id="directory-synchronisation">Directory Synchronisation</h2>
-<p>Currently my domain is fully local, Active Directory only. I wanted to introduce some cloud and MDM concepts, so I signed up to Microsoft Entra and Intune.</p>
-<p>What I needed to do first was something called Directory Synchronisation. This allows Active Directory and Entra ID to be synced. This can be achieved using <strong>Microsoft Entra Connect</strong>.</p>
-<p>I downloaded the Microsoft Entra Connect agent and went through the installation process, choosing the <strong>Express Installation</strong> option. Once I reached the Microsoft Entra sign-in tab, I saw a message regarding Active Directory UPN Suffixes:</p>
-<div class="admonition warning">
-<p class="admonition-title">UPN suffix warning</p>
-<p>Users would not be able to sign in to Microsoft Entra ID with on-prem credentials if the suffix does not match a verified domain.</p>
-</div>
-<p><img alt="Entra UPN sync warning" src="../../assets/images/entra_upn_warning.png" /></p>
-<p>Entra would add a suffix to the login, so to make the login smoother I decided to update the UPN from <code>earth.local</code> to <a href="http://earthlocal.com">earthlocal.com</a>, which would then be represented by Microsoft Entra as <a href="http://earthlocal.onmicrosoft.com">earthlocal.onmicrosoft.com</a>. I used the steps from <a href="https://learn.microsoft.com/en-us/microsoft-365/enterprise/prepare-a-non-routable-domain-for-directory-synchronization?view=o365-worldwide#what-if-i-only-have-a-local-on-premises-domain">this Microsoft Learn article</a>.</p>
-<h3 id="step-1-add-the-new-upn-suffix">Step 1: Add the new UPN suffix</h3>
+<h1 id="device-enrolment">Device Enrolment</h1>
+<p>With WS_01 now hybrid joined, I wanted to enrol the device onto Intune for device management. (Join gets it into Entra, enrolment gets it under Intune's control.)</p>
+<h2 id="1-confirm-mdm-auto-enrolment-is-turned-on-for-the-tenant">1. Confirm MDM Auto-Enrolment Is Turned On for the Tenant</h2>
 <ul>
-<li>On the AD DS domain controller, in Server Manager, chose <strong>Tools &gt; Active Directory Domains and Trusts</strong>.</li>
-<li>In the Active Directory Domains and Trusts window, right-clicked <strong>Active Directory Domains and Trusts</strong>, then chose <strong>Properties</strong>.</li>
-<li>On the <strong>UPN Suffixes</strong> tab, in the Alternative UPN Suffixes box, typed the new UPN suffix, then chose <strong>Add &gt; Apply</strong>.</li>
+<li>I did this via: <strong>Intune admin center → Devices → Enrollment → Automatic Enrollment</strong>.</li>
+<li>I set <strong>MDM user scope</strong> to <strong>All</strong> (this is what tells Windows to auto-enrol hybrid-joined and Azure AD joined devices into Intune).</li>
+<li>I confirmed that the MDM discovery URL and terms-of-use URLs were populated (should be automatic once Intune is licensed).</li>
 </ul>
-<h3 id="step-2-change-the-upn-suffix-for-existing-users">Step 2: Change the UPN suffix for existing users</h3>
-<p>I did this using PowerShell:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">$LocalUsers</span> <span class="p">=</span> <span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="s2">&quot;UserPrincipalName -like &#39;*earth.local&#39;&quot;</span> <span class="n">-Properties</span> <span class="n">userPrincipalName</span> <span class="n">-ResultSetSize</span> <span class="nv">$null</span>
-<span class="nv">$LocalUsers</span> <span class="p">|</span> <span class="k">foreach</span> <span class="p">{</span><span class="nv">$newUpn</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">UserPrincipalName</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;@earth.local&quot;</span><span class="p">,</span><span class="s2">&quot;@earthlocal.com&quot;</span><span class="p">);</span> <span class="nv">$_</span> <span class="p">|</span> <span class="nb">Set-ADUser</span> <span class="n">-UserPrincipalName</span> <span class="nv">$newUpn</span><span class="p">}</span>
+<h2 id="2-confirm-licensing-is-actually-assigned">2. Confirm Licensing Is Actually Assigned</h2>
+<ul>
+<li>I signed in as David Lightman on WS_01, so I went to the M365 admin center and gave him a licence for M365 (I had 25 licences to distribute). The M365 licence meant that David's account now had an Intune-capable licence assigned.</li>
+</ul>
+<p><img alt="david 365 license" src="../../assets/images/david_license.png" /></p>
+<h2 id="3-attempted-to-trigger-enrolment-manually">3. Attempted to Trigger Enrolment Manually</h2>
+<p>Rather than wait for the scheduled sync interval, I tried to trigger the enrolment task directly:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Start-ScheduledTask</span> <span class="n">-TaskName</span> <span class="s2">&quot;\Microsoft\Windows\EnterpriseMgmt\Schedule #1&quot;</span>
 </code></pre></div>
-<p>I then ran <code>Get-ADUser -Identity "klib"</code> to verify the change had taken place for one of my users.</p>
-<p><img alt="UPN PowerShell update" src="../../assets/images/upn_pshell_update.png" /></p>
-<p>After this was done, I clicked <strong>Install</strong> from the Configure tab.</p>
-<p>Once the install was complete, I checked my Microsoft Entra ID admin center and saw all my users were now showing.</p>
-<p><img alt="List of users showing in Entra" src="../../assets/images/entra_user_list.png" /></p>
-<div class="admonition success">
-<p class="admonition-title">Directory synchronisation confirmed</p>
-<p>All on-prem Active Directory users appeared correctly in the Microsoft Entra ID admin center, confirming Entra Connect had synced successfully with the updated UPN suffix.</p>
+<div class="highlight"><pre><span></span><code>Start-ScheduledTask : The system cannot find the file specified.
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Not a misconfiguration — the task simply didn't exist yet</p>
+<p>This scheduled task folder is only created once MDM enrolment has actually started at least once. Its absence told me enrolment genuinely hadn't fired yet, rather than pointing to a broken trigger.</p>
 </div>
-<h2 id="sign-in-testing">Sign-In Testing</h2>
-<p>I next wanted to do a sign-in test: signing in with one of the users into their new <a href="https://myaccount.microsoft.com/">My Account portal</a>, and also signing in locally as they were able to previously.</p>
-<p>I signed in as David Lightman into WS_01. The login was no longer <code>@earth.local</code>, but rather <code>@earthlocal.com</code>. This was successful.</p>
-<p>I then signed in to the Azure Portal as David using an <code>@earthlocal.onmicrosoft.com</code> suffix. I had to set up an authenticator app to complete the login, but after doing so, this was successful.</p>
-<p><img alt="David's Microsoft My Account" src="../../assets/images/davids_msft_accnt.png" /></p>
+<h2 id="4-checked-the-obvious-prerequisites-first">4. Checked the Obvious Prerequisites First</h2>
+<p>Before digging further, I confirmed the basics were actually in place:</p>
+<ul>
+<li><code>MdmUrl</code> under <strong>Tenant Details</strong> in <code>dsregcmd /status</code> — <strong>blank</strong></li>
+<li>Licence assigned to the test user — <strong>confirmed</strong></li>
+<li>MDM user scope — <strong>confirmed set to All</strong></li>
+</ul>
+<p>With the scope, licence and device join all in place but <code>MdmUrl</code> still blank, this pointed to enrolment not starting at all rather than a scoping problem.</p>
+<h2 id="5-root-cause-auto-enrolment-rides-the-same-silent-token-flow-as-prt">5. Root Cause: Auto-Enrolment Rides the Same Silent Token Flow as PRT</h2>
+<p>MDM auto-enrolment on a hybrid-joined device runs through the same silent, background token acquisition (WAM/PRT) I'd already found broken for my UPN suffix (<code>earthlocal.com</code>/<code>earth.local</code>, unverified — see my <a href="../hybrid_join/">hybrid join</a> notes). The enrolment task needs a token for the MDM enrolment service, acquired silently using the signed-in account's UPN, so it never had a real chance to succeed while PRT was blocked for that account.</p>
+<div class="admonition failure">
+<p class="admonition-title">Correction to an earlier assumption</p>
+<p>I'd originally assumed PRT/SSO failing wouldn't block Intune enrolment, on the basis that enrolment depends on the device's Azure AD join state rather than user PRT. That's not correct for a hybrid-joined device specifically — device join gets the device <em>registered</em>, but <em>automatic</em> enrolment still depends on that same silent user-token flow succeeding.</p>
+</div>
+<h2 id="6-working-around-it-interactive-enrolment">6. Working Around It — Interactive Enrolment</h2>
+<p>The interactive browser sign-in flow (already proven to work for a verified identity via <code>myaccount.microsoft.com</code>) is a separate authentication path from the silent PRT one, and isn't blocked by the same issue.
+So signing in to the workstation as Administrator:</p>
+<ul>
+<li><strong>Settings → Accounts → Access work or school → + Connect</strong></li>
+<li>Signed in interactively with a verified identity</li>
+<li>Sync completed successfully</li>
+</ul>
+<h2 id="7-confirming-enrolment-succeeded">7. Confirming Enrolment Succeeded</h2>
+<p>Two fields in <code>dsregcmd /status</code> flagged success without needing anything from Tenant Details:</p>
+<p><div class="highlight"><pre><span></span><code>DisplayNameUpdated : Managed by MDM
+OsVersionUpdated : Managed by MDM
+</code></pre></div>
+<img alt="dsregcmd mdm output" src="../../assets/images/dsregcmd_mdm_out.png" /></p>
+<p><code>dsregcmd</code> only shows <code>Managed by MDM</code> on these fields once Intune has actually taken over responsibility for updating them — a genuine enrolment success marker, not just a status label.</p>
+<p>I confirmed independently in two places:</p>
+<ul>
+<li><strong>Intune admin center → Devices → All devices</strong> — WS_01 appears with a management state</li>
+<li><code>MdmUrl</code> under <strong>Tenant Details</strong>, however, <strong>stayed blank across four consecutive re-runs</strong> of <code>dsregcmd /status</code></li>
+</ul>
+<p><img alt="Intune device list" src="../../assets/images/ws01_intune_listing.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">MdmUrl is stale, not a live indicator</p>
+<p>Tenant Details appears to reflect the state captured at the <em>original</em> join handshake, before MDM was configured, and doesn't get refreshed by a later enrolment that happens through a different flow. <code>TenantName</code> stayed blank throughout for the same reason. The reliable confirmation of enrolment is the Intune admin center (cross-checked against Microsoft Graph, since the admin center's Devices blade had already shown itself to be unreliable once earlier in this project) plus the <code>Managed by MDM</code> diagnostic markers — not this field.</p>
+</div>
 <div class="admonition success">
-<p class="admonition-title">Sign-in confirmed on-prem and cloud</p>
-<p>David could sign in locally to WS_01 with the updated <code>@earthlocal.com</code> UPN, and separately sign in to the Azure Portal with the <code>@earthlocal.onmicrosoft.com</code> suffix after completing MFA setup. Both paths worked, confirming the hybrid identity was functioning correctly on both sides.</p>
+<p class="admonition-title">Device enrolment confirmed</p>
+<p>WS_01 shows as an enrolled, managed device in Intune. Achieved via the interactive "Connect" enrolment path rather than silent auto-enrolment, consistent with the same domain-verification limitation already documented and accepted for PRT/SSO in my hybrid join notes.</p>
+</div>
+<h2 id="8-testing-whether-a-gpo-would-fix-silent-enrolment">8. Testing Whether a GPO Would Fix Silent Enrolment</h2>
+<p>Before accepting the interactive workaround as final, I wanted to check whether the silent path could be fixed properly rather than worked around, I found that Microsoft's documented mechanism for silent MDM auto-enrolment on a <strong>hybrid-joined</strong> device (as opposed to a purely Azure AD joined one) could depend on a specific Group Policy setting, which I had never configured:</p>
+<ul>
+<li><strong>Computer Configuration → Policies → Administrative Templates → Windows Components → MDM → Enable automatic MDM enrollment using default Azure AD credentials</strong> → <strong>Enabled</strong></li>
+<li>Set to <strong>User Credential</strong>, since WS_01 has a normal interactive signed-in user (David Lightman) and I want policies/apps targeted at users, not just the device identity. <strong>Device Credential</strong> is the option for scenarios without an interactive user at enrolment time such as Autopilot self-deploying/white-glove mode, kiosk or shared devices, or ConfigMgr co-management triggering enrolment before sign-in.</li>
+<li>Linked the GPO to the OU containing WS_01's computer object, then ran <code>gpupdate /force</code> and confirmed via <code>gpresult /r</code> that it applied.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Two separate blockers, not one</p>
+<p>This GPO is genuinely necessary for a hybrid-joined device to even attempt silent enrolment. Without it, the device has no instruction to try. But it doesn't fix the underlying domain-verification problem: the silent attempt it enables still needs to acquire a token for the same unverified UPN suffix. These are two independent requirements, not two explanations for the same thing.</p>
+</div>
+<p>After applying the GPO, <code>MdmUrl</code> was still blank. This confirmed both blockers were genuinely stacked — the GPO fixed the "never even tries" half, but the "can't get a token" half remains, and is the actual reason it fails.</p>
+<h2 id="9-forcing-an-enrolment-attempt-directly">9. Forcing an Enrolment Attempt Directly</h2>
+<p>To rule out timing (waiting for the next scheduled interval) rather than a hard failure, I forced the enrolment attempt directly instead of waiting:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Start-Process</span> <span class="s2">&quot;$env:windir\system32\deviceenroller.exe&quot;</span> <span class="n">-ArgumentList</span> <span class="s2">&quot;/c /AutoEnrollMDM&quot;</span> <span class="n">-Verb</span> <span class="n">RunAs</span>
+</code></pre></div>
+<p><code>MdmUrl</code> was still blank afterward. However, checking the scheduled tasks this time showed something worth recording:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ScheduledTask</span> <span class="n">-TaskPath</span> <span class="s2">&quot;\Microsoft\Windows\EnterpriseMgmt\*&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>TaskPath                                       TaskName                          State
+--------                                       --------                          -----
+\Microsoft\Windows\EnterpriseMgmt\             Schedule created by enrollment... Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... OS Edition Upgrade event liste... Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... Passport for Work alert create... Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... Policy Manager Login Refresh S... Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... Provisioning initiated session    Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... PushLaunch                        Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... PushRenewal                       Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... Schedule #1 created by enrollm... Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... Schedule #2 created by enrollm... Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... Schedule #3 created by enrollm... Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... Schedule created by dm client ... Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... Schedule created by enrollment... Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... Schedule to run OMADMClient by... Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... Schedule to run OMADMClient by... Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... Win10 S Mode event listener cr... Ready
+\Microsoft\Windows\EnterpriseMgmt\0EE83119-... Wsc Startup event listener cre... Disabled
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">This is the full, real enrolment task set, but from the earlier interactive enrolment, not this attempt</p>
+<p>This <code>EnterpriseMgmt</code> folder is now populated with the complete standard OMA-DM/Intune management task set (<code>PushLaunch</code>, <code>PushRenewal</code>, the <code>OMADMClient</code> schedules). Genuine evidence that management is actively running in the background, beyond just the <code>Managed by MDM</code> status markers. Since WS_01 was already enrolled via the interactive Connect flow, Windows most likely recognised the existing enrolment and didn't create a second one for this forced attempt, rather than this being fresh proof that the GPO-plus-device path succeeded independently. Properly isolating that would mean unenrolling WS_01 and retesting from clean which is not worth the disruption here, since the interactive path is already confirmed sufficient and the domain-verification blocker is documented and accepted either way.</p>
 </div>
 <hr />
-<h2 id="ad-recycle-bin">AD Recycle Bin</h2>
-<p>Now that Entra Connect is syncing live, I wanted to enable the AD Recycle Bin. Without it, deleting an object in AD removes it in a way that is difficult to recover from, the object is tombstoned and most attributes are stripped rather than being cleanly restorable. With Entra Connect syncing, an accidental on-prem deletion doesn't just affect AD, it propagates to Entra ID too, so having a clean, one-command restore path is more valuable now, not less.</p>
-<p>I enabled it via:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Enable-ADOptionalFeature</span> <span class="n">-Identity</span> <span class="s1">&#39;Recycle Bin Feature&#39;</span> <span class="n">-Scope</span> <span class="n">ForestOrConfigurationSet</span> <span class="n">-Target</span> <span class="n">earth</span><span class="p">.</span><span class="n">local</span>
-</code></pre></div>
-<h3 id="testing">Testing</h3>
-<p>I deleted a test account, "Test User2", then confirmed it appeared in the Recycle Bin via:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-ADObject</span> <span class="n">-Filter</span> <span class="s1">&#39;isDeleted -eq $true&#39;</span> <span class="n">-IncludeDeletedObjects</span>
-</code></pre></div>
-<p>Test User2 showed here as expected.
-<img alt="Deleted and validated deletion og Test User2" src="../../assets/images/delete_testuser2_recycle.png" />
-I restored the object via:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-ADObject</span> <span class="n">-Filter</span> <span class="s1">&#39;isDeleted -eq $true&#39;</span> <span class="n">-IncludeDeletedObjects</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="o">-like</span> <span class="s2">&quot;*Test User2*&quot;</span><span class="p">}</span> <span class="p">|</span> <span class="nb">Restore-ADObject</span>
-</code></pre></div>
-<p>Confirmed the restore via:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">-Identity</span> <span class="s2">&quot;Test User2&quot;</span>
-</code></pre></div>
-<p>which returned the user normally, no longer showing as deleted.</p>
-<div class="admonition note">
-<p class="admonition-title">Recycle Bin restores more than a plain tombstone recovery</p>
-<p>Unlike a plain tombstone-based recovery, an AD Recycle Bin restore returns the object to its original OU and restores attributes such as group membership, not just the bare object. Confirmed this by checking <code>Get-ADUser -Identity "Test User2" -Properties MemberOf</code> after the restore.</p>
-</div>
-<div class="admonition success">
-<p class="admonition-title">AD Recycle Bin confirmed working</p>
-<p>Test User2 was successfully deleted, located in the Recycle Bin, and restored with its original properties intact.</p>
-</div>
-<h2 id="configuring-a-virtual-tpm">Configuring a Virtual TPM</h2>
-<p>The Entra Connect installer suggested configuring TPM on the sync server to make the setup more secure. In a real deployment, the Entra Connect server is a genuinely high-value target, since compromising it can mean compromising both on-prem AD and cloud identity simultaneously, so TPM-backed protection for its stored credentials and sync keys is a real best practice. My lab's actual threat model is much lower, since nobody else has access to my host or VMs, but I wanted the hands-on experience and to represent the setup faithfully.</p>
-<h3 id="installing-the-vtpm-emulator-on-fedora">Installing the vTPM emulator on Fedora</h3>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>swtpm<span class="w"> </span>swtpm-tools<span class="w"> </span>libtpms
-</code></pre></div>
-<p><code>swtpm</code> is the software TPM emulator that KVM/QEMU uses to present a virtual TPM device to a guest.</p>
-<h3 id="adding-the-vtpm-device-to-the-vm">Adding the vTPM device to the VM</h3>
-<p>I Shut down the VM, since TPM devices can't be hot-added.</p>
-<p>Added the device via virt-manager: <strong>Show virtual hardware details → Add Hardware → TPM</strong>, with:</p>
+<h2 id="final-validation-summary">Final Validation Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MDM user scope configured</td>
+<td>✅ Set to All</td>
+</tr>
+<tr>
+<td>Licence assigned to test user</td>
+<td>✅ Confirmed</td>
+</tr>
+<tr>
+<td>Silent MDM auto-enrolment</td>
+<td>❌ Fails — blocked by the same silent token flow as PRT</td>
+</tr>
+<tr>
+<td>Interactive enrolment via Access work or school → Connect</td>
+<td>✅ Succeeded</td>
+</tr>
+<tr>
+<td>Device shown as managed in Intune admin center</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td><code>Managed by MDM</code> markers on device attributes</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td><code>MdmUrl</code> in <code>dsregcmd /status</code></td>
+<td>❌ Stays blank (stale field, not a reliable indicator)</td>
+</tr>
+<tr>
+<td>GPO for silent auto-enrolment (User Credential)</td>
+<td>✅ Configured correctly, confirmed via <code>gpresult /r</code></td>
+</tr>
+<tr>
+<td>Silent enrolment after GPO + forced retry (<code>deviceenroller.exe</code>)</td>
+<td>❌ Still blocked — domain-verification limitation, not a GPO gap</td>
+</tr>
+<tr>
+<td>Full <code>EnterpriseMgmt</code> scheduled task set present</td>
+<td>✅ YES — genuine ongoing management confirmed</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="key-takeaways">Key Takeaways</h2>
 <ul>
-<li>Model: <strong>CRB</strong></li>
-<li>Version: <strong>2.0</strong></li>
-<li>Backend: <strong>Emulated</strong></li>
+<li><strong>Device join and device enrolment are two different things.</strong> Hybrid Azure AD join gets a device registered in Entra; Intune enrolment is a separate step on top of that, and one can succeed without the other.</li>
+<li><strong>Silent MDM auto-enrolment and PRT share the same failure point.</strong> A domain-verification problem that looks like it only affects SSO can also silently block Intune auto-enrolment on a hybrid-joined device, since both depend on the same background token acquisition.</li>
+<li><strong>A scheduled task that "doesn't exist" can be diagnostic information, not an error to fix.</strong> The <code>EnterpriseMgmt</code> task folder is only created once enrolment has actually started and its absence confirmed where the process was stalling rather than indicating a broken command.</li>
+<li><strong>The interactive "Connect" flow is a genuine, separate path around a broken silent flow</strong>, and worth trying whenever a background process depends on token acquisition that's already known to be blocked.</li>
+<li><strong>Not every <code>dsregcmd</code> field reflects live state.</strong> <code>MdmUrl</code> and <code>TenantName</code> under Tenant Details stayed blank even after enrolment genuinely succeeded. They appear to reflect the original join handshake rather than being refreshed afterward. The Intune admin center, cross-checked against Graph, plus the <code>Managed by MDM</code> diagnostic markers, was the reliable signal.</li>
+<li><strong>A hybrid-joined device needs its own GPO to attempt silent enrolment at all.</strong> This isn't automatic the way it is for a purely Azure AD joined device. But confirming the GPO applied correctly and <em>still</em> seeing <code>MdmUrl</code> blank was a clean way to isolate that two independent blockers existed, not one: the missing instruction to try (now fixed) and the broken token acquisition underneath it (still the accepted lab limitation).</li>
 </ul>
-<p><img alt="adding tpm hardware" src="../../assets/images/tpm_hardware.png" /></p>
-<p>Started the VM back up and confirmed Windows detected it:</p>
-<p><div class="highlight"><pre><span></span><code><span class="nb">Get-Tpm</span>
-</code></pre></div>
-<img alt="Get-Tpm output" src="../../assets/images/tpm_install_validation.png" /></p>
-<p>Confirmed <code>TpmPresent: True</code> and <code>TpmReady: True</code>.</p>
-<h3 id="confirming-bitlocker-availability">Confirming BitLocker availability</h3>
-<p>Since the server is Windows Server rather than a Windows client, the BitLocker PowerShell module wasn't installed by default:</p>
-<p><div class="highlight"><pre><span></span><code><span class="nb">Get-BitLockerVolume</span>
-</code></pre></div>
-Produced an output of: </p>
-<div class="admonition failure">
-<p class="admonition-title">Error</p>
-<p><code>Get-BitLockerVolume : The term 'Get-BitLockerVolume' is not recognized as the name of a cmdlet, function, script file, or operable program...</code></p>
-</div>
-<p>Installed the missing feature:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Install-WindowsFeature</span> <span class="n">BitLocker</span> <span class="n">-IncludeManagementTools</span>
-</code></pre></div>
-<p>Restarted the server, then re-ran the <code>Get-BitLockerVolume</code> command successfully.</p>
-<div class="admonition success">
-<p class="admonition-title">vTPM confirmed working</p>
-<p>The virtual TPM was successfully added, detected by Windows, and confirmed ready via <code>Get-Tpm</code>. The BitLocker module gap was a missing Windows feature rather than a TPM issue, resolved by installing the BitLocker feature and its management tools.</p>
-</div>
 
 
 

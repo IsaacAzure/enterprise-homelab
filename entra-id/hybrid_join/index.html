@@ -12,6 +12,8 @@
         <link rel="prev" href="../entra_setup/">
       
       
+        <link rel="next" href="../device_enrolment/">
+      
       
         
       
@@ -1380,6 +1382,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../device_enrolment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Device Enrolment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1671,11 +1701,11 @@ Server Error Description : AADSTS90002: Tenant &#39;earthlocal.com&#39; not foun
 <p>I re-tested this from a non-elevated session (the initial elevated run threw <code>ERROR_NO_SUCH_LOGON_SESSION</code>, since the default-account/WAM lookup needs a normal interactive logon context) and retried the sign-in to rule out a stale cached result. The error reproduced identically on a fresh attempt with a new correlation ID, confirming it wasn't a caching artifact.</p>
 <div class="admonition failure">
 <p class="admonition-title">Root cause: unverifiable custom domain</p>
-<p><code>earthlocal.com</code> is synced onto user UPNs via Entra Connect, but it is <strong>not, and cannot be, a verified custom domain</strong> in the tenant — verification requires proving ownership via a DNS TXT record, and I don't own real DNS for this domain. Realm discovery for PRT/SSO depends on the UPN's domain being verified, so this will fail for as long as the lab uses this suffix.</p>
+<p><code>earthlocal.com</code> is synced onto user UPNs via Entra Connect, but it is <strong>not, and cannot be, a verified custom domain</strong> in the tenant as verification requires proving ownership via a DNS TXT record, and I don't own real DNS for this domain. Realm discovery for PRT/SSO depends on the UPN's domain being verified, so this will fail for as long as the lab uses this suffix.</p>
 </div>
-<p>The test user that failed (<code>dlig@earthlocal.com</code>) was signed in under this unverified suffix. <code>onmicrosoft.com</code> is always verified by default (Microsoft owns it on the tenant's behalf), so a user signed in as <code>&lt;user&gt;@&lt;tenant&gt;.onmicrosoft.com</code> would get PRT/SSO working correctly. It isn't that SSO only ever works with <code>onmicrosoft.com</code> as a rule — a properly verified custom domain works identically — it's that in this lab, <code>onmicrosoft.com</code> is currently the <em>only</em> suffix with a verified domain behind it, so it's the only one that can complete realm discovery.</p>
+<p>The test user that failed (<code>dlig@earthlocal.com</code>) was signed in under this unverified suffix. <code>onmicrosoft.com</code> is always verified by default (Microsoft owns it on the tenant's behalf), so a user signed in as <code>&lt;user&gt;@&lt;tenant&gt;.onmicrosoft.com</code> would get PRT/SSO working correctly. It isn't that SSO only ever works with <code>onmicrosoft.com</code> as a rule, a properly verified custom domain works identically but it's that in this lab, <code>onmicrosoft.com</code> is currently the <em>only</em> suffix with a verified domain behind it, so it's the only one that can complete realm discovery.</p>
 <h3 id="decision">Decision</h3>
-<p>This limitation doesn't block Intune enrollment, which depends on the device's Azure AD join state rather than user PRT/SSO. I've accepted this as a <strong>known, documented limitation</strong> of the lab rather than working around it, since a proper fix would require purchasing and verifying a real domain — a separate mini-project rather than something to solve mid-flow here. Device join success is what Phase 1 of the Intune Checklist required, and that's confirmed.</p>
+<p>This limitation doesn't block Intune enrollment, which depends on the device's Azure AD join state rather than user PRT/SSO. I've accepted this as a <strong>known, documented limitation</strong> of the lab rather than working around it, since a proper fix would require purchasing and verifying a real domain, that is a separate mini-project rather than something to solve mid-flow here. Device join success is what Phase 1 of the Intune Checklist required, and that's confirmed.</p>
 <hr />
 <h2 id="final-validation-summary">Final Validation Summary</h2>
 <table>
