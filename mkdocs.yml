@@ -57,3 +57,4 @@ nav:
   - Entra ID:
       - Entra ID Setup: entra-id/entra_setup.md
       - Joining a Device: entra-id/hybrid_join.md
+      - Device Enrolment: entra-id/device_enrolment.md
