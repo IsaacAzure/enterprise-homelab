@@ -65,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#intune-compliance-policies" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1272,6 +1277,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intune Compliance Policies
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -1289,6 +1314,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-compliance-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating the Compliance Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-test-policy-not-reaching-the-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First Test — Policy Not Reaching the Device
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-device-group-for-the-workstations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building a Device Group for the Workstations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-not-evaluating-after-the-reassignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Still Not Evaluating After the Reassignment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolution-onboarding-to-microsoft-defender" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolution — Onboarding to Microsoft Defender
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1347,6 +1468,93 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-compliance-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating the Compliance Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-test-policy-not-reaching-the-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First Test — Policy Not Reaching the Device
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-device-group-for-the-workstations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building a Device Group for the Workstations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-not-evaluating-after-the-reassignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Still Not Evaluating After the Reassignment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolution-onboarding-to-microsoft-defender" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolution — Onboarding to Microsoft Defender
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1363,9 +1571,129 @@
 
 
 
-  <h1>Intune Compliance Policies</h1>
-
-
+<h1 id="intune-compliance-policies">Intune Compliance Policies</h1>
+<p>After the MFA exercise I wanted to go deeper into access policies. I wanted to create a policy that would determine whether a device/workstation is compliant with my company policy or not, then link it to a Conditional Access policy that would allow access only for devices which are compliant.</p>
+<h2 id="creating-the-compliance-policy">Creating the Compliance Policy</h2>
+<p><strong>Intune admin center → Compliance (under "Manage devices") → Create Policy</strong></p>
+<p>I selected the platform as <strong>Windows 10 and later</strong> and configured the desired compliance settings:</p>
+<ul>
+<li>BitLocker</li>
+<li>Minimum OS version — entered as the earliest version WS_01/WS_02 are currently running</li>
+<li>Require passwords</li>
+<li>Defender: Real-time protection</li>
+</ul>
+<p>For non-compliance actions, <strong>"Mark device noncompliant"</strong> was automatically configured to <strong>Immediately</strong>.</p>
+<p>The group I chose for testing was <code>EL_SysAdmins</code> — a user group with a sample size of 2 users. Then I clicked Create.</p>
+<p><img alt="Device Compliance Policy" src="../../assets/images/intune_device_compliance_policy.png" /></p>
+<p>To test, I logged in to WS_01 as Administrator so I could sync with Entra before testing:</p>
+<p><strong>Settings → Accounts → Access work or school → (Entra domain) → Info → Sync</strong></p>
+<h2 id="first-test-policy-not-reaching-the-device">First Test — Policy Not Reaching the Device</h2>
+<p>The compliance policy was assigned to <code>EL_SysAdmins</code>, a <em>user</em> group, but drilling into WS_01's device compliance status showed no real evaluation against my custom policy at all — instead it showed the <strong>Default Device Compliance Policy</strong> fallback, with:</p>
+<div class="highlight"><pre><span></span><code>Has a compliance policy assigned
+Error 65001 (Not applicable)
+</code></pre></div>
+<p>This is Intune's built-in fallback policy stepping in because, as far as the device is concerned, no custom compliance policy actually applies to it. The reason became clear once I thought about how WS_01 was enrolled and how my workstations are organised: on-prem, my workstations sit in their own OU, but <strong>OUs have no equivalent in Entra/Intune</strong> — every Intune assignment needs a real Entra security group, and a user-scoped group like <code>EL_SysAdmins</code> was never going to match a device-based evaluation regardless of who signed in in the process.</p>
+<div class="admonition failure">
+<p class="admonition-title">Wrong assignment type for a device policy</p>
+<p>Assigning a device compliance policy to a <em>user</em> group only works reliably when the group's members are also the device's primary user. Since WS_01's primary user was set by whichever account completed enrolment (Administrator, not one of the actual named users), a user-group assignment was never going to reach it consistently. What the policy actually needed was a <em>device</em> group.</p>
+</div>
+<h2 id="building-a-device-group-for-the-workstations">Building a Device Group for the Workstations</h2>
+<p>I had to add the workstation to a group so the compliance policy could be applied to the <em>workstation</em> rather than a user. I created the group in Intune via:</p>
+<p><strong>Groups → New Group</strong></p>
+<ul>
+<li>Group type: <strong>Security</strong></li>
+<li>Name: <code>Intune Workstations</code></li>
+<li>Membership type: <strong>Dynamic Device</strong></li>
+<li>Rule: <code>(device.displayName -startsWith "WS_")</code></li>
+</ul>
+<p>So any device that follows my naming convention gets added to this group dynamically. After around 5 minutes, the workstations were added to the group.</p>
+<div class="admonition note">
+<p class="admonition-title">You cannot manually add members to a dynamically-membered group</p>
+<p>I tried adding WS_01 to the group manually before the dynamic rule had picked it up, and got: <em>"Failed to add group member — Unable to add the selected members. This may be due to a permission or policy restriction."</em> Once a group's membership type is set to Dynamic Device, membership is computed exclusively by the rule engine — manual additions are blocked outright, regardless of whether the rule itself is correct. The fix isn't to force a member in; it's to wait for the rule to evaluate, or fix the rule if it isn't matching.</p>
+</div>
+<p>I then added the <code>Intune Workstations</code> group to the compliance policy's assignment, and removed <code>EL_SysAdmins</code>.</p>
+<h2 id="still-not-evaluating-after-the-reassignment">Still Not Evaluating After the Reassignment</h2>
+<p>Even after reassigning to the device group, WS_01's device compliance status was still showing the same signal as before:</p>
+<div class="highlight"><pre><span></span><code>Has a compliance policy assigned
+Error 65001 (Not applicable)
+Is active
+Compliant
+Enrolled user exists
+Compliant
+</code></pre></div>
+<p>for the <strong>Default Device Compliance Policy</strong> — meaning the tenant was still falling back rather than evaluating my custom policy against WS_01. I worked through:</p>
+<ul>
+<li>Confirming the <code>Intune Workstations</code> group was genuinely listed under <strong>Included groups</strong> on the custom policy's Assignments tab, not just populated as a group on its own</li>
+<li>Checking the policy's <strong>Monitor</strong> tab for a device count, to see whether the assignment had registered at all</li>
+<li>Allowing for propagation delay — group membership and policy assignment changes don't apply to a device instantly, and a forced device Sync doesn't guarantee the backend has processed the reassignment yet</li>
+</ul>
+<h2 id="resolution-onboarding-to-microsoft-defender">Resolution — Onboarding to Microsoft Defender</h2>
+<p>The compliance policy includes the <strong>Defender: Real-time protection</strong> requirement, so the next step was onboarding the workstations to Microsoft Defender for Endpoint (see my <a href="../ms_defender/">MS Defender</a> notes). After that, and after adding WS_02 to the domain, all devices showed as <strong>compliant</strong>.</p>
+<div class="admonition success">
+<p class="admonition-title">Compliance policy now evaluating and passing</p>
+<p>With the device group assignment in place and the workstations onboarded to Defender, WS_01 and WS_02 both report as compliant against the custom policy.</p>
+</div>
+<hr />
+<h2 id="final-validation-summary">Final Validation Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compliance policy created (BitLocker, min OS version, passwords, Defender)</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>Initial assignment to <code>EL_SysAdmins</code> (user group)</td>
+<td>❌ Never evaluated against WS_01 — Default policy fallback (error 65001)</td>
+</tr>
+<tr>
+<td>Root cause: OUs have no Entra equivalent, device policy needs a device group</td>
+<td>✅ Identified</td>
+</tr>
+<tr>
+<td>Dynamic device group <code>Intune Workstations</code> created</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>Manual add to dynamic group</td>
+<td>❌ Fails by design — dynamic groups don't accept manual membership</td>
+</tr>
+<tr>
+<td>WS_01 added to dynamic group automatically</td>
+<td>✅ YES, after ~5 minutes</td>
+</tr>
+<tr>
+<td>Compliance policy reassigned to device group</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>Custom policy evaluating against WS_01</td>
+<td>❌ Still showing Default Compliance Policy fallback after reassignment</td>
+</tr>
+<tr>
+<td>Workstations onboarded to Microsoft Defender for Endpoint</td>
+<td>✅ Done (see MS Defender page)</td>
+</tr>
+<tr>
+<td>WS_01 and WS_02 compliant against the custom policy</td>
+<td>✅ YES</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li><strong>A device compliance policy needs a device-based assignment, not a user-based one.</strong> A user group only reaches a device indirectly, through its primary user — and that primary user isn't always who you expect, especially if enrolment was done interactively under a different account.</li>
+<li><strong>OUs have no equivalent in Entra or Intune.</strong> Any assignment — compliance policy, Conditional Access, configuration profile — needs an actual Entra security group. A dynamic device group with a naming-based rule is the practical substitute for an on-prem OU.</li>
+<li><strong>Dynamic groups compute membership exclusively from their rule.</strong> Manual "Add member" attempts are rejected outright, which produces a generic permission-style error that has nothing to do with the rule's correctness.</li>
+<li><strong>A compliance policy is only as good as the signals behind it.</strong> The Defender real-time protection requirement only became meaningful once the workstations were actually onboarded to Defender for Endpoint, and compliance came through after that.</li>
+<li><strong>The Default Device Compliance Policy fallback (error 65001, "Has a compliance policy assigned — Not applicable") is a diagnostic signal, not just noise.</strong> Seeing it persist after reassignment means the real policy still isn't reaching the device — worth checking assignment scope and propagation delay before assuming a settings problem.</li>
+</ul>
 
 
 
