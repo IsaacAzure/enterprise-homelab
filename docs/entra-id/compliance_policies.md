@@ -81,6 +81,32 @@ The compliance policy includes the **Defender: Real-time protection** requiremen
 !!! success "Compliance policy now evaluating and passing"
     With the device group assignment in place and the workstations onboarded to Defender, WS_01 and WS_02 both report as compliant against the custom policy.
 
+## Testing That the Policy Detects Non-Compliance
+
+I wanted to confirm that the compliance policy would update if a device was no longer compliant, so I changed the minimum OS version from `10.0.26200` to `40.0.26200` via:
+
+**Intune → Devices → Compliance → (select the policy) → Properties → Edit "Compliance settings"**
+
+![Compliance testing OS change](../assets/images/compliance_test_os_change.png)
+
+!!! note "Why the OS version rather than turning off Defender"
+    My first idea was to switch off real-time protection on a workstation, but the toggle was greyed out even when signed in as an admin, and a PowerShell attempt and a GPO couldn't change it either. That's most likely Tamper Protection, which stops real-time protection being changed locally once the device is managed and onboarded to Defender. Raising the minimum OS version tests the same thing (does the policy catch a failing rule and update the device's status) without touching the endpoint.
+
+Then I checked the device list in Intune. (Note that I only powered on WS_02 for this test.) I could see that WS_02 was no longer compliant.
+
+![WS_02 no longer compliant](../assets/images/ws_02_compliant_fail.png)
+
+Drilling down on the non-compliance, by clicking the red **Not compliant** banner under WS_02's profile name and then the non-compliant policy, I could see that the only non-compliance was correctly showing as the minimum OS version.
+
+![Compliance fail validation](../assets/images/compliance_testing_fail_validation.png)
+
+After this verification, I reverted the OS version to the previous value and then synced WS_02 in Intune to verify that the device was compliant once again.
+
+![Compliance testing completion](../assets/images/compliance_testing_complete.png)
+
+!!! success "Compliance policy confirmed working in both directions"
+    The policy flagged WS_02 as non-compliant when a rule was no longer met, identified the exact failing setting, and returned the device to compliant once the setting was reverted and the device synced.
+
 ---
 
 ## Final Validation Summary
@@ -97,6 +123,9 @@ The compliance policy includes the **Defender: Real-time protection** requiremen
 | Custom policy evaluating against WS_01 | ❌ Still showing Default Compliance Policy fallback after reassignment |
 | Workstations onboarded to Microsoft Defender for Endpoint | ✅ Done (see MS Defender page) |
 | WS_01 and WS_02 compliant against the custom policy | ✅ YES |
+| Minimum OS raised to `40.0.26200`: WS_02 flips to non-compliant | ✅ YES |
+| Drill-down shows only the minimum OS rule failing | ✅ YES |
+| OS version reverted and WS_02 synced: back to compliant | ✅ YES |
 
 ---
 
@@ -106,4 +135,5 @@ The compliance policy includes the **Defender: Real-time protection** requiremen
 * **OUs have no equivalent in Entra or Intune.** Any assignment — compliance policy, Conditional Access, configuration profile — needs an actual Entra security group. A dynamic device group with a naming-based rule is the practical substitute for an on-prem OU.
 * **Dynamic groups compute membership exclusively from their rule.** Manual "Add member" attempts are rejected outright, which produces a generic permission-style error that has nothing to do with the rule's correctness.
 * **A compliance policy is only as good as the signals behind it.** The Defender real-time protection requirement only became meaningful once the workstations were actually onboarded to Defender for Endpoint, and compliance came through after that.
+* **A policy that only ever shows "compliant" hasn't proven anything.** Deliberately failing a rule (here, an unreachable minimum OS version) showed that the policy detects a failing setting, names the exact rule that failed, and recovers once the setting is reverted and the device syncs.
 * **The Default Device Compliance Policy fallback (error 65001, "Has a compliance policy assigned — Not applicable") is a diagnostic signal, not just noise.** Seeing it persist after reassignment means the real policy still isn't reaching the device — worth checking assignment scope and propagation delay before assuming a settings problem.
