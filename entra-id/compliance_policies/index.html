@@ -1386,6 +1386,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#testing-that-the-policy-detects-non-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing That the Policy Detects Non-Compliance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#final-validation-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1533,6 +1544,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#testing-that-the-policy-detects-non-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing That the Policy Detects Non-Compliance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#final-validation-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1633,6 +1655,24 @@ Compliant
 <p class="admonition-title">Compliance policy now evaluating and passing</p>
 <p>With the device group assignment in place and the workstations onboarded to Defender, WS_01 and WS_02 both report as compliant against the custom policy.</p>
 </div>
+<h2 id="testing-that-the-policy-detects-non-compliance">Testing That the Policy Detects Non-Compliance</h2>
+<p>I wanted to confirm that the compliance policy would update if a device was no longer compliant, so I changed the minimum OS version from <code>10.0.26200</code> to <code>40.0.26200</code> via:</p>
+<p><strong>Intune → Devices → Compliance → (select the policy) → Properties → Edit "Compliance settings"</strong></p>
+<p><img alt="Compliance testing OS change" src="../../assets/images/compliance_test_os_change.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Why the OS version rather than turning off Defender</p>
+<p>My first idea was to switch off real-time protection on a workstation, but the toggle was greyed out even when signed in as an admin, and a PowerShell attempt and a GPO couldn't change it either. That's most likely Tamper Protection, which stops real-time protection being changed locally once the device is managed and onboarded to Defender. Raising the minimum OS version tests the same thing (does the policy catch a failing rule and update the device's status) without touching the endpoint.</p>
+</div>
+<p>Then I checked the device list in Intune. (Note that I only powered on WS_02 for this test.) I could see that WS_02 was no longer compliant.</p>
+<p><img alt="WS_02 no longer compliant" src="../../assets/images/ws_02_compliant_fail.png" /></p>
+<p>Drilling down on the non-compliance, by clicking the red <strong>Not compliant</strong> banner under WS_02's profile name and then the non-compliant policy, I could see that the only non-compliance was correctly showing as the minimum OS version.</p>
+<p><img alt="Compliance fail validation" src="../../assets/images/compliance_testing_fail_validation.png" /></p>
+<p>After this verification, I reverted the OS version to the previous value and then synced WS_02 in Intune to verify that the device was compliant once again.</p>
+<p><img alt="Compliance testing completion" src="../../assets/images/compliance_testing_complete.png" /></p>
+<div class="admonition success">
+<p class="admonition-title">Compliance policy confirmed working in both directions</p>
+<p>The policy flagged WS_02 as non-compliant when a rule was no longer met, identified the exact failing setting, and returned the device to compliant once the setting was reverted and the device synced.</p>
+</div>
 <hr />
 <h2 id="final-validation-summary">Final Validation Summary</h2>
 <table>
@@ -1683,6 +1723,18 @@ Compliant
 <td>WS_01 and WS_02 compliant against the custom policy</td>
 <td>✅ YES</td>
 </tr>
+<tr>
+<td>Minimum OS raised to <code>40.0.26200</code>: WS_02 flips to non-compliant</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td>Drill-down shows only the minimum OS rule failing</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td>OS version reverted and WS_02 synced: back to compliant</td>
+<td>✅ YES</td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -1692,6 +1744,7 @@ Compliant
 <li><strong>OUs have no equivalent in Entra or Intune.</strong> Any assignment — compliance policy, Conditional Access, configuration profile — needs an actual Entra security group. A dynamic device group with a naming-based rule is the practical substitute for an on-prem OU.</li>
 <li><strong>Dynamic groups compute membership exclusively from their rule.</strong> Manual "Add member" attempts are rejected outright, which produces a generic permission-style error that has nothing to do with the rule's correctness.</li>
 <li><strong>A compliance policy is only as good as the signals behind it.</strong> The Defender real-time protection requirement only became meaningful once the workstations were actually onboarded to Defender for Endpoint, and compliance came through after that.</li>
+<li><strong>A policy that only ever shows "compliant" hasn't proven anything.</strong> Deliberately failing a rule (here, an unreachable minimum OS version) showed that the policy detects a failing setting, names the exact rule that failed, and recovers once the setting is reverted and the device syncs.</li>
 <li><strong>The Default Device Compliance Policy fallback (error 65001, "Has a compliance policy assigned — Not applicable") is a diagnostic signal, not just noise.</strong> Seeing it persist after reassignment means the real policy still isn't reaching the device — worth checking assignment scope and propagation delay before assuming a settings problem.</li>
 </ul>
 
