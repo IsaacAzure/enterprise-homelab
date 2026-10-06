@@ -1397,6 +1397,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tenant-wide-fallback-setting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tenant-Wide Fallback Setting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#final-validation-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1555,6 +1566,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tenant-wide-fallback-setting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tenant-Wide Fallback Setting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#final-validation-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1594,7 +1616,7 @@
 
 
 <h1 id="intune-compliance-policies">Intune Compliance Policies</h1>
-<p>After the MFA exercise I wanted to go deeper into access policies. I wanted to create a policy that would determine whether a device/workstation is compliant with my company policy or not, then link it to a Conditional Access policy that would allow access only for devices which are compliant.</p>
+<p>After the MFA exercise I wanted to go deeper into access policies. I wanted to create a policy that would determine whether a device/workstation is compliant with my company policy or not, then link it to a Conditional Access policy that would allow access only for devices which are compliant. This page covers building and testing the compliance policy itself; the Conditional Access link is the next step and will have its own page.</p>
 <h2 id="creating-the-compliance-policy">Creating the Compliance Policy</h2>
 <p><strong>Intune admin center → Compliance (under "Manage devices") → Create Policy</strong></p>
 <p>I selected the platform as <strong>Windows 10 and later</strong> and configured the desired compliance settings:</p>
@@ -1614,10 +1636,10 @@
 <div class="highlight"><pre><span></span><code>Has a compliance policy assigned
 Error 65001 (Not applicable)
 </code></pre></div>
-<p>This is Intune's built-in fallback policy stepping in because, as far as the device is concerned, no custom compliance policy actually applies to it. The reason became clear once I thought about how WS_01 was enrolled and how my workstations are organised: on-prem, my workstations sit in their own OU, but <strong>OUs have no equivalent in Entra/Intune</strong> — every Intune assignment needs a real Entra security group, and a user-scoped group like <code>EL_SysAdmins</code> was never going to match a device-based evaluation regardless of who signed in in the process.</p>
+<p>This is Intune's built-in fallback policy stepping in because, as far as the device is concerned, no custom compliance policy actually applies to it. The reason became clear once I thought about how WS_01 was enrolled and how my workstations are organised. A compliance policy assigned to a user group only reaches a device through that device's <strong>primary user</strong>, and WS_01's primary user was whichever account completed enrolment (Administrator), not a member of <code>EL_SysAdmins</code>. On top of that, my workstations sit in their own OU on-prem, but <strong>OUs have no equivalent in Entra/Intune</strong>: every Intune assignment needs a real Entra security group, so there was no existing group I could simply point the policy at for the workstations.</p>
 <div class="admonition failure">
-<p class="admonition-title">Wrong assignment type for a device policy</p>
-<p>Assigning a device compliance policy to a <em>user</em> group only works reliably when the group's members are also the device's primary user. Since WS_01's primary user was set by whichever account completed enrolment (Administrator, not one of the actual named users), a user-group assignment was never going to reach it consistently. What the policy actually needed was a <em>device</em> group.</p>
+<p class="admonition-title">User-group assignment didn't match the device's primary user</p>
+<p>Assigning a compliance policy to a <em>user</em> group works when the group's members are also the device's primary user. Since WS_01's primary user was set by whichever account completed enrolment (Administrator, not one of the actual named users), the user-group assignment never reached it. Assigning to a <em>device</em> group removes the dependency on the primary user entirely, which is why it suited this lab better.</p>
 </div>
 <h2 id="building-a-device-group-for-the-workstations">Building a Device Group for the Workstations</h2>
 <p>I had to add the workstation to a group so the compliance policy could be applied to the <em>workstation</em> rather than a user. I created the group in Intune via:</p>
@@ -1673,6 +1695,10 @@ Compliant
 <p class="admonition-title">Compliance policy confirmed working in both directions</p>
 <p>The policy flagged WS_02 as non-compliant when a rule was no longer met, identified the exact failing setting, and returned the device to compliant once the setting was reverted and the device synced.</p>
 </div>
+<h2 id="tenant-wide-fallback-setting">Tenant-Wide Fallback Setting</h2>
+<p>As a final hardening step, I set the tenant-wide compliance setting to treat devices with no assigned policy as non-compliant:</p>
+<p><strong>Intune → Devices → Compliance → Compliance policy settings → "Mark devices with no compliance policy assigned as" → Not compliant</strong></p>
+<p>This is the setting behind the Default Device Compliance Policy fallback seen earlier. With it set to Not compliant, a device that no compliance policy reaches is no longer treated as compliant by default, which matters once Conditional Access starts relying on compliance.</p>
 <hr />
 <h2 id="final-validation-summary">Final Validation Summary</h2>
 <table>
@@ -1692,7 +1718,7 @@ Compliant
 <td>❌ Never evaluated against WS_01 — Default policy fallback (error 65001)</td>
 </tr>
 <tr>
-<td>Root cause: OUs have no Entra equivalent, device policy needs a device group</td>
+<td>Root cause: WS_01's primary user was Administrator, not in the group; OUs have no Entra equivalent</td>
 <td>✅ Identified</td>
 </tr>
 <tr>
@@ -1713,7 +1739,7 @@ Compliant
 </tr>
 <tr>
 <td>Custom policy evaluating against WS_01</td>
-<td>❌ Still showing Default Compliance Policy fallback after reassignment</td>
+<td>✅ Resolved — still showed the Default fallback straight after reassignment, then evaluated after Defender onboarding and WS_02 joining</td>
 </tr>
 <tr>
 <td>Workstations onboarded to Microsoft Defender for Endpoint</td>
@@ -1735,12 +1761,16 @@ Compliant
 <td>OS version reverted and WS_02 synced: back to compliant</td>
 <td>✅ YES</td>
 </tr>
+<tr>
+<td>Tenant setting: devices with no policy marked Not compliant</td>
+<td>✅ Done</td>
+</tr>
 </tbody>
 </table>
 <hr />
 <h2 id="key-takeaways">Key Takeaways</h2>
 <ul>
-<li><strong>A device compliance policy needs a device-based assignment, not a user-based one.</strong> A user group only reaches a device indirectly, through its primary user — and that primary user isn't always who you expect, especially if enrolment was done interactively under a different account.</li>
+<li><strong>A user-group assignment only reaches a device through its primary user, so a device group is the more reliable target.</strong> The primary user isn't always who you expect, especially if enrolment was done interactively under a different account. User groups still work when the primary user is a member; a device group simply doesn't depend on it.</li>
 <li><strong>OUs have no equivalent in Entra or Intune.</strong> Any assignment — compliance policy, Conditional Access, configuration profile — needs an actual Entra security group. A dynamic device group with a naming-based rule is the practical substitute for an on-prem OU.</li>
 <li><strong>Dynamic groups compute membership exclusively from their rule.</strong> Manual "Add member" attempts are rejected outright, which produces a generic permission-style error that has nothing to do with the rule's correctness.</li>
 <li><strong>A compliance policy is only as good as the signals behind it.</strong> The Defender real-time protection requirement only became meaningful once the workstations were actually onboarded to Defender for Endpoint, and compliance came through after that.</li>
