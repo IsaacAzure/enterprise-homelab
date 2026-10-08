@@ -1408,6 +1408,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#conditional-access-policy-device-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Access Policy - Device Access
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditional Access Policy - Device Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-in-report-only-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing in Report-Only Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enforcing-the-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enforcing the Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#final-validation-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1577,6 +1616,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#conditional-access-policy-device-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Access Policy - Device Access
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditional Access Policy - Device Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-in-report-only-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing in Report-Only Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enforcing-the-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enforcing the Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#final-validation-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1616,7 +1694,7 @@
 
 
 <h1 id="intune-compliance-policies">Intune Compliance Policies</h1>
-<p>After the MFA exercise I wanted to go deeper into access policies. I wanted to create a policy that would determine whether a device/workstation is compliant with my company policy or not, then link it to a Conditional Access policy that would allow access only for devices which are compliant. This page covers building and testing the compliance policy itself; the Conditional Access link is the next step and will have its own page.</p>
+<p>After the MFA exercise I wanted to go deeper into access policies. I wanted to create a policy that would determine whether a device/workstation is compliant with my company policy or not, then link it to a Conditional Access policy that would allow access only for devices which are compliant. This page covers building and testing the compliance policy, then linking it to a Conditional Access policy.</p>
 <h2 id="creating-the-compliance-policy">Creating the Compliance Policy</h2>
 <p><strong>Intune admin center → Compliance (under "Manage devices") → Create Policy</strong></p>
 <p>I selected the platform as <strong>Windows 10 and later</strong> and configured the desired compliance settings:</p>
@@ -1699,6 +1777,51 @@ Compliant
 <p>As a final hardening step, I set the tenant-wide compliance setting to treat devices with no assigned policy as non-compliant:</p>
 <p><strong>Intune → Devices → Compliance → Compliance policy settings → "Mark devices with no compliance policy assigned as" → Not compliant</strong></p>
 <p>This is the setting behind the Default Device Compliance Policy fallback seen earlier. With it set to Not compliant, a device that no compliance policy reaches is no longer treated as compliant by default, which matters once Conditional Access starts relying on compliance.</p>
+<h2 id="conditional-access-policy-device-access">Conditional Access Policy - Device Access</h2>
+<p>I then worked to create the access policy to deny or grant access based on device compliance.</p>
+<p><strong>Entra admin center (Identity app) → Entra ID → Conditional Access → Policies → New policy</strong></p>
+<ul>
+<li>Named it <strong>"Device Compliance Policy"</strong></li>
+<li>For <strong>Users</strong>, I added the <code>EL_SysAdmins</code> security group so I could test with a small sample size once again</li>
+<li>For <strong>Target resources</strong>, I selected <strong>All resources</strong> (formerly "All cloud apps")</li>
+<li>I left <strong>Conditions</strong> as the default "not configured" options</li>
+<li>For <strong>Grant</strong>, I selected <strong>Require device to be marked as compliant</strong> and <strong>Require Microsoft Entra hybrid joined device</strong></li>
+<li>Then I created the policy in <strong>Report-only</strong> mode</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Two grant controls selected together</p>
+<p>With more than one grant control selected, the default is that <em>all</em> the selected controls must be satisfied. A device therefore has to be both compliant and hybrid joined to get in.</p>
+</div>
+<h3 id="testing-in-report-only-mode">Testing in Report-Only Mode</h3>
+<p>I booted up WS_02, signing in as David Lightman. I opened Edge and signed in as David to access an M365 app, going via <a href="https://myaccount.microsoft.com">myaccount.microsoft.com</a> and then accessing Outlook, SharePoint and Teams.</p>
+<p>Then I booted up another VM I had, which had a Windows 11 Home licence (so it is neither enrolled in Intune nor hybrid joined). I opened Edge and followed the same steps as I did on WS_02, signing in as <code>dlig@earthlocal.onmicrosoft.com</code>.</p>
+<p>Afterwards I gave it a few minutes for the logs to generate, then went to check my policy to see what would be reported. As before, there are a few ways to check the impact of a Conditional Access policy.</p>
+<p>For a quick look:</p>
+<p><strong>Intune → Devices → Conditional Access → Policies → Device Compliance Policy → Policy Impact → Date range "Last 24 hours"</strong></p>
+<p><img alt="Policy logs snapshot" src="../../assets/images/device_compliance_policy_snapshot.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Drilling down from the chart</p>
+<p>Clicking on the success or failure portion of the chart shows some logs which can be drilled down on. The drill-down leads to the same place as the more comprehensive view below.</p>
+</div>
+<p>For a more comprehensive view of the logs:</p>
+<p><strong>Entra admin center (Identity app) → Monitoring &amp; health → Sign-in logs → Select a log → Report-only tab</strong></p>
+<p>I selected an earlier Teams sign-in log (from WS_02) and validated the policy was successful.</p>
+<p><img alt="Device compliance policy successful" src="../../assets/images/device_compliance_policy_successful.png" /></p>
+<p>Then I took a look at a later Teams sign-in log (from the Windows 11 Home VM) and validated that the policy would apply, showing a failure.</p>
+<p><img alt="Device compliance policy fail" src="../../assets/images/device_compliance_policy_fail.png" /></p>
+<p>Drilling down on the policy name confirmed the grant controls were not satisfied in the second sign-in attempt, as expected.</p>
+<p><img alt="Device compliance policy fail drill-down" src="../../assets/images/device_compliance_policy_fail2.png" /></p>
+<h3 id="enforcing-the-policy">Enforcing the Policy</h3>
+<p>For a final test I turned the policy fully <strong>On</strong> and tried to sign in from the Windows 11 Home VM, expecting to see a failure of some sort.</p>
+<p>This time when signing in to <a href="https://myaccount.microsoft.com">myaccount.microsoft.com</a> I was unsuccessful. I was asked to sign in with a work account or switch the Edge profile to that work email.</p>
+<p><img alt="Device compliance final testing" src="../../assets/images/device_compliance_final_testing.png" /></p>
+<p>I tried the switch Edge profile option and that failed also.</p>
+<p><img alt="Device compliance final testing 2" src="../../assets/images/device_compliance_final_testing2.png" /></p>
+<p>This confirmed the block was active.</p>
+<div class="admonition success">
+<p class="admonition-title">Compliance now enforced through Conditional Access</p>
+<p>The compliance policy decides whether a device is healthy, and the Conditional Access policy acts on that result at sign-in: the compliant, hybrid joined WS_02 was evaluated as a success, and the unmanaged Windows 11 Home VM was evaluated as a failure in Report-only mode and then blocked once the policy was turned on.</p>
+</div>
 <hr />
 <h2 id="final-validation-summary">Final Validation Summary</h2>
 <table>
@@ -1765,6 +1888,22 @@ Compliant
 <td>Tenant setting: devices with no policy marked Not compliant</td>
 <td>✅ Done</td>
 </tr>
+<tr>
+<td>Conditional Access policy created (compliant + hybrid joined, Report-only, <code>EL_SysAdmins</code>)</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>Report-only: WS_02 sign-in (compliant, hybrid joined)</td>
+<td>✅ Success</td>
+</tr>
+<tr>
+<td>Report-only: Windows 11 Home VM sign-in (unmanaged)</td>
+<td>✅ Failure reported, grant controls not satisfied</td>
+</tr>
+<tr>
+<td>Policy turned On: Windows 11 Home VM sign-in blocked</td>
+<td>✅ YES</td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -1775,6 +1914,8 @@ Compliant
 <li><strong>Dynamic groups compute membership exclusively from their rule.</strong> Manual "Add member" attempts are rejected outright, which produces a generic permission-style error that has nothing to do with the rule's correctness.</li>
 <li><strong>A compliance policy is only as good as the signals behind it.</strong> The Defender real-time protection requirement only became meaningful once the workstations were actually onboarded to Defender for Endpoint, and compliance came through after that.</li>
 <li><strong>A policy that only ever shows "compliant" hasn't proven anything.</strong> Deliberately failing a rule (here, an unreachable minimum OS version) showed that the policy detects a failing setting, names the exact rule that failed, and recovers once the setting is reverted and the device syncs.</li>
+<li><strong>A compliance policy only evaluates; Conditional Access is what enforces.</strong> On its own, a non-compliant status is just a label in Intune. Linking it to a Conditional Access grant control is what turns it into an actual block at sign-in.</li>
+<li><strong>Report-only first, then enforce, works for device policies too.</strong> The Policy Impact chart and the per-sign-in Report-only tab showed which sign-ins would pass and fail before anything was blocked, using the same approach as the MFA policy.</li>
 <li><strong>The Default Device Compliance Policy fallback (error 65001, "Has a compliance policy assigned — Not applicable") is a diagnostic signal, not just noise.</strong> Seeing it persist after reassignment means the real policy still isn't reaching the device — worth checking assignment scope and propagation delay before assuming a settings problem.</li>
 </ul>
 
