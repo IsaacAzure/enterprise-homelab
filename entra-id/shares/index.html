@@ -1,0 +1,1846 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ms_defender/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Hybrid Shares - Enterprise Windows Infrastructure Lab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#shares" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Enterprise Windows Infrastructure Lab" class="md-header__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Windows Infrastructure Lab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Hybrid Shares
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Enterprise Windows Infrastructure Lab" class="md-nav__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Enterprise Windows Infrastructure Lab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/kvm_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KVM Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/architecture_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Network
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Directory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Active Directory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/windows_server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/domain_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/windows_clients/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Clients
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/ou_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OUs, Users & Security Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Group Policy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Group Policy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../group-policy/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../group-policy/additional_GPOs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional GPOs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delegated Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Delegated Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permission Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Permission Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/helpdesk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Help Desk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/administrative_sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administrative SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/netadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NetAdmin/Admin NetAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/secadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SecAdmin/Admin SecAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/itmanagement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IT Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/emergency_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Emergency Acess
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Remote Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote-administration/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entra ID
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Entra ID
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entra_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entra ID Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hybrid_join/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Joining a Device
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../device_enrolment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Device Enrolment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conditional_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditional Access Policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compliance_policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intune Compliance Policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ms_defender/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Defender
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Shares
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Shares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#network-shares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Shares
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Network Shares">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pushing-the-share-to-workstations-with-group-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pushing the Share to Workstations with Group Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-second-share-for-all-company-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Second Share for All Company Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#item-level-targeting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item-Level Targeting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sharepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SharePoint
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SharePoint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-library-and-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Library and Sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#network-shares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Shares
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Network Shares">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pushing-the-share-to-workstations-with-group-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pushing the Share to Workstations with Group Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-second-share-for-all-company-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Second Share for All Company Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#item-level-targeting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item-Level Targeting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sharepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SharePoint
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SharePoint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-library-and-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Library and Sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="shares">Shares</h1>
+<h2 id="network-shares">Network Shares</h2>
+<p>Going back to network shares now that my domain was hybrid joined, I wanted to make it better. Currently I have to type the exact UNC path to find the share on all workstations, otherwise I cannot access it.</p>
+<p>On my DC, I mapped the network share <code>\\WIN-FD0SR0GQS6P\Shares</code> to drive Z:</p>
+<p><strong>File Explorer → right-click "This PC" → Map Network Drive → select a drive letter, enter the UNC path for the folder and ensure "Reconnect at sign-in" is checked → Finish</strong></p>
+<p><img alt="Map network drive" src="../../assets/images/map_network_drive.png" /></p>
+<p>After this it shows every time I go to File Explorer, nested under "This PC".</p>
+<p>I shared this with IT staff alone:</p>
+<p><strong>Properties → Sharing → Advanced Sharing → Permissions → added IT Staff and, of course, DCs</strong></p>
+<h3 id="pushing-the-share-to-workstations-with-group-policy">Pushing the Share to Workstations with Group Policy</h3>
+<p>To easily push this file share on to my workstations, I created a Group Policy. From <code>gpmc.msc</code>, I created a new GPO called <strong>"Share Mapping"</strong> → Edit → <strong>User Configuration → Preferences → Windows Settings → Drive Maps</strong>.</p>
+<p>I created a new item that would delete all drives starting at the letter E. This was done as a drive clean-up, so each session starts with old network drive connections deleted.</p>
+<p>I then created a second item:</p>
+<ul>
+<li><strong>Action:</strong> Update</li>
+<li><strong>Location:</strong> <code>\\WIN-FD0SR0GQS6P\Shares</code></li>
+<li><strong>Reconnect:</strong> Checked</li>
+<li><strong>Label as:</strong> Shares</li>
+</ul>
+<p><img alt="Network drive group policy" src="../../assets/images/network_drive_gp.png" /></p>
+<p>The order of the actions was to first delete all drives, then update drives and connect the network share.</p>
+<p><img alt="Network share policy order" src="../../assets/images/network_drive_gp_order.png" /></p>
+<p>Then I linked the new policy to the IT OU, as I want all IT users to have access to the network shares. The OU for company users would also get a network share eventually; this was just testing for the first implementation.</p>
+<p>I ran <code>gpupdate /force</code> on the DC. Then I went to check on WS_01 with Kate Libby, the SysAdmin. I checked File Explorer and immediately saw the Shares folder on the Z drive as configured.</p>
+<p><img alt="Network drive GP validation" src="../../assets/images/network_drive_gp_validation.png" /></p>
+<div class="admonition success">
+<p class="admonition-title">Share mapped to IT users via Group Policy</p>
+<p>Kate Libby (SysAdmin) received the Z drive automatically on WS_01, with no manual mapping.</p>
+</div>
+<h3 id="a-second-share-for-all-company-users">A Second Share for All Company Users</h3>
+<p>I then created another share for all company users, called "Network Shares": <code>\\WIN-FD0SR0GQS6P\Users\Administrator\Network Shares</code>. I mapped it to letter Y on the DC and gave the all-users security group read and execute permissions for this share.</p>
+<p>I edited the existing Share Mapping group policy and added the new share item as order 3, and linked the GPO to the Company Users OU.</p>
+<p><img alt="Network share policy order 2" src="../../assets/images/network_drive_gp_order2.png" /></p>
+<p>I ran <code>gpupdate /force</code> once again, then tested signing out of Kate's session and logging back in. Confirmed.</p>
+<p>Then I logged in as a normal company user, Chandler Bing, and confirmed he could see the Network Shares directory. However, he could also see the Shares directory. Due to permissions he could not access it, but I wanted to ensure it could not be seen at all.</p>
+<h2 id="item-level-targeting">Item-Level Targeting</h2>
+<p>I did some online searching and looked for the most efficient solution. I discovered a very simple one, a step I could have implemented sooner: <strong>item-level targeting</strong>.</p>
+<p>I edited the GPO and, for the IT share on the Z drive:</p>
+<p><strong>Properties → Common tab → Enable item-level targeting → Targeting</strong></p>
+<p>The Targeting Editor popped up. I then followed these steps:</p>
+<p><strong>New Item → Security Group → enter all the security groups for the IT team</strong></p>
+<p>The issue I had with this step was that I had a number of security groups for IT staff, and they all had to be added one by one, whereas non-IT users only have one security group: <code>EL_General</code>.</p>
+<p>After some looking around in the Targeting Editor, I realised the <strong>Item options</strong> dropdown menu had an option for <strong>"is not"</strong>, meaning I could simply make the target <strong>"is not a member of EL_General"</strong>.</p>
+<p><img alt="Network mapping target editor" src="../../assets/images/network_mapping_target_editor.png" /></p>
+<p>I saved the updated GPO and re-tested with both Kate and Chandler:</p>
+<ul>
+<li>Kate was able to see both drives, as desired.</li>
+<li>Chandler could now only see and access the global share drive.</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Permissions alone don't hide a drive, item-level targeting does</p>
+<p>Before targeting, Chandler could see the IT share but not open it. With item-level targeting, the drive is no longer mapped for non-IT users at all.</p>
+</div>
+<h2 id="sharepoint">SharePoint</h2>
+<p>In addition to File Explorer network shares, I wanted to create an online share option as well.</p>
+<p>With sharing in mind, the first thing I did was define who was allowed to share:</p>
+<p><strong>Admin Center → Settings (left nav) → Org settings → SharePoint → selected "New and existing guests – guests must sign in or provide a verification code."</strong></p>
+<p>I then created a site. (I already had sites due to making groups with Teams enabled; I wanted to create a site from scratch.)</p>
+<p><img alt="SharePoint new site" src="../../assets/images/sharepoint_new_site.png" /></p>
+<p>I then wanted to invite all members of my domain. I did this by adding their security groups, as I found this would be quicker and more efficient than adding users one by one:</p>
+<p><strong>SharePoint site → Site Permissions → Advanced permissions settings → Grant Permissions → added all security groups with Edit permissions → Share</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Sites shared through security groups don't appear in My Sites</p>
+<p>When a security group is added to a SharePoint group for a specific site, the site will not appear in the users' My Sites. The User Information List won't show individual users until they have contributed to the site. A workaround is to share the link; users can then mark the site as a "favourite" in SharePoint, and it will also show under "Recent sites".</p>
+</div>
+<p><img alt="SharePoint site add groups" src="../../assets/images/sharepoint_site_add_groups.png" /></p>
+<p>Then I signed in as David Lightman to the site's URL, <code>https://earthlocal.sharepoint.com/sites/EarthLocalTeam</code>, to confirm access. This was successful.</p>
+<h3 id="document-library-and-sync">Document Library and Sync</h3>
+<p>After the creation of a site, a document library is automatically created and can be seen in the navigation bar at the top of the page. As the Admin, I created a document named "First Document.txt". This was seen in David's SharePoint document experience shortly afterwards.</p>
+<p>I then clicked the <strong>Sync</strong> option on the document library, which opened OneDrive. As I had not set up OneDrive previously, I had to sign in to Office 365 when prompted, and then a directory was created in File Explorer syncing the library (therefore the SharePoint files).</p>
+<p><img alt="Syncing SharePoint files" src="../../assets/images/sharepoint_file_sync.png" /></p>
+<p><img alt="Syncing SharePoint files 2" src="../../assets/images/sharepoint_file_sync2.png" /></p>
+<p>Then I, as David, downloaded a picture and moved it into the local Earth Local directory that OneDrive had created. I went to SharePoint immediately afterwards and could see the image showing there. I checked the admin SharePoint experience and could see it showing there also.</p>
+<p><img alt="Syncing SharePoint files 3" src="../../assets/images/sharepoint_file_sync3.png" /></p>
+<div class="admonition success">
+<p class="admonition-title">Two-way sync between SharePoint and the workstation confirmed</p>
+<p>A file created online by the admin appeared for David, and a file David added locally appeared in SharePoint and in the admin's view.</p>
+</div>
+<hr />
+<h2 id="final-validation-summary">Final Validation Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Share mapped to Z: for IT users via Group Policy Preferences</td>
+<td>✅ Confirmed (Kate Libby on WS_01)</td>
+</tr>
+<tr>
+<td>Drive clean-up item runs before the map items (order matters)</td>
+<td>✅ Configured</td>
+</tr>
+<tr>
+<td>Second share (Y:) mapped to Company Users OU</td>
+<td>✅ Confirmed after <code>gpupdate /force</code> and re-login</td>
+</tr>
+<tr>
+<td>Non-IT user (Chandler Bing) can see the IT share without item-level targeting</td>
+<td>❌ Visible, though not accessible</td>
+</tr>
+<tr>
+<td>Item-level targeting ("is not a member of EL_General") hides the IT share from non-IT users</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td>IT user sees both drives after targeting</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td>SharePoint external sharing defined (guests must sign in or verify)</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>SharePoint site created, domain security groups granted Edit</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>David Lightman can access the site</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td>Document library synced to File Explorer via OneDrive</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td>Changes sync both ways (admin file to David, David's file to SharePoint and admin)</td>
+<td>✅ YES</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li><strong>Group Policy Preferences drive maps remove the need to map shares by hand on each workstation.</strong> One GPO pushes the share to every user in the linked OU.</li>
+<li><strong>Action order in the drive maps item matters.</strong> Deleting old drives first, then updating and connecting the share, gives each session a clean start.</li>
+<li><strong>Share permissions control access, not visibility.</strong> A user without permission can still see a mapped drive they can't open; item-level targeting is what stops it being mapped at all.</li>
+<li><strong>"Is not a member of" is simpler than listing groups.</strong> Targeting the non-IT group (<code>EL_General</code>) with "is not" avoided adding every IT security group one by one.</li>
+<li><strong>SharePoint access is quicker through security groups than individual users</strong>, but a site shared that way won't appear in My Sites until users mark it as a favourite or follow the shared link.</li>
+<li><strong>Syncing a SharePoint library through OneDrive gives users a local folder that stays in step with the site in both directions.</strong></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
