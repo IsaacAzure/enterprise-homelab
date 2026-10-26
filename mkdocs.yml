@@ -62,3 +62,6 @@ nav:
       - Intune Compliance Policies: entra-id/compliance_policies.md
       - Microsoft Defender: entra-id/ms_defender.md
       - Hybrid Shares: entra-id/shares.md
+
+  - Linux:
+      - Ubuntu Server Configuration: linux/ubuntu_server.md 
