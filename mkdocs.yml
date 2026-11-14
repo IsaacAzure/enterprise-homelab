@@ -65,3 +65,4 @@ nav:
 
   - Linux:
       - Ubuntu Server Configuration: linux/ubuntu_server.md 
+      - Ubuntu Server AD Join via SSH: linux/ubuntu_ad_join.md
