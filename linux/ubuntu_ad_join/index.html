@@ -1,0 +1,2237 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ubuntu_server/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Ubuntu Server AD Join via SSH - Enterprise Windows Infrastructure Lab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#joining-the-ubuntu-server-to-active-directory" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Enterprise Windows Infrastructure Lab" class="md-header__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Windows Infrastructure Lab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ubuntu Server AD Join via SSH
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Enterprise Windows Infrastructure Lab" class="md-nav__button md-logo" aria-label="Enterprise Windows Infrastructure Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Enterprise Windows Infrastructure Lab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/kvm_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KVM Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../environment/architecture_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Network
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Directory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Active Directory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/windows_server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/domain_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/windows_clients/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Clients
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/ou_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OUs, Users & Security Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Group Policy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Group Policy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../group-policy/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../group-policy/additional_GPOs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional GPOs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delegated Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Delegated Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permission Testing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Permission Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/helpdesk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Help Desk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/administrative_sysadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administrative SysAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/netadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NetAdmin/Admin NetAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/secadmin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SecAdmin/Admin SecAdmin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/itmanagement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IT Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-administration/permission-testing/emergency_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Emergency Acess
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Remote Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote-administration/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entra ID
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Entra ID
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entra-id/entra_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entra ID Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entra-id/hybrid_join/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Joining a Device
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entra-id/device_enrolment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Device Enrolment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entra-id/conditional_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditional Access Policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entra-id/compliance_policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intune Compliance Policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entra-id/ms_defender/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Defender
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entra-id/shares/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Shares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubuntu_server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Server Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Server AD Join via SSH
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Server AD Join via SSH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-connecting-over-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Connecting over SSH
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-checking-dns-and-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Checking DNS and Time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-apt-update-failing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. apt update Failing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-installing-the-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Installing the Packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-discovering-the-domain-no-such-realm-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Discovering the Domain — "No such realm found"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Discovering the Domain — &#34;No such realm found&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-fix-i-tried-that-did-not-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Fix I Tried That Did Not Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-the-real-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding the Real State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-the-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. The Fix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. The Fix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internet-names-stopped-resolving" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internet Names Stopped Resolving
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reboot-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reboot Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-joining-the-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Joining the Domain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-home-folders-and-testing-a-domain-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Home Folders and Testing a Domain Login
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-confirming-on-the-dc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Confirming on the DC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-connecting-over-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Connecting over SSH
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-checking-dns-and-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Checking DNS and Time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-apt-update-failing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. apt update Failing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-installing-the-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Installing the Packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-discovering-the-domain-no-such-realm-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Discovering the Domain — "No such realm found"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Discovering the Domain — &#34;No such realm found&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-fix-i-tried-that-did-not-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Fix I Tried That Did Not Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-the-real-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding the Real State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-the-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. The Fix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. The Fix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internet-names-stopped-resolving" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internet Names Stopped Resolving
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reboot-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reboot Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-joining-the-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Joining the Domain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-home-folders-and-testing-a-domain-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Home Folders and Testing a Domain Login
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-confirming-on-the-dc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Confirming on the DC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-validation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Validation Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="joining-the-ubuntu-server-to-active-directory">Joining the Ubuntu Server to Active Directory</h1>
+<p>With the Ubuntu Server built, I wanted to join it to my <code>earth.local</code> domain so that domain accounts could sign in to it, the same way they do on my Windows workstations.</p>
+<h2 id="1-connecting-over-ssh">1. Connecting over SSH</h2>
+<p>Next I connected to my server from the Windows DC via SSH.</p>
+<p>On the server I ran <code>ip a</code> and noted down the IP address for the server. On the DC, I opened PowerShell and ran:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ssh</span> <span class="n">server_username</span><span class="nv">@server_ip</span>
+</code></pre></div>
+<p>I was asked if I trusted the host I wanted to connect to, and I said yes. I was then prompted to enter the server password, and then I was in.</p>
+<p><img alt="Server SSH login" src="../../assets/images/server_ssh_login.png" /></p>
+<h2 id="2-checking-dns-and-time">2. Checking DNS and Time</h2>
+<p>Then I ran the following commands:</p>
+<ul>
+<li><code>resolvectl status</code> — the DNS server in the output was my DC's IP.</li>
+<li>
+<p><code>resolvectl query earth.local</code> — I got an error:</p>
+<div class="highlight"><pre><span></span><code>earth.local: resolve call failed: No appropriate name servers or networks for name found
+</code></pre></div>
+</li>
+<li>
+<p><code>timedatectl</code> — the clock output aligned with my DC and host device.</p>
+</li>
+</ul>
+<div class="admonition failure">
+<p class="admonition-title">The domain would not resolve, even with the DC as the DNS server</p>
+<p>This failed because <code>.local</code> is reserved for multicast DNS (mDNS). Linux treats a <code>.local</code> name as something to be found on the local network rather than asked of a DNS server, so by default the resolver does not send <code>.local</code> lookups to a DNS server at all, unless that domain has been explicitly configured.</p>
+</div>
+<p>To complete testing in my current working session, the non-persistent fix was:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>resolvectl<span class="w"> </span>dns<span class="w"> </span>&lt;my<span class="w"> </span>network<span class="w"> </span>interface&gt;<span class="w"> </span>&lt;DC-IP&gt;
+sudo<span class="w"> </span>resolvectl<span class="w"> </span>domain<span class="w"> </span>&lt;my<span class="w"> </span>network<span class="w"> </span>interface&gt;<span class="w"> </span><span class="s1">&#39;~earth.local&#39;</span>
+</code></pre></div>
+<p>Then I reran <code>resolvectl query earth.local</code>, which was successful, resolving the domain name to the DC's IP.</p>
+<p>The permanent fix would be to update the netplan config. My plan was to complete the realm join first and make the fix permanent afterwards, but as it turned out, I only completed the realm join after the netplan fix was in place.</p>
+<h2 id="3-apt-update-failing">3. <code>apt update</code> Failing</h2>
+<p>I then wanted to install some packages to complete the realm join process. I first ran <code>sudo apt update</code>, and the output had multiple <strong>"Temporary failure resolving"</strong> and <strong>"Failed to fetch"</strong> errors.</p>
+<p>An online search led me to askubuntu.com, which provided a solution implying that the cause was DNS resolution. The temporary solution for the "Temporary failure resolving" error was to run:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;nameserver 8.8.8.8&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/resolv.conf<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+</code></pre></div>
+<p>This enters Google's DNS server into the Ubuntu server's DNS resolver config file, allowing me to resolve domains via <code>8.8.8.8</code>, similar to what I did earlier in the homelab with DNS and Cloudflare's DNS servers.</p>
+<p>Running <code>sudo apt update</code> was successful this time around.</p>
+<div class="admonition note">
+<p class="admonition-title">In hindsight: a temporary workaround, and the first of two side effects</p>
+<p>This worked for getting packages, but it was only ever a temporary solution, not a permanent one. Looking back, the most likely reason internet names stopped resolving is the runtime fix in step 2: setting only <code>~earth.local</code> on the interface told the resolver to use it for that domain alone, leaving nothing to handle other names. It is the same problem I hit again, and fixed properly, in step 6.</p>
+</div>
+<h2 id="4-installing-the-packages">4. Installing the Packages</h2>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>realmd<span class="w"> </span>sssd<span class="w"> </span>sssd-tools<span class="w"> </span>libnss-sss<span class="w"> </span>libpam-sss<span class="w"> </span>adcli<span class="w"> </span>samba-common-bin<span class="w"> </span>oddjob<span class="w"> </span>oddjob-mkhomedir<span class="w"> </span>packagekit
+</code></pre></div>
+<p>Summary of the packages for realm joining:</p>
+<p><strong>Needed for the join itself</strong></p>
+<ul>
+<li><code>realmd</code>: provides the <code>realm</code> command, which discovers the domain and runs the join.</li>
+<li><code>adcli</code>: does the actual work behind <code>realm join</code>, such as creating the computer account in AD.</li>
+<li><code>samba-common-bin</code>: Samba helper tools that <code>realmd</code> can use during the join.</li>
+<li><code>packagekit</code>: lets <code>realmd</code> install any other packages it finds it needs.</li>
+</ul>
+<p><strong>Needed so AD users can sign in afterwards</strong></p>
+<ul>
+<li><code>sssd</code>: the service that talks to AD for user and group lookups and authentication.</li>
+<li><code>sssd-tools</code>: admin tools for SSSD, such as clearing its cache.</li>
+<li><code>libnss-sss</code>: lets commands like <code>id</code> look up domain users through SSSD.</li>
+<li><code>libpam-sss</code>: lets the login process check domain passwords through SSSD.</li>
+<li><code>oddjob</code> and <code>oddjob-mkhomedir</code>: create a home folder the first time a domain user logs in.</li>
+</ul>
+<h2 id="5-discovering-the-domain-no-such-realm-found">5. Discovering the Domain — "No such realm found"</h2>
+<div class="highlight"><pre><span></span><code>realm<span class="w"> </span>discover<span class="w"> </span>earth.local
+</code></pre></div>
+<p>This failed with <strong>no such realm found</strong>, which was strange given that <code>resolvectl query earth.local</code> was working.</p>
+<div class="admonition note">
+<p class="admonition-title">Resolving the name is not the same as discovering the domain</p>
+<p><code>realm discover</code> doesn't just look up the domain name. It looks up the SRV records a DC registers in DNS (<code>_ldap._tcp.earth.local</code>).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">In hindsight: the second side effect of the 8.8.8.8 workaround</p>
+<p><code>resolvectl query</code> asks the system resolver service directly, so it was still using the DC. Other programs read <code>/etc/resolv.conf</code>, which I had just pointed at <code>8.8.8.8</code>. A public DNS server knows nothing about <code>earth.local</code>, which would explain why one command could find the domain while <code>realm</code> could not.</p>
+</div>
+<h3 id="a-fix-i-tried-that-did-not-work">A Fix I Tried That Did Not Work</h3>
+<p>I tried editing <code>/etc/systemd/resolved.conf</code> and adding DNS servers to it:</p>
+<div class="highlight"><pre><span></span><code><span class="na">DNS</span><span class="o">=</span><span class="s">8.8.8.8 1.1.1.1 192.168.150.52</span>
+</code></pre></div>
+<p>This did not resolve the issue.</p>
+<h3 id="finding-the-real-state">Finding the Real State</h3>
+<p>When I came back to it, <code>resolvectl status</code> showed what was going on:</p>
+<div class="highlight"><pre><span></span><code>Global
+         Protocols: -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+  resolv.conf mode: stub
+Current DNS Server: 8.8.8.8
+       DNS Servers: 8.8.8.8 1.1.1.1 192.168.150.52
+
+Link 2 (enp1s0)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 192.168.150.52
+       DNS Servers: 192.168.150.52
+     Default Route: yes
+</code></pre></div>
+<p>Three things stood out:</p>
+<ul>
+<li><strong>The <code>~earth.local</code> routing domain was gone.</strong> There was no <code>Domains:</code> line under <code>enp1s0</code>, because the runtime setting from step 2 had not survived. Without it, <code>.local</code> lookups were once again not being sent to the DC.</li>
+<li><strong>The <code>DNS=</code> line I added had made public servers global DNS servers</strong>, with <code>8.8.8.8</code> as the current one. A public DNS server answers "no such domain" for <code>earth.local</code>, and listing the DC third did not help.</li>
+<li><strong>My <code>/etc/resolv.conf</code> change had not lasted either.</strong> The output shows <code>resolv.conf mode: stub</code>, the default, confirming that edit was temporary.</li>
+</ul>
+<div class="admonition failure">
+<p class="admonition-title">My workarounds had stacked up</p>
+<p>Each quick fix solved the error in front of me and left something behind: a runtime setting that disappeared, and public DNS servers that could never answer for my internal domain.</p>
+</div>
+<h2 id="6-the-fix">6. The Fix</h2>
+<p><strong>Undo the resolved.conf change:</strong></p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/^DNS=/#DNS=/&#39;</span><span class="w"> </span>/etc/systemd/resolved.conf
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>systemd-resolved
+</code></pre></div>
+<p><strong>Make the domain setting permanent in netplan</strong> (instead of the runtime <code>resolvectl</code> command):</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/netplan/*.yaml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># This is the network config written by &#39;subiquity&#39;</span>
+<span class="nt">network</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enp1s0</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">match</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">macaddress</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">52:54:00:fe:70:78</span>
+<span class="w">      </span><span class="nt">set-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enp1s0</span>
+<span class="w">      </span><span class="nt">nameservers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">search</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">earth.local</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>netplan<span class="w"> </span>try
+</code></pre></div>
+<p>Listing <code>earth.local</code> as a search domain is the explicit configuration that allows <code>.local</code> lookups to go to the DC. <code>netplan try</code> applies the change and rolls it back after a timeout unless I confirm it, which protects against locking myself out over SSH.</p>
+<p><strong>Verify:</strong></p>
+<div class="highlight"><pre><span></span><code>resolvectl<span class="w"> </span>status<span class="w"> </span>enp1s0
+resolvectl<span class="w"> </span>query<span class="w"> </span>earth.local
+resolvectl<span class="w"> </span>query<span class="w"> </span>--type<span class="o">=</span>SRV<span class="w"> </span>_ldap._tcp.earth.local
+resolvectl<span class="w"> </span>query<span class="w"> </span>archive.ubuntu.com
+realm<span class="w"> </span>discover<span class="w"> </span>earth.local
+</code></pre></div>
+<p>Everything succeeded, including <code>realm discover</code>, except one:</p>
+<div class="highlight"><pre><span></span><code>archive.ubuntu.com: resolve call failed: No appropriate name servers or networks for name found
+</code></pre></div>
+<h3 id="internet-names-stopped-resolving">Internet Names Stopped Resolving</h3>
+<p>That error comes from the server's own resolver rather than from the DC. With the public servers removed, nothing was marked as the route for names outside <code>earth.local</code>, so the query was never sent anywhere.</p>
+<p>The fix was to tell the resolver to use this interface for all names, by adding <code>"~."</code> to the search list in netplan:</p>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="nt">nameservers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">search</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">earth.local</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;~.&quot;</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>followed by <code>sudo netplan try</code> again. Internet names then resolved again, now through the DC, with no public DNS server configured on the Linux server at all.</p>
+<h3 id="reboot-test">Reboot Test</h3>
+<p>Since the earlier runtime fix had been lost, I rebooted the server to verify the netplan settings persisted:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>reboot
+</code></pre></div>
+<p>After the reboot I tested these commands to confirm all was well:</p>
+<div class="highlight"><pre><span></span><code>resolvectl<span class="w"> </span>status
+resolvectl<span class="w"> </span>query<span class="w"> </span>earth.local
+realm<span class="w"> </span>discover<span class="w"> </span>earth.local
+</code></pre></div>
+<p>The settings were still in place, the domain still resolved, and <code>realm discover</code> still worked. Only then did I move on to the join itself.</p>
+<div class="admonition success">
+<p class="admonition-title">DNS fix confirmed permanent</p>
+<p>The settings survived a reboot, so the fix now lives in netplan rather than in a runtime command.</p>
+</div>
+<h2 id="7-joining-the-domain">7. Joining the Domain</h2>
+<div class="highlight"><pre><span></span><code>realm<span class="w"> </span>discover<span class="w"> </span>earth.local
+sudo<span class="w"> </span>realm<span class="w"> </span>join<span class="w"> </span>-U<span class="w"> </span>Administrator<span class="w"> </span>earth.local
+realm<span class="w"> </span>list
+</code></pre></div>
+<p>With DNS sorted, the join itself went through smoothly with no further issues.</p>
+<div class="admonition note">
+<p class="admonition-title">Join account</p>
+<p>I used the domain Administrator for the join. In a real environment this would be a delegated account with only the right to join computers.</p>
+</div>
+<h2 id="8-home-folders-and-testing-a-domain-login">8. Home Folders and Testing a Domain Login</h2>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pam-auth-update<span class="w"> </span>--enable<span class="w"> </span>mkhomedir
+id<span class="w"> </span>administrator@earth.local
+su<span class="w"> </span>-<span class="w"> </span>administrator@earth.local
+</code></pre></div>
+<p><code>mkhomedir</code> creates a home folder the first time a domain user logs in. Domain users sign in using the <code>user@domain</code> form.</p>
+<h2 id="9-confirming-on-the-dc">9. Confirming on the DC</h2>
+<p>On the DC, I opened the Active Directory Administrative Center (DSAC) and could see the server listed under <strong>Computers</strong>.</p>
+<p><img alt="Ubuntu Server joined to the domain" src="../../assets/images/ubuntu_server_joined.png" /></p>
+<div class="admonition success">
+<p class="admonition-title">Ubuntu Server joined to the domain</p>
+<p>The server has a computer object in Active Directory, and domain accounts can be looked up and used to sign in on it.</p>
+</div>
+<hr />
+<h2 id="final-validation-summary">Final Validation Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSH from the DC (PowerShell) to the server</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td>DNS server on the interface is the DC</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td>Clock aligned with the DC</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td><code>earth.local</code> resolving on first check</td>
+<td>❌ Failed — <code>.local</code> not sent to DNS servers by default</td>
+</tr>
+<tr>
+<td>Runtime fix (<code>resolvectl dns</code> / <code>resolvectl domain</code>)</td>
+<td>✅ Worked, but lost later (runtime only)</td>
+</tr>
+<tr>
+<td><code>sudo apt update</code></td>
+<td>❌ "Temporary failure resolving"</td>
+</tr>
+<tr>
+<td><code>8.8.8.8</code> written to <code>/etc/resolv.conf</code></td>
+<td>✅ <code>apt update</code> worked — temporary workaround only</td>
+</tr>
+<tr>
+<td>Packages installed (<code>realmd</code>, <code>sssd</code>, <code>adcli</code> and the rest)</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td><code>realm discover earth.local</code> on first attempt</td>
+<td>❌ "No such realm found"</td>
+</tr>
+<tr>
+<td>Adding <code>DNS=</code> servers to <code>resolved.conf</code></td>
+<td>❌ Did not resolve it</td>
+</tr>
+<tr>
+<td><code>DNS=</code> line removed, search domain added in netplan</td>
+<td>✅ <code>earth.local</code>, its SRV records and <code>realm discover</code> all working</td>
+</tr>
+<tr>
+<td>Internet names after removing the public servers</td>
+<td>❌ "No appropriate name servers or networks for name found"</td>
+</tr>
+<tr>
+<td><code>"~."</code> added to the netplan search list</td>
+<td>✅ Internet names resolving through the DC</td>
+</tr>
+<tr>
+<td>Reboot test: DNS settings and <code>realm discover</code> still working</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td><code>realm join</code> (as Administrator)</td>
+<td>✅ YES, no issues</td>
+</tr>
+<tr>
+<td>Domain user lookup and login (<code>id</code>, <code>su -</code>)</td>
+<td>✅ YES</td>
+</tr>
+<tr>
+<td>Server visible under Computers in DSAC</td>
+<td>✅ YES</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li><strong>An AD join on Linux is mostly a DNS exercise.</strong> The packages and the join command were quick. Nearly all the time went on getting the server to ask the right DNS server for the right names.</li>
+<li><strong>A <code>.local</code> AD domain needs explicit configuration on Linux.</strong> Having the DC as the DNS server was not enough. The domain had to be listed as a search domain before <code>.local</code> lookups were sent to it.</li>
+<li><strong>Resolving the domain name is not enough.</strong> <code>realm discover</code> relies on the DC's SRV records, so <code>resolvectl query --type=SRV _ldap._tcp.earth.local</code> is the more useful test.</li>
+<li><strong>Public DNS servers should not be mixed in on a domain member.</strong> They got <code>apt</code> working, but they cannot answer for internal names. The DC should be the DNS server, with forwarding to the internet handled there.</li>
+<li><strong>Temporary fixes are for testing a theory, not for leaving in place.</strong> <code>resolvectl</code> changes and edits to <code>/etc/resolv.conf</code> did not last, and each one hid the real problem for a while. The permanent setting belongs in netplan, applied with <code>netplan try</code> and proven with a reboot.</li>
+<li><strong>Read the status output before changing config.</strong> <code>resolvectl status</code> showed the whole picture in one place, and would have saved me the <code>resolved.conf</code> edit.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
